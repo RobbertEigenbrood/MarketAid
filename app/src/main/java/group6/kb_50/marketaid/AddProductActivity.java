@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +30,11 @@ public class AddProductActivity extends AppCompatActivity {
     public void onClickAddProduct(View v){
         Firebase ref = new Firebase("https://market-aid.firebaseio.com/");
 
+        RadioGroup r = (RadioGroup) findViewById(R.id.radioGroup);
+        RadioButton selected = (RadioButton)findViewById(r.getCheckedRadioButtonId());
+
+        String seller = selected.getText().toString();
+
         TextView inputnameTV = (TextView) findViewById(R.id.editText);
         TextView inputpriceTV = (TextView) findViewById(R.id.editText2);
         TextView inputdescriptionTV = (TextView) findViewById(R.id.editText3);
@@ -36,8 +43,8 @@ public class AddProductActivity extends AppCompatActivity {
         String inputprice = inputpriceTV.getText().toString();
         String inputdescription = inputdescriptionTV.getText().toString();
 
-        ref.child("Products").child(inputname).child("price").setValue(inputprice);
-        ref.child("Products").child(inputname).child("description").setValue(inputdescription);
+        ref.child("Sellers").child(seller).child("Products").child(inputname).child("price").setValue(inputprice);
+        ref.child("Sellers").child(seller).child("Products").child(inputname).child("description").setValue(inputdescription);
 
         Toast.makeText(this,"Product Added!",Toast.LENGTH_SHORT);
     }
