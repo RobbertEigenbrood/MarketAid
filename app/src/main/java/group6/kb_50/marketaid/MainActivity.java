@@ -1,9 +1,12 @@
 package group6.kb_50.marketaid;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.firebase.client.Firebase;
 
@@ -14,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Firebase.setAndroidContext(this);
+
     }
 
     @Override
@@ -23,6 +27,13 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+
+    public void onClickAddProduct(View v){
+        Intent i = new Intent(this,AddProductActivity.class);
+        startActivity(i);
+
+
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
