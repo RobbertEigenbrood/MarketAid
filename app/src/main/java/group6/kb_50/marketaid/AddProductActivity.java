@@ -2,6 +2,7 @@ package group6.kb_50.marketaid;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
@@ -16,11 +17,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.client.Firebase;
+import com.parse.ParseFile;
 import com.parse.ParseObject;
 
+import java.io.ByteArrayOutputStream;
+
 public class AddProductActivity extends AppCompatActivity {
-    private Uri fileUri;
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
+    Bitmap imageBitmap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +49,7 @@ public class AddProductActivity extends AppCompatActivity {
         if(requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE){
             if(resultCode == RESULT_OK){
                 Bundle extras = data.getExtras();
-                Bitmap imageBitmap = (Bitmap) extras.get("data");
+                imageBitmap = (Bitmap) extras.get("data");
                 ImageView iv = (ImageView)findViewById(R.id.imageView);
                 iv.setImageBitmap(imageBitmap);
                 Toast.makeText(this,"Image Saved!",Toast.LENGTH_SHORT).show();
@@ -63,13 +67,19 @@ public class AddProductActivity extends AppCompatActivity {
         String inputprice = inputpriceTV.getText().toString();
         String inputdescription = inputdescriptionTV.getText().toString();
 
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        byte[] image = stream.toByteArray();
+        ParseFile file = new ParseFile(image);
+
         ParseObject p = new ParseObject("Products");
         p.put("Name",inputname);
         p.put("Price",inputprice);
         p.put("Description",inputdescription);
+        p.put("Image",file);
         p.saveInBackground();
 
-        Toast.makeText(this,"Product Added!",Toast.LENGTH_SHORT);
+        Toast.makeText(this,"Product Added!",Toast.LENGTH_SHORT).show();
     }
 
     @Override
