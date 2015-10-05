@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.firebase.client.Firebase;
+import com.parse.Parse;
+import com.parse.ParseObject;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,8 +18,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Firebase.setAndroidContext(this);
+        // Enable Local Datastore.
+        Parse.enableLocalDatastore(this);
 
+        Parse.initialize(this, "eWtFfVxalDS39OF2hA8k2R3hTy8l125jU2fn4Mnx", "6q0qhKaUUDd1p2nUtCXUlOFwGqreFdoROVT7QQ2a");
     }
 
     @Override
@@ -30,6 +34,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClickAddProduct(View v){
         Intent i = new Intent(this,AddProductActivity.class);
+        startActivity(i);
+
+
+    }
+
+    public void onClickShowProducts(View v){
+        Intent i = new Intent(this,ShowProductsActivity.class);
         startActivity(i);
 
 

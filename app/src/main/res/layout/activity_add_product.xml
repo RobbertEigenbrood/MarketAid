@@ -11,9 +11,9 @@
         android:layout_height="wrap_content"
         android:id="@+id/editText3"
         android:hint="Enter Product description here"
-        android:layout_alignParentStart="true"
+        android:layout_below="@+id/editText2"
         android:layout_alignParentLeft="true"
-        android:layout_above="@+id/button2" />
+        android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -21,17 +21,7 @@
         android:text="Add Product!"
         android:id="@+id/button2"
         android:onClick="onClickAddProduct"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Select Seller"
-        android:id="@+id/textView2"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/editText3"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -40,9 +30,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/editText"
         android:hint="Enter Product name  here"
-        android:layout_above="@+id/editText2"
-        android:layout_alignRight="@+id/editText3"
-        android:layout_alignEnd="@+id/editText3"
+        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -51,42 +39,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/editText2"
         android:hint="Enter Product price here"
-        android:layout_above="@+id/editText3"
+        android:layout_below="@+id/editText"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/editText3"
-        android:layout_alignEnd="@+id/editText3" />
-
-    <RadioGroup
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/textView2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_above="@+id/editText"
-        android:orientation="vertical"
-        android:id="@+id/radioGroup">
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Mike"
-            android:id="@+id/radioButton"
-            android:checked="false" />
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Henk"
-            android:id="@+id/radioButton2"
-            android:checked="false" />
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Robbert OwnBread"
-            android:id="@+id/radioButton3"
-            android:checked="false" />
-    </RadioGroup>
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
