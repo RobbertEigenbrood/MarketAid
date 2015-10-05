@@ -7,23 +7,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.firebase.client.ChildEventListener;
-import com.firebase.client.DataSnapshot;
-import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
-import com.firebase.client.Query;
-import com.firebase.client.ValueEventListener;
 import com.parse.FindCallback;
-import com.parse.GetCallback;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
-
-import java.text.ParseException;
 import java.util.List;
-import java.util.Map;
-
-import bolts.Task;
 
 public class ShowProductsActivity extends AppCompatActivity {
 
