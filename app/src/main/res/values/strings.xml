@@ -24,4 +24,6 @@
     <string name="title_activity_seller_add">SellerAddActivity</string>
     <string name="SellerButton">Seller</string>
     <string name="BuyerButton">Buyer</string>
+    <string name="BuyerOverview">Buyer Overview</string>
+    <string name="SellerOverview">Seller Overview</string>
 </resources>

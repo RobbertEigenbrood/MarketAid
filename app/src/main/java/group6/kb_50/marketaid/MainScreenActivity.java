@@ -1,5 +1,6 @@
 package group6.kb_50.marketaid;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,10 +18,11 @@ public class MainScreenActivity extends AppCompatActivity {
     }
 
     public void ToSellerMain(View view) {
+        startActivity(new Intent(this, SellerMainActivity.class));
     }
 
     public void ToBuyerMain(View view) {
-
+        startActivity(new Intent(this, BuyerMainActivity.class));
     }
 
 
