@@ -6,4 +6,13 @@
     <string name="title_activity_add_product">AddProductActivity</string>
     <string name="title_activity_show_products">ShowProductsActivity</string>
     <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_main_screen">MainScreenActivity</string>
+    <string name="title_activity_how_to">HowToActivity</string>
+    <string name="title_activity_buyer_main">BuyerMainActivity</string>
+    <string name="title_activity_buyer_product">BuyerProductActivity</string>
+    <string name="title_activity_buyer_filter">BuyerFilterActivity</string>
+    <string name="title_activity_seller_login">SellerLoginActivity</string>
+    <string name="title_activity_create_seller">CreateSellerActivity</string>
+    <string name="title_activity_seller_overview">SellerOverviewActivity</string>
+    <string name="title_activity_seller_add">SellerAddActivity</string>
 </resources>

@@ -18,7 +18,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
@@ -32,6 +32,47 @@
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login" >
+        </activity>
+        <activity
+            android:name=".MainScreenActivity"
+            android:label="@string/title_activity_main_screen" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainHowToActivity"
+            android:label="@string/title_activity_how_to" >
+        </activity>
+        <activity
+            android:name=".BuyerMainActivity"
+            android:label="@string/title_activity_buyer_main" >
+        </activity>
+        <activity
+            android:name=".BuyerProductActivity"
+            android:label="@string/title_activity_buyer_product" >
+        </activity>
+        <activity
+            android:name=".BuyerFilterActivity"
+            android:label="@string/title_activity_buyer_filter" >
+        </activity>
+        <activity
+            android:name=".SellerLoginActivity"
+            android:label="@string/title_activity_seller_login" >
+        </activity>
+        <activity
+            android:name=".SellerCreateAccountActivity"
+            android:label="@string/title_activity_create_seller" >
+        </activity>
+        <activity
+            android:name=".SellerOverviewActivity"
+            android:label="@string/title_activity_seller_overview" >
+        </activity>
+        <activity
+            android:name=".SellerAddActivity"
+            android:label="@string/title_activity_seller_add" >
         </activity>
     </application>
 
