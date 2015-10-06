@@ -2,6 +2,7 @@ package group6.kb_50.marketaid;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 /*
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,6 +14,13 @@ public class MainScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
+    }
+
+    public void ToSellerMain(View view) {
+    }
+
+    public void ToBuyerMain(View view) {
+
     }
 
 
