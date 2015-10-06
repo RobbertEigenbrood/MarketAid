@@ -5,46 +5,60 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.parse.FindCallback;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class ShowProductsActivity extends AppCompatActivity {
 
-    public TextView tv;
-
+    public ArrayList<String> products = new ArrayList<String>();
+    ListView listView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_products);
-        tv = (TextView) findViewById(R.id.textViewproducts);
+        fillList();
     }
 
+    public void fillList() {
+
+        listView = (ListView) findViewById(R.id.listView);
 
 
-    public void getProducts(){
         ParseQuery<ParseObject> pq = ParseQuery.getQuery("Products");
+        pq.whereEqualTo("Seller", ParseUser.getCurrentUser());
         pq.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> list, com.parse.ParseException e) {
-                for(int i = 0; i < list.size();i++){
+                for (int i = 0; i < list.size(); i++) {
                     String toaststring = list.get(i).getString("Name");
                     String toaststringprijs = list.get(i).getString("Price");
                     String toaststringdescription = list.get(i).getString("Description");
-                    Toast.makeText(getBaseContext(),toaststring + " - " + toaststringprijs + " - " + toaststringdescription,Toast.LENGTH_SHORT).show();
+                    String total = toaststring + " - " + toaststringprijs + " - " + toaststringdescription;
+                    products.add(total);
+
+
+                }
+                ArrayAdapter<String> list_adapter = new ArrayAdapter<String>(getBaseContext(), android.R.layout.simple_list_item_1,products);
+                listView.setAdapter(list_adapter);
             }
-        }
+
 
         });
 
+
+
     }
 
-    public void onClickButton(View v){
-        getProducts();
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

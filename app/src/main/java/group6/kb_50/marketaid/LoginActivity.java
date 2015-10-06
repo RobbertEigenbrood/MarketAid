@@ -10,8 +10,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
+import com.parse.LogInCallback;
+import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
 import java.util.List;
 
@@ -32,19 +35,18 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onClickLogin(View v){
 
+        EditText username = (EditText)findViewById(R.id.editTextusername);
+        EditText pass = (EditText)findViewById(R.id.editTextpassword);
 
-        ParseQuery<ParseObject> pq = ParseQuery.getQuery("Users");
-        pq.findInBackground(new FindCallback<ParseObject>() {
+        ParseUser user = new ParseUser();
+        ParseUser.logInInBackground(username.getText().toString(),pass.getText().toString(), new LogInCallback() {
             @Override
-            public void done(List<ParseObject> list, com.parse.ParseException e) {
-                for(int i = 0; i < list.size();i++){
-                    String username = list.get(i).getString("Username");
-                    String password = list.get(i).getString("Password");
-
-
+            public void done(ParseUser parseUser, ParseException e) {
+                if(parseUser != null)
+                {
+                    Toast.makeText(getBaseContext(),"Logged in",Toast.LENGTH_SHORT).show();
                 }
             }
-
         });
     }
 
