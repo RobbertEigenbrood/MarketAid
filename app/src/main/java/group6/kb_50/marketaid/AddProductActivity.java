@@ -15,8 +15,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
+import com.parse.ParseUser;
 
 import java.io.ByteArrayOutputStream;
+
 
 public class AddProductActivity extends AppCompatActivity {
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
@@ -73,8 +75,9 @@ public class AddProductActivity extends AppCompatActivity {
         p.put("Price",inputprice);
         p.put("Description",inputdescription);
         p.put("Image",file);
+        p.put("Seller",ParseUser.getCurrentUser());
         p.saveInBackground();
-
+        Toast.makeText(this,ParseUser.getCurrentUser().toString(),Toast.LENGTH_SHORT).show();
         Toast.makeText(this,"Product Added!",Toast.LENGTH_SHORT).show();
     }
 
