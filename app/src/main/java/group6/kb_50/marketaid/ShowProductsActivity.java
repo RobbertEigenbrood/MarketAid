@@ -4,24 +4,23 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ArrayAdapter;
+import android.widget.GridView;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.parse.FindCallback;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseQueryAdapter;
 import com.parse.ParseUser;
 
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class ShowProductsActivity extends AppCompatActivity {
 
-    public ArrayList<String> products = new ArrayList<String>();
-    ListView listView;
+    private ArrayList<Product> products;
+    private GridView listView;
+    private ParseQueryAdapter<Product> mainAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,33 +29,20 @@ public class ShowProductsActivity extends AppCompatActivity {
     }
 
     public void fillList() {
+        ParseQueryAdapter<Product> adapter =
+                new ParseQueryAdapter<Product>(this, new ParseQueryAdapter.QueryFactory<Product>() {
+                    public ParseQuery<Product> create() {
+                        // Here we can configure a ParseQuery to our heart's desire.
+                        ParseQuery query = new ParseQuery("Products");
+                        query.whereEqualTo("Seller",ParseUser.getCurrentUser());
+                        return query;
+                    }
+                });
+        adapter.setTextKey("Name");
+        adapter.setImageKey("Image");
 
-        listView = (ListView) findViewById(R.id.listView);
-
-
-        ParseQuery<ParseObject> pq = ParseQuery.getQuery("Products");
-        pq.whereEqualTo("Seller", ParseUser.getCurrentUser());
-        pq.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(List<ParseObject> list, com.parse.ParseException e) {
-                for (int i = 0; i < list.size(); i++) {
-                    String toaststring = list.get(i).getString("Name");
-                    String toaststringprijs = list.get(i).getString("Price");
-                    String toaststringdescription = list.get(i).getString("Description");
-                    String total = toaststring + " - " + toaststringprijs + " - " + toaststringdescription;
-                    products.add(total);
-
-
-                }
-                ArrayAdapter<String> list_adapter = new ArrayAdapter<String>(getBaseContext(), android.R.layout.simple_list_item_1,products);
-                listView.setAdapter(list_adapter);
-            }
-
-
-        });
-
-
-
+        listView = (GridView) findViewById(R.id.listView);
+        listView.setAdapter(adapter);
     }
 
 
