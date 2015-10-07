@@ -11,6 +11,10 @@
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <!--Tijdelijke Strings-->
+    <string name="Howtoscreen">De how to screen, Hier komt informatie over bijv waar het menu scherm is, Dus Rechts boven in.</string>
+    <string name="AckHowtoscreen">OK! i get it</string>
+
     <!--Settings Strings -->
     <string name="settingsusername">Username</string>
     <string name="settingspassword">Password</string>

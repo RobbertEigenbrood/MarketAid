@@ -32,7 +32,7 @@ public class SplashActivity extends AppCompatActivity {
             public void onAnimationEnd(Animation animation) {
                 ivv.startAnimation(an2);
                 finish();
-                Intent i = new Intent(getBaseContext(),MainActivity.class);
+                Intent i = new Intent(getBaseContext(),MainScreenActivity.class);
                 startActivity(i);
             }
 

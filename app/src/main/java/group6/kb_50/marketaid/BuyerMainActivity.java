@@ -18,13 +18,13 @@ public class BuyerMainActivity extends AppCompatActivity {
 
     //---the images to display---
     Integer[] imageIDs = {
-            R.mipmap.pic1,
+    /*        R.mipmap.pic1,
             R.mipmap.pic2,
             R.mipmap.pic3,
             R.mipmap.pic4,
             R.mipmap.pic5,
             R.mipmap.pic6,
-            R.mipmap.pic7
+            R.mipmap.pic7*/
     };
 
     @Override
