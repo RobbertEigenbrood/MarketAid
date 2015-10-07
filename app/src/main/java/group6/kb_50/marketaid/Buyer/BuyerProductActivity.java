@@ -1,9 +1,11 @@
-package group6.kb_50.marketaid;
+package group6.kb_50.marketaid.Buyer;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import group6.kb_50.marketaid.R;
 
 public class BuyerProductActivity extends AppCompatActivity {
 

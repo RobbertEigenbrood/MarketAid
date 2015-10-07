@@ -1,4 +1,4 @@
-package group6.kb_50.marketaid;
+package group6.kb_50.marketaid.Buyer;
 
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +13,8 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import group6.kb_50.marketaid.R;
 
 public class BuyerMainActivity extends AppCompatActivity {
 

@@ -1,22 +1,24 @@
-package group6.kb_50.marketaid;
+package group6.kb_50.marketaid.Seller;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class SellerLoginActivity extends AppCompatActivity {
+import group6.kb_50.marketaid.R;
+
+public class SellerCreateAccountActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_seller_login);
+        setContentView(R.layout.activity_seller_create_account);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_seller_login, menu);
+        getMenuInflater().inflate(R.menu.menu_create_seller, menu);
         return true;
     }
 

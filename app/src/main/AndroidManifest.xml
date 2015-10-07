@@ -31,7 +31,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".AddProductActivity"
+            android:name=".Seller.AddProductActivity"
             android:label="@string/title_activity_add_product" >
         </activity>
         <activity
@@ -56,31 +56,31 @@
             android:label="@string/title_activity_how_to" >
         </activity>
         <activity
-            android:name=".BuyerMainActivity"
+            android:name=".Buyer.BuyerMainActivity"
             android:label="@string/title_activity_buyer_main" >
         </activity>
         <activity
-            android:name=".BuyerProductActivity"
+            android:name=".Buyer.BuyerProductActivity"
             android:label="@string/title_activity_buyer_product" >
         </activity>
         <activity
-            android:name=".BuyerFilterActivity"
+            android:name=".Buyer.BuyerFilterActivity"
             android:label="@string/title_activity_buyer_filter" >
         </activity>
         <activity
-            android:name=".SellerLoginActivity"
+            android:name=".Seller.SellerLoginActivity"
             android:label="@string/title_activity_seller_login" >
         </activity>
         <activity
-            android:name=".SellerCreateAccountActivity"
+            android:name=".Seller.SellerCreateAccountActivity"
             android:label="@string/title_activity_create_seller" >
         </activity>
         <activity
-            android:name=".SellerMainActivity"
+            android:name=".Seller.SellerMainActivity"
             android:label="@string/title_activity_seller_main" >
         </activity>
         <activity
-            android:name=".SellerAddActivity"
+            android:name=".Seller.SellerAddActivity"
             android:label="@string/title_activity_seller_add" >
         </activity>
     </application>

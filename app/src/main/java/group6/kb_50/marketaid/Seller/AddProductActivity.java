@@ -1,4 +1,4 @@
-package group6.kb_50.marketaid;
+package group6.kb_50.marketaid.Seller;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -18,6 +18,8 @@ import com.parse.ParseObject;
 import com.parse.ParseUser;
 
 import java.io.ByteArrayOutputStream;
+
+import group6.kb_50.marketaid.R;
 
 
 public class AddProductActivity extends AppCompatActivity {

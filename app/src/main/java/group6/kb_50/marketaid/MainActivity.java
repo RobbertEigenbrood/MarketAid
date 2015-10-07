@@ -8,6 +8,8 @@ import android.view.MenuItem;
 import android.view.View;
 import com.parse.Parse;
 
+import group6.kb_50.marketaid.Seller.AddProductActivity;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override

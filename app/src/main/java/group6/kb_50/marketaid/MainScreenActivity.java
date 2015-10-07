@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+
+import group6.kb_50.marketaid.Buyer.BuyerMainActivity;
+import group6.kb_50.marketaid.Seller.SellerMainActivity;
 /*
 import android.view.Menu;
 import android.view.MenuItem;
