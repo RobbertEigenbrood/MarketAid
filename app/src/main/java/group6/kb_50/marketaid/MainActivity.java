@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import com.parse.Parse;
+import com.parse.ParseObject;
 
 import group6.kb_50.marketaid.Seller.AddProductActivity;
 
@@ -18,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         // Enable Local Datastore.
         Parse.enableLocalDatastore(this);
-
+        ParseObject.registerSubclass(Product.class);
         Parse.initialize(this, "eWtFfVxalDS39OF2hA8k2R3hTy8l125jU2fn4Mnx", "6q0qhKaUUDd1p2nUtCXUlOFwGqreFdoROVT7QQ2a");
     }
 

@@ -19,6 +19,7 @@ import com.parse.ParseUser;
 
 import java.io.ByteArrayOutputStream;
 
+import group6.kb_50.marketaid.Product;
 import group6.kb_50.marketaid.R;
 
 
@@ -67,20 +68,20 @@ public class AddProductActivity extends AppCompatActivity {
         String inputprice = inputpriceTV.getText().toString();
         String inputdescription = inputdescriptionTV.getText().toString();
 
-
-        ParseObject p = new ParseObject("Products");
-        p.put("Name",inputname);
-        p.put("Price",inputprice);
-        p.put("Description",inputdescription);
+        Product p = new Product();
+        p.setName(inputname);
+        p.setPrice(inputprice);
+        p.setDescription(inputdescription);
+        p.setSeller(ParseUser.getCurrentUser());
         /* Check for a nullpointer. The app shuts down if the user hasn't added an image */
         if( imageBitmap != null){
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
             imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
             byte[] image = stream.toByteArray();
             ParseFile file = new ParseFile(image);
-            p.put("Image",file);
+            p.setImage(file);
         }
-        p.put("Seller",ParseUser.getCurrentUser());
+
         p.saveInBackground();
         Toast.makeText(this,ParseUser.getCurrentUser().toString(),Toast.LENGTH_SHORT).show();
         Toast.makeText(this,"Product Added!",Toast.LENGTH_SHORT).show();
