@@ -6,72 +6,20 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="group6.kb_50.marketaid.Seller.AddProductActivity">
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/editText3"
-        android:hint="Enter Product description here"
-        android:layout_alignParentStart="true"
-        android:gravity="bottom"
-        android:lines="2"
-        android:layout_above="@+id/button2" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add/Edit Product!"
-        android:id="@+id/button2"
-        android:onClick="onClickAddProduct"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/editText"
-        android:hint="Enter Product Title here"
-        android:layout_alignParentTop="false"
-        android:layout_alignParentLeft="false"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/TitleAddText"
-        android:gravity="bottom" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/editText2"
-        android:hint="Enter Product Category here"
-        android:layout_alignParentStart="true"
-        android:gravity="bottom"
-        android:layout_above="@+id/DescriptionAddText" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add Image"
-        android:id="@+id/button5"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:onClick="onClickAddImage"
-        android:gravity="center"
-        android:layout_above="@+id/CategoryAddText" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Seller"
+        android:text="@string/SellerButton"
         android:id="@+id/SellerAddText"
         android:layout_centerHorizontal="true"
         android:textSize="50sp"
         android:gravity="center"
-        android:layout_alignParentEnd="false"
-        android:layout_alignParentStart="false"
         android:layout_alignParentTop="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add or Edit Product"
+        android:text="@string/AddOrEdit"
         android:id="@+id/AddEditProductText"
         android:layout_centerHorizontal="true"
         android:textSize="20sp"
@@ -81,21 +29,34 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Title"
+        android:text="@string/Title"
         android:id="@+id/TitleAddText"
         android:layout_centerHorizontal="true"
         android:textSize="20sp"
         android:layout_below="@+id/AddEditProductText"
         android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:gravity="bottom" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/EnterProductTitleEdit"
+        android:hint="@string/EnterProductTitle"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/TitleAddText"
+        android:gravity="bottom"
+        android:focusable="false"
+        android:focusableInTouchMode="false" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageView"
         android:src="@mipmap/ic_launcher"
-        android:layout_above="@+id/button5"
-        android:layout_below="@+id/editText"
+        android:layout_above="@+id/AddImageButton"
+        android:layout_below="@+id/EnterProductTitleEdit"
         android:layout_alignLeft="@+id/SellerAddText"
         android:layout_alignStart="@+id/SellerAddText"
         android:layout_alignRight="@+id/SellerAddText"
@@ -104,40 +65,88 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Browse"
-        android:id="@+id/BrowseAddButton"
-        android:layout_alignTop="@+id/button5"
-        android:layout_alignParentEnd="true"
+        android:text="@string/AddImage"
+        android:id="@+id/AddImageButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:onClick="onClickAddImage"
         android:gravity="center"
         android:layout_above="@+id/CategoryAddText" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Remove Product"
-        android:id="@+id/RemoveAddButton"
-        android:layout_alignTop="@+id/button2"
+        android:text="@string/Browse"
+        android:id="@+id/BrowseAddButton"
+        android:layout_alignTop="@+id/AddImageButton"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true" />
+        android:layout_alignParentRight="true"
+        android:gravity="center"
+        android:layout_above="@+id/CategoryAddText" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Category"
+        android:text="@string/Category"
         android:id="@+id/CategoryAddText"
         android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:gravity="bottom"
         android:textSize="20sp"
-        android:layout_above="@+id/editText2" />
+        android:layout_above="@+id/EnterProductCategoryEdit" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/EnterProductCategoryEdit"
+        android:hint="@string/EnterProductCategory"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:gravity="bottom"
+        android:layout_above="@+id/DescriptionAddText" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Description"
+        android:text="@string/Description"
         android:id="@+id/DescriptionAddText"
         android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:gravity="bottom"
         android:textSize="20sp"
-        android:layout_above="@+id/editText3" />
+        android:layout_above="@+id/AddProductDescriptionEdit" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/AddProductDescriptionEdit"
+        android:hint="@string/EnterProductDescription"
+        android:layout_alignParentStart="true"
+        android:gravity="bottom"
+        android:lines="2"
+        android:layout_above="@+id/AddEditButton"
+        android:focusableInTouchMode="true"
+        android:focusable="true"
+        android:layout_alignParentLeft="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/AddEditProduct"
+        android:id="@+id/AddEditButton"
+        android:onClick="onClickAddProduct"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/RemoveProduct"
+        android:id="@+id/RemoveAddButton"
+        android:layout_alignTop="@+id/AddEditButton"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true" />
 
 </RelativeLayout>

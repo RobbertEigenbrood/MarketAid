@@ -2,8 +2,6 @@ package group6.kb_50.marketaid.Seller;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -60,9 +58,9 @@ public class AddProductActivity extends AppCompatActivity {
     }
 
     public void onClickAddProduct(View v){
-        TextView inputnameTV = (TextView) findViewById(R.id.editText);
-        TextView inputpriceTV = (TextView) findViewById(R.id.editText2);
-        TextView inputdescriptionTV = (TextView) findViewById(R.id.editText3);
+        TextView inputnameTV = (TextView) findViewById(R.id.EnterProductTitleEdit);
+        TextView inputpriceTV = (TextView) findViewById(R.id.EnterProductCategoryEdit);
+        TextView inputdescriptionTV = (TextView) findViewById(R.id.AddProductDescriptionEdit);
 
         String inputname = inputnameTV.getText().toString();
         String inputprice = inputpriceTV.getText().toString();
