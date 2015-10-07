@@ -11,54 +11,133 @@
         android:layout_height="wrap_content"
         android:id="@+id/editText3"
         android:hint="Enter Product description here"
-        android:layout_below="@+id/editText2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:gravity="bottom"
+        android:lines="2"
+        android:layout_above="@+id/button2" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add Product!"
+        android:text="Add/Edit Product!"
         android:id="@+id/button2"
         android:onClick="onClickAddProduct"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true" />
 
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/editText"
-        android:hint="Enter Product name  here"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:hint="Enter Product Title here"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/TitleAddText"
+        android:gravity="bottom" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/editText2"
-        android:hint="Enter Product price here"
-        android:layout_below="@+id/editText"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:hint="Enter Product Category here"
+        android:layout_alignParentStart="true"
+        android:gravity="bottom"
+        android:layout_above="@+id/DescriptionAddText" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add Image"
         android:id="@+id/button5"
-        android:layout_below="@+id/editText3"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:onClick="onClickAddImage" />
+        android:onClick="onClickAddImage"
+        android:gravity="center"
+        android:layout_above="@+id/CategoryAddText" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Seller"
+        android:id="@+id/SellerAddText"
+        android:layout_centerHorizontal="true"
+        android:textSize="50sp"
+        android:gravity="center"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentTop="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add or Edit Product"
+        android:id="@+id/AddEditProductText"
+        android:layout_centerHorizontal="true"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:layout_below="@+id/SellerAddText" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Title"
+        android:id="@+id/TitleAddText"
+        android:layout_centerHorizontal="true"
+        android:textSize="20sp"
+        android:layout_below="@+id/AddEditProductText"
+        android:layout_alignParentStart="true"
+        android:gravity="bottom" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageView"
-        android:layout_below="@+id/button2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:src="@mipmap/ic_launcher"
+        android:layout_above="@+id/button5"
+        android:layout_below="@+id/editText"
+        android:layout_alignLeft="@+id/SellerAddText"
+        android:layout_alignStart="@+id/SellerAddText"
+        android:layout_alignRight="@+id/SellerAddText"
+        android:layout_alignEnd="@+id/SellerAddText" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Browse"
+        android:id="@+id/BrowseAddButton"
+        android:layout_alignTop="@+id/button5"
+        android:layout_alignParentEnd="true"
+        android:gravity="center"
+        android:layout_above="@+id/CategoryAddText" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Remove Product"
+        android:id="@+id/RemoveAddButton"
+        android:layout_alignTop="@+id/button2"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Category"
+        android:id="@+id/CategoryAddText"
+        android:layout_alignParentStart="true"
+        android:gravity="bottom"
+        android:textSize="20sp"
+        android:layout_above="@+id/editText2" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Description"
+        android:id="@+id/DescriptionAddText"
+        android:layout_alignParentStart="true"
+        android:gravity="bottom"
+        android:textSize="20sp"
+        android:layout_above="@+id/editText3" />
 
 </RelativeLayout>

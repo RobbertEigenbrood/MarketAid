@@ -31,4 +31,9 @@
     <string name="BuyerButton">Buyer</string>
     <string name="BuyerOverview">Buyer Overview</string>
     <string name="SellerOverview">Seller Overview</string>
+    <string name="ProductTitle">Product Title</string>
+    <string name="ProductDescription">Product Description</string>
+    <string name="ShowLocation">Show Location</string>
+    <string name="SetFilter">Set Filter</string>
+    <string name="SelectFilter">Select Filter</string>
 </resources>
