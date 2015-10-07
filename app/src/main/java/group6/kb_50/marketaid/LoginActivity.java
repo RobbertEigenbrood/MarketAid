@@ -23,6 +23,8 @@ import com.parse.ParseUser;
 
 import java.util.List;
 
+import group6.kb_50.marketaid.R;
+
 public class LoginActivity extends AppCompatActivity {
 
     @Override

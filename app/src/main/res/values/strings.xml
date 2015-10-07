@@ -31,6 +31,15 @@
     <string name="BuyerButton">Buyer</string>
     <string name="BuyerOverview">Buyer Overview</string>
     <string name="SellerOverview">Seller Overview</string>
+
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_example">Example action</string>
     <string name="ProductTitle">Product Title</string>
     <string name="ProductDescription">Product Description</string>
     <string name="ShowLocation">Show Location</string>

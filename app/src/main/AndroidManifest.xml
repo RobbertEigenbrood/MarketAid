@@ -18,9 +18,9 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".SplashActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name" >
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
@@ -49,19 +49,18 @@
         <activity
             android:name=".MainScreenActivity"
             android:label="@string/title_activity_main_screen" >
-        <!--    <intent-filter>
+
+            <!--
+                <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>-->
+            </intent-filter>
+            -->
         </activity>
         <activity
             android:name=".MainHowToActivity"
             android:label="@string/title_activity_how_to" >
-        </activity>
-        <activity
-            android:name=".Buyer.BuyerMainActivity"
-            android:label="@string/title_activity_buyer_main" >
         </activity>
         <activity
             android:name=".Buyer.BuyerProductActivity"
@@ -86,6 +85,10 @@
         <activity
             android:name=".Seller.SellerAddActivity"
             android:label="@string/title_activity_seller_add" >
+        </activity>
+        <activity
+            android:name=".Buyer.BuyerMainActivity"
+            android:label="@string/title_activity_buyer_main" >
         </activity>
     </application>
 
