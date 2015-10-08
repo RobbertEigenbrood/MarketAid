@@ -5,7 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.parse.Parse;
+import com.parse.ParseObject;
+import com.parse.ParseUser;
+
 import group6.kb_50.marketaid.Buyer.BuyerMainActivity;
+import group6.kb_50.marketaid.Seller.SellerLoginActivity;
 import group6.kb_50.marketaid.Seller.SellerMainActivity;
 /*
 import android.view.Menu;
@@ -18,10 +23,21 @@ public class MainScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
+        // Enable Local Datastore.
+        Parse.enableLocalDatastore(this);
+        ParseObject.registerSubclass(Product.class);
+        Parse.initialize(this, "eWtFfVxalDS39OF2hA8k2R3hTy8l125jU2fn4Mnx", "6q0qhKaUUDd1p2nUtCXUlOFwGqreFdoROVT7QQ2a");
     }
 
     public void ToSellerMain(View view) {
-        startActivity(new Intent(this, SellerMainActivity.class));
+        ParseUser user = new ParseUser();
+        if(user != null) {
+            startActivity(new Intent(this, SellerMainActivity.class));
+        }
+        else
+            startActivity(new Intent(this,SellerLoginActivity.class));
+
+
     }
 
     public void ToBuyerMain(View view) {
