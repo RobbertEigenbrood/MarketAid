@@ -1,6 +1,7 @@
 package group6.kb_50.marketaid.Seller;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -19,21 +20,17 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.parse.ParseObject;
+import com.parse.ParseQueryAdapter;
+
+import group6.kb_50.marketaid.Buyer.BuyerProductActivity;
+import group6.kb_50.marketaid.Buyer.CustomAdapterBuyer;
+import group6.kb_50.marketaid.Product;
 import group6.kb_50.marketaid.R;
 
 public class SellerMainActivity extends AppCompatActivity
         implements SellerNavigationFragment.NavigationDrawerCallbacks {
 
-    //---the images to display---
-    Integer[] imageIDs = {
-            R.mipmap.faallogoo,
-      /*      R.mipmap.pic2,
-            R.mipmap.pic3,
-            R.mipmap.pic4,
-            R.mipmap.pic5,
-            R.mipmap.pic6,
-            R.mipmap.pic7*/
-    };
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -44,6 +41,9 @@ public class SellerMainActivity extends AppCompatActivity
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
+    private ParseQueryAdapter mainAdapter;
+    private CustomAdapterSeller customAdapterSeller;
+    private GridView gridView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,19 +58,43 @@ public class SellerMainActivity extends AppCompatActivity
         mSellerNavigationFragment.setUp(
                 R.id.navigation_drawer1,
                 (DrawerLayout) findViewById(R.id.drawer_layout1));
+        fillList();
+    }
 
-        GridView gridView = (GridView) findViewById(R.id.GridViewSeller);
-        gridView.setAdapter(new ImageAdapter(this));
+    public void fillList() {
+        mainAdapter = new ParseQueryAdapter<ParseObject>(this,Product.class);
+        mainAdapter.setTextKey("Name");
+        mainAdapter.setImageKey("Image");
 
+        customAdapterSeller = new CustomAdapterSeller(this);
+        gridView = (GridView) findViewById(R.id.GridViewSeller);
+        gridView.setAdapter(customAdapterSeller);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent,
-                                    View v, int position, long id) {
-                Toast.makeText(getBaseContext(),
-                        "pic" + (position + 1) + " selected",
-                        Toast.LENGTH_SHORT).show();
+            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+                //Get item at position
+                Product item = (Product) parent.getItemAtPosition(position);
+
+                Intent intent = new Intent(SellerMainActivity.this, EditProductActivity.class);
+                ImageView imageView = (ImageView) v.findViewById(R.id.icon);
+
+                // Interesting data to pass across are the thumbnail size/location, the
+                // resourceId of the source bitmap, the picture description, and the
+                // orientation (to avoid returning back to an obsolete configuration if
+                // the device rotates again in the meantime)
+
+                int[] screenLocation = new int[2];
+                imageView.getLocationOnScreen(screenLocation);
+
+                //Pass the image title and url to DetailsActivity
+                intent.putExtra("ID", item.getID());
+                Toast.makeText(getBaseContext(),item.getID(),Toast.LENGTH_SHORT).show();
+                //Start details activity
+                startActivity(intent);
             }
         });
 
+
+        mainAdapter.loadObjects();
     }
 
     @Override
@@ -131,49 +155,6 @@ public class SellerMainActivity extends AppCompatActivity
 
         return super.onOptionsItemSelected(item);
     }
-
-    public class ImageAdapter extends BaseAdapter {
-        private Context context;
-
-        public ImageAdapter(Context c) {
-            context = c;
-        }
-
-        //---returns the number of images---
-        public int getCount() {
-            return imageIDs.length;
-        }
-
-        //---returns the item---
-        public Object getItem(int position) {
-            return position;
-        }
-
-        //---returns the ID of an item---
-        public long getItemId(int position) {
-            return position;
-        }
-
-        //---returns an ImageView view---
-        public View getView(int position, View convertView,
-                            ViewGroup parent) {
-            ImageView imageView;
-            if (convertView == null) {
-                imageView = new ImageView(context);
-                imageView.setLayoutParams(new
-                        GridView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 300));
-                imageView.setScaleType(
-                        ImageView.ScaleType.CENTER_CROP);
-                imageView.setPadding(1, 1, 1, 1);
-            } else {
-                imageView = (ImageView) convertView;
-            }
-            imageView.setImageResource(imageIDs[position]);
-            return imageView;
-        }
-    }
-
-
 
     /**
      * A placeholder fragment containing a simple view.

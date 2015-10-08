@@ -1,4 +1,4 @@
-package group6.kb_50.marketaid;
+package group6.kb_50.marketaid.Seller;
 
 import android.content.Context;
 import android.view.View;
@@ -12,15 +12,17 @@ import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
 import com.parse.ParseUser;
 
-public class CustomAdapter extends ParseQueryAdapter<ParseObject> {
+import group6.kb_50.marketaid.R;
 
-	public CustomAdapter(Context context) {
+public class CustomAdapterSeller extends ParseQueryAdapter<ParseObject> {
+
+	public CustomAdapterSeller(Context context) {
 		// Use the QueryFactory to construct a PQA that will only show
-		// Todos marked as high-pri
+		// Todos marked as high-pri\
 		super(context, new QueryFactory<ParseObject>() {
 			public ParseQuery create() {
 				ParseQuery query = new ParseQuery("Products");
-				//query.whereEqualTo("Seller", ParseUser.getCurrentUser());
+				query.whereEqualTo("Seller", ParseUser.getCurrentUser());
 				return query;
 			}
 		});

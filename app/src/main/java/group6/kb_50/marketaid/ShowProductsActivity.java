@@ -13,12 +13,13 @@ import android.widget.Toast;
 import com.parse.ParseObject;
 import com.parse.ParseQueryAdapter;
 
+import group6.kb_50.marketaid.Seller.CustomAdapterSeller;
 
 
 public class ShowProductsActivity extends AppCompatActivity {
     private GridView gridView;
     private ParseQueryAdapter<ParseObject> mainAdapter;
-    private CustomAdapter customAdapter;
+    private CustomAdapterSeller customAdapterSeller;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +34,9 @@ public class ShowProductsActivity extends AppCompatActivity {
         mainAdapter.setImageKey("Image");
 
 
-        customAdapter = new CustomAdapter(this);
+        customAdapterSeller = new CustomAdapterSeller(this);
         gridView = (GridView) findViewById(R.id.listView);
-        gridView.setAdapter(customAdapter);
+        gridView.setAdapter(customAdapterSeller);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                 //Get item at position
