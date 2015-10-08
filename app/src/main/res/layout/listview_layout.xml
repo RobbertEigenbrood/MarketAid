@@ -6,6 +6,7 @@
         android:id="@+id/icon"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:background="#000000"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="15dip"
         android:layout_marginRight="15dip" />
@@ -14,15 +15,10 @@
         android:id="@+id/text1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/icon"
-        android:layout_toRightOf="@id/icon"
-        android:textColor="#FF0000" />
-
-    <TextView
-        android:id="@+id/timestamp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/text1"
-        android:layout_toRightOf="@id/icon" />
+        android:textColor="#FF0000"
+        android:text="sample text"
+        android:layout_below="@+id/icon"
+        android:layout_alignLeft="@+id/icon"
+        android:layout_alignStart="@+id/icon" />
 
 </RelativeLayout>

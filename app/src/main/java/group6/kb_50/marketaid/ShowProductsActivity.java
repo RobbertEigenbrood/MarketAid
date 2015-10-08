@@ -18,8 +18,9 @@ import java.util.ArrayList;
 public class ShowProductsActivity extends AppCompatActivity {
 
     private ArrayList<Product> products;
-    private GridView listView;
-    private ParseQueryAdapter<Product> mainAdapter;
+    private GridView gridView;
+    private ParseQueryAdapter<ParseObject> mainAdapter;
+    private CustomAdapter customAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,20 +30,15 @@ public class ShowProductsActivity extends AppCompatActivity {
     }
 
     public void fillList() {
-        ParseQueryAdapter<Product> adapter =
-                new ParseQueryAdapter<Product>(this, new ParseQueryAdapter.QueryFactory<Product>() {
-                    public ParseQuery<Product> create() {
-                        // Here we can configure a ParseQuery to our heart's desire.
-                        ParseQuery query = new ParseQuery("Products");
-                        query.whereEqualTo("Seller",ParseUser.getCurrentUser());
-                        return query;
-                    }
-                });
-        adapter.setTextKey("Name");
-        adapter.setImageKey("Image");
+        mainAdapter = new ParseQueryAdapter<ParseObject>(this,Product.class);
+        mainAdapter.setTextKey("Name");
+        mainAdapter.setImageKey("Image");
 
-        listView = (GridView) findViewById(R.id.listView);
-        listView.setAdapter(adapter);
+
+        customAdapter = new CustomAdapter(this);
+        gridView = (GridView) findViewById(R.id.listView);
+        gridView.setAdapter(customAdapter);
+        mainAdapter.loadObjects();
     }
 
 
