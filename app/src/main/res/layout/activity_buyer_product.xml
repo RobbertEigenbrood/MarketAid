@@ -31,6 +31,15 @@
         android:layout_margin="5dp"
         android:textSize="20sp" />
 
+    <ProgressBar
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBarBuyerProduct"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="1"
+        android:indeterminate="false" />
+
     <ImageView
         android:layout_width="145dp"
         android:layout_height="198dp"
@@ -57,5 +66,6 @@
         android:layout_gravity="center_horizontal"
         android:layout_weight="1"
         android:gravity="center"
-        android:layout_margin="5dp" />
+        android:layout_margin="5dp"
+        android:onClick="onClickFindLocation"/>
 </LinearLayout>
