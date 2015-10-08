@@ -60,7 +60,6 @@ public class BuyerMainActivity extends AppCompatActivity
     }
 
     public void fillList() {
-        Toast.makeText(this,getBaseContext().toString(),Toast.LENGTH_SHORT).show();
         mainAdapter = new ParseQueryAdapter<ParseObject>(this,Product.class);
         mainAdapter.setTextKey("Name");
         mainAdapter.setImageKey("Image");
@@ -70,25 +69,15 @@ public class BuyerMainActivity extends AppCompatActivity
         gridView.setAdapter(customAdapterBuyer);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                //Get item at position
-                Product item = (Product) parent.getItemAtPosition(position);
 
+                Product item = (Product) parent.getItemAtPosition(position);
                 Intent intent = new Intent(BuyerMainActivity.this, BuyerProductActivity.class);
                 ImageView imageView = (ImageView) v.findViewById(R.id.icon);
-
-                // Interesting data to pass across are the thumbnail size/location, the
-                // resourceId of the source bitmap, the picture description, and the
-                // orientation (to avoid returning back to an obsolete configuration if
-                // the device rotates again in the meantime)
-
                 int[] screenLocation = new int[2];
                 imageView.getLocationOnScreen(screenLocation);
-
-                //Pass the image title and url to DetailsActivity
                 intent.putExtra("ID", item.getID());
-                Toast.makeText(getBaseContext(),item.getID(),Toast.LENGTH_SHORT).show();
-                //Start details activity
                 startActivity(intent);
+
             }
         });
 

@@ -8,10 +8,17 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.parse.GetCallback;
+import com.parse.ParseException;
 import com.parse.ParseFile;
+import com.parse.ParseImageView;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 import java.io.ByteArrayOutputStream;
@@ -20,14 +27,15 @@ import group6.kb_50.marketaid.Product;
 import group6.kb_50.marketaid.R;
 
 
-public class EditProductActivity extends AppCompatActivity {
+public class SellerEditProductActivity extends AppCompatActivity {
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
     Bitmap imageBitmap = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_product);
+        setContentView(R.layout.activity_seller_edit_product);
+        handleIntent();
     }
 
     @Override
@@ -48,13 +56,42 @@ public class EditProductActivity extends AppCompatActivity {
             if(resultCode == RESULT_OK){
                 Bundle extras = data.getExtras();
                 imageBitmap = (Bitmap) extras.get("data");
-                ImageView iv = (ImageView)findViewById(R.id.SampleImageEditView);
+                ParseImageView iv = (ParseImageView)findViewById(R.id.view2);
                 iv.setImageBitmap(imageBitmap);
                 Toast.makeText(this,"Image Saved!",Toast.LENGTH_SHORT).show();
 
             }
         }
     }
+
+
+    public void handleIntent(){
+            Intent i = getIntent();
+            String ID = i.getStringExtra("ID");
+
+            final EditText nametv = (EditText) findViewById(R.id.EnterProductTitleEdit);
+            final EditText descriptiontv = (EditText) findViewById(R.id.EnterProductCategoryEdit);
+            final EditText categorytv = (EditText) findViewById(R.id.EnterProductCategoryEdit);
+            final ParseImageView imageview = (ParseImageView) findViewById(R.id.view2);
+
+
+            ParseQuery<ParseObject> query = ParseQuery.getQuery("Products");
+            query.getInBackground(ID, new GetCallback<ParseObject>() {
+                public void done(ParseObject object, ParseException e) {
+                    String name = object.get("Name").toString();
+                    String description = object.get("Description").toString();
+                    String category = object.get("Category").toString();
+                    ParseFile file = object.getParseFile("Image");
+
+                    nametv.setText(name);
+                    descriptiontv.setText(description);
+                    categorytv.setText(category);
+                    imageview.setParseFile(file);
+                    imageview.loadInBackground();
+                }
+            });
+    }
+
 
     public void onClickAddProduct(View v){
         TextView inputnameTV = (TextView) findViewById(R.id.EnterProductTitleEdit);

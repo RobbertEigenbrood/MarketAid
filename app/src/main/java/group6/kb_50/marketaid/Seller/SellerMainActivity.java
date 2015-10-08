@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -15,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.AdapterView;
-import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -23,8 +21,6 @@ import android.widget.Toast;
 import com.parse.ParseObject;
 import com.parse.ParseQueryAdapter;
 
-import group6.kb_50.marketaid.Buyer.BuyerProductActivity;
-import group6.kb_50.marketaid.Buyer.CustomAdapterBuyer;
 import group6.kb_50.marketaid.Product;
 import group6.kb_50.marketaid.R;
 
@@ -74,7 +70,7 @@ public class SellerMainActivity extends AppCompatActivity
                 //Get item at position
                 Product item = (Product) parent.getItemAtPosition(position);
 
-                Intent intent = new Intent(SellerMainActivity.this, EditProductActivity.class);
+                Intent intent = new Intent(SellerMainActivity.this, SellerEditProductActivity.class);
                 ImageView imageView = (ImageView) v.findViewById(R.id.icon);
 
                 // Interesting data to pass across are the thumbnail size/location, the

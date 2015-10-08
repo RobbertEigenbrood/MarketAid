@@ -44,9 +44,6 @@ public class MainScreenActivity extends AppCompatActivity {
         startActivity(new Intent(this, BuyerMainActivity.class));
     }
 
-    public void ToMainActivity(View view) {
-        startActivity(new Intent(this, MainActivity.class));
-    }
 
 
 

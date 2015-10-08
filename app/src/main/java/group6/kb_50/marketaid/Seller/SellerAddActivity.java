@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.parse.ParseFile;
+import com.parse.ParseImageView;
 import com.parse.ParseUser;
 
 import java.io.ByteArrayOutputStream;
@@ -48,7 +49,7 @@ public class SellerAddActivity extends AppCompatActivity {
             if(resultCode == RESULT_OK){
                 Bundle extras = data.getExtras();
                 imageBitmap = (Bitmap) extras.get("data");
-                ImageView iv = (ImageView)findViewById(R.id.SampleImageEditView);
+                ParseImageView iv = (ParseImageView)findViewById(R.id.view2);
                 iv.setImageBitmap(imageBitmap);
                 Toast.makeText(this,"Image Saved!",Toast.LENGTH_SHORT).show();
 
@@ -80,7 +81,6 @@ public class SellerAddActivity extends AppCompatActivity {
         }
 
         p.saveInBackground();
-        Toast.makeText(this,ParseUser.getCurrentUser().toString(),Toast.LENGTH_SHORT).show();
         Toast.makeText(this,"Product Added!",Toast.LENGTH_SHORT).show();
     }
 
