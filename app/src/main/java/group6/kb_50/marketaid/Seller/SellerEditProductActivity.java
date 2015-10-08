@@ -70,7 +70,7 @@ public class SellerEditProductActivity extends AppCompatActivity {
             String ID = i.getStringExtra("ID");
 
             final EditText nametv = (EditText) findViewById(R.id.EnterProductTitleEdit);
-            final EditText descriptiontv = (EditText) findViewById(R.id.EnterProductCategoryEdit);
+            final EditText descriptiontv = (EditText) findViewById(R.id.EditProductDescriptionEdit);
             final EditText categorytv = (EditText) findViewById(R.id.EnterProductCategoryEdit);
             final ParseImageView imageview = (ParseImageView) findViewById(R.id.view2);
 
