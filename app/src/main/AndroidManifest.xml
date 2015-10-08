@@ -35,8 +35,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Seller.AddProductActivity"
-            android:label="@string/title_activity_add_product" >
+            android:name=".Seller.EditProductActivity"
+            android:label="@string/title_activity_edit_product" >
         </activity>
         <activity
             android:name=".ShowProductsActivity"
@@ -54,7 +54,7 @@
                 <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             -->
         </activity>
@@ -75,10 +75,6 @@
             android:label="@string/title_activity_seller_login" >
         </activity>
         <activity
-            android:name=".Seller.SellerCreateAccountActivity"
-            android:label="@string/title_activity_create_seller" >
-        </activity>
-        <activity
             android:name=".Seller.SellerMainActivity"
             android:label="@string/title_activity_seller_main" >
         </activity>
@@ -89,10 +85,6 @@
         <activity
             android:name=".Buyer.BuyerMainActivity"
             android:label="@string/title_activity_buyer_main" >
-        </activity>
-        <activity
-            android:name=".Seller.CreateAccountActivity"
-            android:label="@string/title_activity_create_account" >
         </activity>
     </application>
 

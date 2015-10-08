@@ -12,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.parse.ParseFile;
-import com.parse.ParseObject;
 import com.parse.ParseUser;
 
 import java.io.ByteArrayOutputStream;
@@ -21,20 +20,20 @@ import group6.kb_50.marketaid.Product;
 import group6.kb_50.marketaid.R;
 
 
-public class AddProductActivity extends AppCompatActivity {
+public class EditProductActivity extends AppCompatActivity {
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
     Bitmap imageBitmap = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_product);
+        setContentView(R.layout.activity_edit_product);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_add_product, menu);
+        getMenuInflater().inflate(R.menu.menu_edit_product, menu);
         return true;
     }
 
@@ -49,7 +48,7 @@ public class AddProductActivity extends AppCompatActivity {
             if(resultCode == RESULT_OK){
                 Bundle extras = data.getExtras();
                 imageBitmap = (Bitmap) extras.get("data");
-                ImageView iv = (ImageView)findViewById(R.id.imageView);
+                ImageView iv = (ImageView)findViewById(R.id.SampleImageEditView);
                 iv.setImageBitmap(imageBitmap);
                 Toast.makeText(this,"Image Saved!",Toast.LENGTH_SHORT).show();
 
@@ -60,7 +59,7 @@ public class AddProductActivity extends AppCompatActivity {
     public void onClickAddProduct(View v){
         TextView inputnameTV = (TextView) findViewById(R.id.EnterProductTitleEdit);
         TextView inputpriceTV = (TextView) findViewById(R.id.EnterProductCategoryEdit);
-        TextView inputdescriptionTV = (TextView) findViewById(R.id.AddProductDescriptionEdit);
+        TextView inputdescriptionTV = (TextView) findViewById(R.id.EditProductDescriptionEdit);
 
         String inputname = inputnameTV.getText().toString();
         String inputprice = inputpriceTV.getText().toString();

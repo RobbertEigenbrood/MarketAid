@@ -3,7 +3,7 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_add_product">AddProductActivity</string>
+    <string name="title_activity_edit_product">EditProductActivity</string>
     <string name="title_activity_show_products">ShowProductsActivity</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="splash_screen">A project group 6 app</string>
@@ -46,14 +46,15 @@
     <string name="SetFilter">Set Filter</string>
     <string name="SelectFilter">Select Filter</string>
     <string name="EnterProductDescription">Enter Product description here</string>
-    <string name="AddEditProduct">Add/Edit Product!</string>
     <string name="EnterProductTitle">Enter Product Title here</string>
     <string name="EnterProductCategory">Enter Product Category here</string>
     <string name="AddImage">Add Image</string>
-    <string name="AddOrEdit">Add or Edit Product</string>
+    <string name="EditProduct">Edit Product</string>
     <string name="Title">Title</string>
     <string name="Browse">Browse</string>
     <string name="RemoveProduct">Remove Product</string>
     <string name="Category">Category</string>
     <string name="Description">Description</string>
+    <string name="EditImage">Edit Image</string>
+    <string name="AddProduct">Add Product</string>
 </resources>
