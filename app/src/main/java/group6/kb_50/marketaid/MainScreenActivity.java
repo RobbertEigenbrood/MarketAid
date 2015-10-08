@@ -30,7 +30,7 @@ public class MainScreenActivity extends AppCompatActivity {
     }
 
     public void ToSellerMain(View view) {
-        ParseUser user = new ParseUser();
+        ParseUser user = ParseUser.getCurrentUser();
         if(user != null) {
             startActivity(new Intent(this, SellerMainActivity.class));
         }

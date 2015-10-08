@@ -46,15 +46,24 @@
     <string name="SetFilter">Set Filter</string>
     <string name="SelectFilter">Select Filter</string>
     <string name="EnterProductDescription">Enter Product description here</string>
+    <string name="AddEditProduct">Add/Edit Product!</string>
     <string name="EnterProductTitle">Enter Product Title here</string>
     <string name="EnterProductCategory">Enter Product Category here</string>
     <string name="AddImage">Add Image</string>
-    <string name="EditProduct">Edit Product</string>
+    <string name="AddOrEdit">Add or Edit Product</string>
     <string name="Title">Title</string>
     <string name="Browse">Browse</string>
     <string name="RemoveProduct">Remove Product</string>
     <string name="Category">Category</string>
+    <string name="EditProduct">Edit Product</string>
     <string name="Description">Description</string>
     <string name="EditImage">Edit Image</string>
     <string name="AddProduct">Add Product</string>
+    <string name="createAccountText">No account yet? Click here to create one!</string>
+    <string name="title_activity_create_account">CreateAccountActivity</string>
+    <string name="usernameText">Username</string>
+    <string name="passwordText">Password</string>
+    <string name="emailText">Email</string>
+    <string name="createButton">Create Account</string>
+    <string name="backButton">Back</string>
 </resources>

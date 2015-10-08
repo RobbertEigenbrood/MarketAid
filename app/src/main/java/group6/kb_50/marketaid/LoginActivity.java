@@ -1,6 +1,7 @@
 package group6.kb_50.marketaid;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,6 +25,7 @@ import com.parse.ParseUser;
 import java.util.List;
 
 import group6.kb_50.marketaid.R;
+import group6.kb_50.marketaid.Seller.SellerCreateAccountActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -105,6 +107,8 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

@@ -35,13 +35,5 @@
             android:textSize="15sp"
             android:layout_margin="20dp"
             android:onClick="ToBuyerMain" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tijdelijk Test Scherm"
-            android:id="@+id/button8"
-            android:layout_gravity="center_horizontal"
-            android:onClick="ToMainActivity" />
     </LinearLayout>
 <!--</RelativeLayout>-->

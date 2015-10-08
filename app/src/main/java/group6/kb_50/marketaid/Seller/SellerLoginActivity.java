@@ -1,9 +1,18 @@
 package group6.kb_50.marketaid.Seller;
 
+import android.content.Intent;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.parse.LogInCallback;
+import com.parse.ParseException;
+import com.parse.ParseUser;
 
 import group6.kb_50.marketaid.R;
 
@@ -13,6 +22,28 @@ public class SellerLoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seller_login);
+    }
+
+
+    public void onClickLogin(View v){
+
+        final EditText username = (EditText)findViewById(R.id.editTextusername);
+        final EditText pass = (EditText)findViewById(R.id.editTextpassword);
+
+        ParseUser user = new ParseUser();
+        ParseUser.logInInBackground(username.getText().toString(), pass.getText().toString(), new LogInCallback() {
+            @Override
+            public void done(ParseUser parseUser, ParseException e) {
+                if (parseUser != null) {
+                    Toast.makeText(getBaseContext(), "Logged in", Toast.LENGTH_SHORT).show();
+                    PreferenceManager.getDefaultSharedPreferences(getBaseContext()).edit().putString("settingsusername", username.getText().toString()).commit();
+                    PreferenceManager.getDefaultSharedPreferences(getBaseContext()).edit().putString("settingspassword", pass.getText().toString()).commit();
+
+                    Intent i = new Intent(getBaseContext(), SellerMainActivity.class);
+                    startActivity(i);
+                }
+            }
+        });
     }
 
     @Override
@@ -35,5 +66,10 @@ public class SellerLoginActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onClickCreate(View v)
+    {
+        startActivity(new Intent(this, SellerCreateAccountActivity.class));
     }
 }

@@ -4,6 +4,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.parse.ParseException;
+import com.parse.ParseUser;
+import com.parse.SignUpCallback;
 
 import group6.kb_50.marketaid.R;
 
@@ -35,5 +42,39 @@ public class SellerCreateAccountActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onClickCreate(View v)
+    {
+        EditText user = (EditText)findViewById(R.id.editTextusername);
+        EditText password = (EditText)findViewById(R.id.editTextpassword);
+        EditText email = (EditText)findViewById(R.id.editTextemail);
+        ParseUser parseUser = new ParseUser();
+        try{
+        parseUser.setUsername(user.getText().toString());
+        parseUser.setPassword(password.getText().toString());
+        parseUser.setEmail(email.getText().toString());}
+        catch (Exception e)
+        {
+            Toast.makeText(getBaseContext(), e.toString(), Toast.LENGTH_SHORT).show();
+        }
+
+        parseUser.signUpInBackground(new SignUpCallback() {
+            public void done(ParseException e) {
+                if (e == null) {
+                    Toast.makeText(getBaseContext(), "New User Created", Toast.LENGTH_SHORT).show();
+
+                } else {
+                    Toast.makeText(getBaseContext(),"Error creating account",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+
+    }
+
+    public void onClickBack(View v)
+    {
+        finish();
     }
 }
