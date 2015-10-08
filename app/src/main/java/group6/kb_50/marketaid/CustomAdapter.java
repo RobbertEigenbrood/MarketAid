@@ -20,7 +20,7 @@ public class CustomAdapter extends ParseQueryAdapter<ParseObject> {
 		super(context, new QueryFactory<ParseObject>() {
 			public ParseQuery create() {
 				ParseQuery query = new ParseQuery("Products");
-				query.whereEqualTo("Seller", ParseUser.getCurrentUser());
+				//query.whereEqualTo("Seller", ParseUser.getCurrentUser());
 				return query;
 			}
 		});

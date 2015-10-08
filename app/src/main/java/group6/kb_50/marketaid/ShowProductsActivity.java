@@ -1,23 +1,21 @@
 package group6.kb_50.marketaid;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.ListView;
-
+import android.widget.ImageView;
+import android.widget.Toast;
 import com.parse.ParseObject;
-import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
-import com.parse.ParseUser;
 
-import java.util.ArrayList;
 
 
 public class ShowProductsActivity extends AppCompatActivity {
-
-    private ArrayList<Product> products;
     private GridView gridView;
     private ParseQueryAdapter<ParseObject> mainAdapter;
     private CustomAdapter customAdapter;
@@ -38,6 +36,31 @@ public class ShowProductsActivity extends AppCompatActivity {
         customAdapter = new CustomAdapter(this);
         gridView = (GridView) findViewById(R.id.listView);
         gridView.setAdapter(customAdapter);
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+                //Get item at position
+                Product item = (Product) parent.getItemAtPosition(position);
+
+                Intent intent = new Intent(ShowProductsActivity.this, ShowProductsActivity.class);
+                ImageView imageView = (ImageView) v.findViewById(R.id.icon);
+
+                // Interesting data to pass across are the thumbnail size/location, the
+                // resourceId of the source bitmap, the picture description, and the
+                // orientation (to avoid returning back to an obsolete configuration if
+                // the device rotates again in the meantime)
+
+                int[] screenLocation = new int[2];
+                imageView.getLocationOnScreen(screenLocation);
+
+                //Pass the image title and url to DetailsActivity
+                intent.putExtra("ID", item.getID());
+                Toast.makeText(getBaseContext(),item.getID(),Toast.LENGTH_SHORT).show();
+                //Start details activity
+                startActivity(intent);
+            }
+        });
+
+
         mainAdapter.loadObjects();
     }
 

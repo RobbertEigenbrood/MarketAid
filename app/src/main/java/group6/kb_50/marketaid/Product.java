@@ -10,8 +10,10 @@ import com.parse.ParseUser;
  */
 @ParseClassName("Products")
 public class Product extends ParseObject {
+
+    private String ID;
     private String name;
-    private String price;
+    private String category;
     private String description;
     private ParseFile image;
     private ParseUser Seller;
@@ -19,6 +21,15 @@ public class Product extends ParseObject {
     public Product(){
 
     }
+
+    public String getID() {
+        return getObjectId();
+    }
+
+    public void setID(String ID) {
+        put("objectId",ID);
+    }
+
     public String getName() {
         return getString("Name");
     }
@@ -27,12 +38,12 @@ public class Product extends ParseObject {
         put("Name",name);
     }
 
-    public String getPrice() {
-        return getString("Price");
+    public String getCategory() {
+        return getString("Category");
     }
 
-    public void setPrice(String price) {
-        put("Price",price);
+    public void setCategory(String price) {
+        put("Category",category);
     }
 
     public String getDescription() {

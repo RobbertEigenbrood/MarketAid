@@ -67,7 +67,7 @@ public class SellerAddActivity extends AppCompatActivity {
 
         Product p = new Product();
         p.setName(inputname);
-        p.setPrice(inputprice);
+        p.setCategory(inputprice);
         p.setDescription(inputdescription);
         p.setSeller(ParseUser.getCurrentUser());
         /* Check for a nullpointer. The app shuts down if the user hasn't added an image */

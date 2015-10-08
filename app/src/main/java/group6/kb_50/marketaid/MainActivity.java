@@ -9,7 +9,8 @@ import android.view.View;
 import com.parse.Parse;
 import com.parse.ParseObject;
 
-import group6.kb_50.marketaid.Seller.AddProductActivity;
+import group6.kb_50.marketaid.Seller.EditProductActivity;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,9 +19,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         // Enable Local Datastore.
-        Parse.enableLocalDatastore(this);
-        ParseObject.registerSubclass(Product.class);
-        Parse.initialize(this, "eWtFfVxalDS39OF2hA8k2R3hTy8l125jU2fn4Mnx", "6q0qhKaUUDd1p2nUtCXUlOFwGqreFdoROVT7QQ2a");
     }
 
     @Override
@@ -32,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void onClickAddProduct(View v){
-        Intent i = new Intent(this,AddProductActivity.class);
+        Intent i = new Intent(this,EditProductActivity.class);
         startActivity(i);
 
 

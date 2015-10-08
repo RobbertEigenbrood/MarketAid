@@ -58,16 +58,17 @@ public class EditProductActivity extends AppCompatActivity {
 
     public void onClickAddProduct(View v){
         TextView inputnameTV = (TextView) findViewById(R.id.EnterProductTitleEdit);
-        TextView inputpriceTV = (TextView) findViewById(R.id.EnterProductCategoryEdit);
+        TextView inputcategoryTV = (TextView) findViewById(R.id.EnterProductCategoryEdit);
         TextView inputdescriptionTV = (TextView) findViewById(R.id.EditProductDescriptionEdit);
 
+
         String inputname = inputnameTV.getText().toString();
-        String inputprice = inputpriceTV.getText().toString();
+        String inputcategory = inputcategoryTV.getText().toString();
         String inputdescription = inputdescriptionTV.getText().toString();
 
         Product p = new Product();
         p.setName(inputname);
-        p.setPrice(inputprice);
+        p.setCategory(inputcategory);
         p.setDescription(inputdescription);
         p.setSeller(ParseUser.getCurrentUser());
         /* Check for a nullpointer. The app shuts down if the user hasn't added an image */
