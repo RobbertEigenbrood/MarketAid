@@ -30,6 +30,8 @@ public class MainScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
+
+
         // Enable Local Datastore.
         if(first) {
             Parse.enableLocalDatastore(this);

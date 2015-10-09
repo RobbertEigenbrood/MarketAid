@@ -34,6 +34,7 @@
 
     <string name="title_section1">Main Overview</string>
     <string name="title_section2">Add Product</string>
+    <string name="title_section3">Logout</string>
 
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -66,6 +67,10 @@
     <string name="emailText">Email</string>
     <string name="createButton">Create Account</string>
     <string name="backButton">Back</string>
+
+    <string name="logoutok">Ok</string>
+    <string name="logoutcancel">Cancel</string>
+    <string name="logouttext">Are you sure you want to log out?</string>
     <string name="settingspresent">Present</string>
     <string name="title_activity_settings">SettingsActivity</string>
     <string name="Switch">Present</string>
