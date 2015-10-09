@@ -44,7 +44,7 @@ public class SellerMainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_seller_main);
+        setContentView(R.layout.temp_empty);
 
         mSellerNavigationFragment = (SellerNavigationFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer1);
@@ -54,7 +54,7 @@ public class SellerMainActivity extends AppCompatActivity
         mSellerNavigationFragment.setUp(
                 R.id.navigation_drawer1,
                 (DrawerLayout) findViewById(R.id.drawer_layout1));
-        fillList();
+        /*fillList();*/
     }
 
     public void fillList() {
@@ -95,10 +95,23 @@ public class SellerMainActivity extends AppCompatActivity
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
+
+        Fragment fragment = null;
+
+        switch(position)
+        {
+            case 0:
+                fragment = new SellerMainFragment();
+                break;
+            case 1:
+                fragment = new SellerAddProductFragment();
+                break;
+        }
+
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
-                .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
+                .replace(R.id.container, fragment)/*PlaceholderFragment.newInstance(position + 1)*/
                 .commit();
     }
 
@@ -110,9 +123,7 @@ public class SellerMainActivity extends AppCompatActivity
             case 2:
                 mTitle = getString(R.string.title_section2);
                 break;
-            case 3:
-                mTitle = getString(R.string.title_section3);
-                break;
+
         }
     }
 
