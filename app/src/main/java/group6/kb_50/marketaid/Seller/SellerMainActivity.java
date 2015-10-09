@@ -57,41 +57,7 @@ public class SellerMainActivity extends AppCompatActivity
         /*fillList();*/
     }
 
-    public void fillList() {
-        mainAdapter = new ParseQueryAdapter<ParseObject>(this,Product.class);
-        mainAdapter.setTextKey("Name");
-        mainAdapter.setImageKey("Image");
-
-        customAdapterSeller = new CustomAdapterSeller(this);
-        gridView = (GridView) findViewById(R.id.GridViewSeller);
-        gridView.setAdapter(customAdapterSeller);
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                //Get item at position
-                Product item = (Product) parent.getItemAtPosition(position);
-
-                Intent intent = new Intent(SellerMainActivity.this, SellerEditProductActivity.class);
-                ImageView imageView = (ImageView) v.findViewById(R.id.icon);
-
-                // Interesting data to pass across are the thumbnail size/location, the
-                // resourceId of the source bitmap, the picture description, and the
-                // orientation (to avoid returning back to an obsolete configuration if
-                // the device rotates again in the meantime)
-
-                int[] screenLocation = new int[2];
-                imageView.getLocationOnScreen(screenLocation);
-
-                //Pass the image title and url to DetailsActivity
-                intent.putExtra("ID", item.getID());
-                Toast.makeText(getBaseContext(),item.getID(),Toast.LENGTH_SHORT).show();
-                //Start details activity
-                startActivity(intent);
-            }
-        });
-
-
-        mainAdapter.loadObjects();
-    }
+   
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {

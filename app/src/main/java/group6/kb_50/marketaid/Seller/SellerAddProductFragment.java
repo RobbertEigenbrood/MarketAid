@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,7 +28,7 @@ import group6.kb_50.marketaid.R;
 
 public class SellerAddProductFragment extends Fragment implements View.OnClickListener {
 
-    View v;
+    View view;
     Bitmap imageBitmap = null;
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
     private static final int RESULT_OK = -1;
@@ -36,11 +37,13 @@ public class SellerAddProductFragment extends Fragment implements View.OnClickLi
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        v = inflater.inflate(R.layout.activity_seller_add, container, false);
+        view = inflater.inflate(R.layout.activity_seller_add, container, false);
 
-        Button b = (Button) v.findViewById(R.id.AddImageButton);
+        Button b = (Button) view.findViewById(R.id.AddImageButton);
         b.setOnClickListener(this);
-        return v;
+        Button addbutton =(Button) view.findViewById(R.id.AddButton);
+        addbutton.setOnClickListener(this);
+        return view;
     }
 
     @Override
@@ -51,15 +54,15 @@ public class SellerAddProductFragment extends Fragment implements View.OnClickLi
                 startActivityForResult(intent, 100);
                 break;
             case R.id.AddButton:
-                onClickAddProducts(v);
+                AddProduct(v);
                 break;
         }
     }
 
-    public void onClickAddProducts(View v){
-        TextView inputnameTV = (TextView) v.findViewById(R.id.EnterProductTitleEdit);
-        TextView inputpriceTV = (TextView) v.findViewById(R.id.EnterProductCategoryEdit);
-        TextView inputdescriptionTV = (TextView) v.findViewById(R.id.EditProductDescriptionEdit);
+    private void AddProduct(View v){
+        EditText inputnameTV = (EditText) view.findViewById(R.id.EnterProductTitleAdd);
+        EditText inputpriceTV = (EditText) view.findViewById(R.id.EnterProductCategoryAdd);
+        EditText inputdescriptionTV = (EditText) view.findViewById(R.id.AddProductDescriptionEdit);
 
         String inputname = inputnameTV.getText().toString();
         String inputprice = inputpriceTV.getText().toString();
@@ -89,7 +92,7 @@ public class SellerAddProductFragment extends Fragment implements View.OnClickLi
             if(resultCode == RESULT_OK){
                 Bundle extras = data.getExtras();
                 imageBitmap = (Bitmap) extras.get("data");
-                ParseImageView iv = (ParseImageView)v.findViewById(R.id.SampleImageAddView);
+                ParseImageView iv = (ParseImageView)view.findViewById(R.id.SampleImageAddView);
                 iv.setImageBitmap(imageBitmap);
                 Toast.makeText(getActivity(), "Image Saved!", Toast.LENGTH_SHORT).show();
 
