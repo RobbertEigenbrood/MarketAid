@@ -66,4 +66,8 @@
     <string name="emailText">Email</string>
     <string name="createButton">Create Account</string>
     <string name="backButton">Back</string>
+    <string name="settingspresent">Present</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="Switch">Present</string>
+    <string name="buttonSetGPS">Set GPS</string>
 </resources>
