@@ -71,4 +71,8 @@
     <string name="logoutok">Ok</string>
     <string name="logoutcancel">Cancel</string>
     <string name="logouttext">Are you sure you want to log out?</string>
+    <string name="settingspresent">Present</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="Switch">Present</string>
+    <string name="buttonSetGPS">Set GPS</string>
 </resources>

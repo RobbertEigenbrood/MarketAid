@@ -82,6 +82,13 @@ public class SellerMainActivity extends AppCompatActivity
 
                 break;
 
+                //Pass the image title and url to DetailsActivity
+                intent.putExtra("ID", item.getID());
+                Toast.makeText(getBaseContext(),item.getID(),Toast.LENGTH_SHORT).show();
+                //Start details activity
+                startActivity(intent);
+            }
+        });
 
         }
         if(fragment != null) {
@@ -104,7 +111,6 @@ public class SellerMainActivity extends AppCompatActivity
             case 3:
                 mTitle = getString(R.string.title_section3);
                 break;
-
         }
     }
 

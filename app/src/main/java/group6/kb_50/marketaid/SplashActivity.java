@@ -17,7 +17,7 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_scherm);
 
-        final ImageView ivv = (ImageView) findViewById(R.id.imageView);
+        final ImageView ivv = (ImageView) findViewById(R.id.SampleImageEditView);
         final Animation an = AnimationUtils.loadAnimation(getBaseContext(), R.anim.rotate);
         final Animation an2 = AnimationUtils.loadAnimation(getBaseContext(),R.anim.abc_slide_out_top);
 
