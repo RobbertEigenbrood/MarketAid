@@ -33,38 +33,35 @@ import group6.kb_50.marketaid.R;
 
 public class BuyerProductActivity extends AppCompatActivity {
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buyer_product);
 
         /* Display the ProgressBar */
-        final ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBarBuyerProduct);
+        ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBarBuyerProduct);
         progressBar.setVisibility(View.VISIBLE);
 
-        /* Get the image that the user clicked on (somehow) */
-        //imageIntent = getIntent();
-
         /* Hide the TextViews (and show the progressbar) until data is received from server */
-        final TextView productTitle = (TextView) findViewById(R.id.TitleProductText);
+        TextView productTitle = (TextView) findViewById(R.id.TitleProductText);
         productTitle.setVisibility(TextView.GONE);
-        final TextView productDescription = (TextView) findViewById(R.id.DescriptionProductText);
+        TextView productDescription = (TextView) findViewById(R.id.DescriptionProductText);
         productDescription.setVisibility(TextView.GONE);
-//        final ParseImageView parseImageView = (ParseImageView) productImage;
-        /* Place the image that the user clicked on */
-        //productImage.setImageBitmap(bm);
 
-        /* If the information is obtained from the server, hide the ProgressBar and show the TextViews */
-        progressBar.setVisibility(View.GONE);
-        //productTitle.setText(user.getUsername());
-        productTitle.setVisibility(TextView.VISIBLE);
-        //productDescription.setText(product.getDescription());
-        productDescription.setVisibility(TextView.VISIBLE);
-
-        handleIntent();
+        /* Get the image and corresponding data that the user clicked on */
+        //handleIntent();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        handleIntent();
+    }
 
     public void handleIntent(){
         Intent i = getIntent();
@@ -85,10 +82,17 @@ public class BuyerProductActivity extends AppCompatActivity {
                 descriptiontv.setText(description);
                 imageview.setParseFile(file);
                 imageview.loadInBackground();
+
+                 /* If the information is obtained from the server, hide the ProgressBar and show the TextViews */
+                ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBarBuyerProduct);
+                progressBar.setVisibility(View.GONE);
+                TextView productTitle = (TextView) findViewById(R.id.TitleProductText);
+                productTitle.setVisibility(TextView.VISIBLE);
+                TextView productDescription = (TextView) findViewById(R.id.DescriptionProductText);
+                productDescription.setVisibility(TextView.VISIBLE);
             }
         });
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

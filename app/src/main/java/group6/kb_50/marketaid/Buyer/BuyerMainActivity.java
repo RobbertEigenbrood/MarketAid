@@ -55,7 +55,6 @@ public class BuyerMainActivity extends AppCompatActivity
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
 
-
         fillList();
     }
 
@@ -81,11 +80,8 @@ public class BuyerMainActivity extends AppCompatActivity
             }
         });
 
-
         mainAdapter.loadObjects();
     }
-
-
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {

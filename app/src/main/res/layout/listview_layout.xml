@@ -1,12 +1,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content" >
+    android:layout_height="wrap_content">
 
     <com.parse.ParseImageView
         android:id="@+id/icon"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:background="#000000"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="15dip"
         android:layout_marginRight="15dip" />
