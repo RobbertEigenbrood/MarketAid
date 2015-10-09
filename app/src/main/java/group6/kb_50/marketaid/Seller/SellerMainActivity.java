@@ -1,7 +1,11 @@
 package group6.kb_50.marketaid.Seller;
 
 import android.app.Activity;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v4.app.DialogFragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -20,6 +24,7 @@ import android.widget.Toast;
 
 import com.parse.ParseObject;
 import com.parse.ParseQueryAdapter;
+import com.parse.ParseUser;
 
 import group6.kb_50.marketaid.Product;
 import group6.kb_50.marketaid.R;
@@ -44,7 +49,7 @@ public class SellerMainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_seller_main);
+        setContentView(R.layout.temp_empty);
 
         mSellerNavigationFragment = (SellerNavigationFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer1);
@@ -54,50 +59,45 @@ public class SellerMainActivity extends AppCompatActivity
         mSellerNavigationFragment.setUp(
                 R.id.navigation_drawer1,
                 (DrawerLayout) findViewById(R.id.drawer_layout1));
-        fillList();
+        /*fillList();*/
     }
 
-    public void fillList() {
-        mainAdapter = new ParseQueryAdapter<ParseObject>(this,Product.class);
-        mainAdapter.setTextKey("Name");
-        mainAdapter.setImageKey("Image");
+   
 
-        customAdapterSeller = new CustomAdapterSeller(this);
-        gridView = (GridView) findViewById(R.id.GridViewSeller);
-        gridView.setAdapter(customAdapterSeller);
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                //Get item at position
-                Product item = (Product) parent.getItemAtPosition(position);
+    @Override
+    public void onNavigationDrawerItemSelected(int position) {
 
-                Intent intent = new Intent(SellerMainActivity.this, SellerEditProductActivity.class);
-                ImageView imageView = (ImageView) v.findViewById(R.id.icon);
+        Fragment fragment = null;
 
-                // Interesting data to pass across are the thumbnail size/location, the
-                // resourceId of the source bitmap, the picture description, and the
-                // orientation (to avoid returning back to an obsolete configuration if
-                // the device rotates again in the meantime)
+        switch(position)
+        {
+            case 0:
+                fragment = new SellerMainFragment();
+                break;
+            case 1:
+                fragment = new SellerAddProductFragment();
+                break;
+            case 2:
+                onLogout();
 
-                int[] screenLocation = new int[2];
-                imageView.getLocationOnScreen(screenLocation);
+                break;
 
                 //Pass the image title and url to DetailsActivity
                 intent.putExtra("ID", item.getID());
+                Toast.makeText(getBaseContext(),item.getID(),Toast.LENGTH_SHORT).show();
+                //Start details activity
                 startActivity(intent);
             }
         });
 
-
-        mainAdapter.loadObjects();
-    }
-
-    @Override
-    public void onNavigationDrawerItemSelected(int position) {
-        // update the main content by replacing fragments
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
-                .commit();
+        }
+        if(fragment != null) {
+            // update the main content by replacing fragments
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction()
+                    .replace(R.id.container, fragment)/*PlaceholderFragment.newInstance(position + 1)*/
+                    .commit();
+        }
     }
 
     public void onSectionAttached(int number) {
@@ -189,5 +189,35 @@ public class SellerMainActivity extends AppCompatActivity
                     getArguments().getInt(ARG_SECTION_NUMBER));
         }
     }
+
+    private void onLogout(){
+        DialogFragment newFragment = new FireMissilesDialogFragment();
+        newFragment.show(getSupportFragmentManager(), "missiles");
+
+    }
+
+    public static class FireMissilesDialogFragment extends DialogFragment {
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            // Use the Builder class for convenient dialog construction
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setMessage(getString(R.string.logouttext))
+                    .setPositiveButton(getString(R.string.logoutok), new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            ParseUser.logOut();
+                            getActivity().finish();
+                        }
+                    })
+                    .setNegativeButton(getString(R.string.logoutcancel), new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            // User cancelled the dialog
+                        }
+                    });
+            // Create the AlertDialog object and return it
+            return builder.create();
+        }
+    }
+
+
 
 }
