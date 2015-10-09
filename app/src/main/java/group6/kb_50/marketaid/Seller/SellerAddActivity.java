@@ -58,7 +58,7 @@ public class SellerAddActivity extends AppCompatActivity {
         }
     }
 
-    public void onClickAddProduct(View v){
+/*    public void onClickAddProduct(View v){
         TextView inputnameTV = (TextView) findViewById(R.id.EnterProductTitleEdit);
         TextView inputpriceTV = (TextView) findViewById(R.id.EnterProductCategoryEdit);
         TextView inputdescriptionTV = (TextView) findViewById(R.id.EditProductDescriptionEdit);
@@ -72,7 +72,7 @@ public class SellerAddActivity extends AppCompatActivity {
         p.setCategory(inputprice);
         p.setDescription(inputdescription);
         p.setSeller(ParseUser.getCurrentUser());
-        /* Check for a nullpointer. The app shuts down if the user hasn't added an image */
+        *//* Check for a nullpointer. The app shuts down if the user hasn't added an image *//*
         if( imageBitmap != null){
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
             imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
@@ -83,7 +83,7 @@ public class SellerAddActivity extends AppCompatActivity {
 
         p.saveInBackground();
         Toast.makeText(this,"Product Added!",Toast.LENGTH_SHORT).show();
-    }
+    }*/
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

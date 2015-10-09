@@ -131,8 +131,9 @@
         android:layout_height="wrap_content"
         android:text="@string/AddProduct"
         android:id="@+id/AddButton"
-        android:onClick="onClickAddProduct"
+        android:onClick="onClickAddProducts"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true" />
+    <!--       android:onClick="onClickAddProduct"-->
 
 </RelativeLayout>
