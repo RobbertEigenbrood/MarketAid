@@ -5,7 +5,7 @@
     android:layout_centerVertical="true"
     android:layout_centerHorizontal="true"
     android:gravity="center"
-    android:background="@android:color/white">
+    android:background="@drawable/backgroundshape">
 
     <TextView
         android:layout_width="wrap_content"
