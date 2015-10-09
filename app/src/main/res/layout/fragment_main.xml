@@ -16,7 +16,7 @@
         android:layout_margin="5dp" />
 
     <Button
-        android:text="Seller"
+        android:text="@string/SellerButton"
         android:textColor="#000000"
         android:textSize="20sp"
 
@@ -40,7 +40,7 @@
         android:layout_margin="5dp" />
 
     <Button
-        android:text="Buyer"
+        android:text="@string/BuyerButton"
         android:textColor="#000000"
         android:textSize="20sp"
 

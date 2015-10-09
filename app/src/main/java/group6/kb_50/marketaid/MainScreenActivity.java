@@ -1,13 +1,18 @@
 package group6.kb_50.marketaid;
 
+import android.app.Fragment;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import com.parse.Parse;
@@ -30,6 +35,16 @@ public class MainScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
+
+        FragmentManager manager = getFragmentManager();
+        FragmentTransaction ft = manager.beginTransaction();
+        Fragment fragment = new MainFragment();
+
+        ft.setCustomAnimations(R.anim.fadein,R.anim.fadeout);
+
+        ft.replace(R.id.framelayout, fragment);
+        ft.addToBackStack(null);
+        ft.commit();
 
 
         // Enable Local Datastore.

@@ -17,11 +17,18 @@
         tools:context="group6.kb_50.marketaid.MainScreenActivity"
         android:background="@drawable/mark_background">
 
-        <fragment
+        <!--<fragment
             android:layout_width="300sp"
             android:layout_height="400sp"
             android:name="group6.kb_50.marketaid.MainFragment"
             android:id="@+id/fragmentmain"
-            android:layout_gravity="center" />
+            android:layout_gravity="center" />-->
+        <FrameLayout
+            android:layout_width="300sp"
+            android:layout_height="400sp"
+            android:layout_gravity="center"
+            android:id="@+id/framelayout">
+
+        </FrameLayout>
     </LinearLayout>
 <!--</RelativeLayout>-->
