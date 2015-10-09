@@ -1,7 +1,11 @@
 package group6.kb_50.marketaid.Seller;
 
 import android.app.Activity;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v4.app.DialogFragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -20,6 +24,7 @@ import android.widget.Toast;
 
 import com.parse.ParseObject;
 import com.parse.ParseQueryAdapter;
+import com.parse.ParseUser;
 
 import group6.kb_50.marketaid.Product;
 import group6.kb_50.marketaid.R;
@@ -72,13 +77,20 @@ public class SellerMainActivity extends AppCompatActivity
             case 1:
                 fragment = new SellerAddProductFragment();
                 break;
-        }
+            case 2:
+                onLogout();
 
-        // update the main content by replacing fragments
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.container, fragment)/*PlaceholderFragment.newInstance(position + 1)*/
-                .commit();
+                break;
+
+
+        }
+        if(fragment != null) {
+            // update the main content by replacing fragments
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction()
+                    .replace(R.id.container, fragment)/*PlaceholderFragment.newInstance(position + 1)*/
+                    .commit();
+        }
     }
 
     public void onSectionAttached(int number) {
@@ -88,6 +100,9 @@ public class SellerMainActivity extends AppCompatActivity
                 break;
             case 2:
                 mTitle = getString(R.string.title_section2);
+                break;
+            case 3:
+                mTitle = getString(R.string.title_section3);
                 break;
 
         }
@@ -168,5 +183,35 @@ public class SellerMainActivity extends AppCompatActivity
                     getArguments().getInt(ARG_SECTION_NUMBER));
         }
     }
+
+    private void onLogout(){
+        DialogFragment newFragment = new FireMissilesDialogFragment();
+        newFragment.show(getSupportFragmentManager(), "missiles");
+
+    }
+
+    public static class FireMissilesDialogFragment extends DialogFragment {
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            // Use the Builder class for convenient dialog construction
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setMessage(getString(R.string.logouttext))
+                    .setPositiveButton(getString(R.string.logoutok), new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            ParseUser.logOut();
+                            getActivity().finish();
+                        }
+                    })
+                    .setNegativeButton(getString(R.string.logoutcancel), new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            // User cancelled the dialog
+                        }
+                    });
+            // Create the AlertDialog object and return it
+            return builder.create();
+        }
+    }
+
+
 
 }
