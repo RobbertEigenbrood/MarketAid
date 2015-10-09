@@ -12,7 +12,7 @@
         android:text="@string/SellerButton"
         android:id="@+id/SellerAddText"
         android:layout_centerHorizontal="true"
-        android:textSize="50sp"
+        android:textSize="30sp"
         android:gravity="center"
         android:layout_alignParentTop="true" />
 

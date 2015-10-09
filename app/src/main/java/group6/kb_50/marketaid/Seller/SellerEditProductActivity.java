@@ -36,6 +36,8 @@ public class SellerEditProductActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seller_edit_product);
+        EditText textView = (EditText ) findViewById(R.id.EnterProductTitleEdit);
+        textView.requestFocus();
         handleIntent();
     }
 
