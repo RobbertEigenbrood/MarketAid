@@ -23,6 +23,7 @@ import group6.kb_50.marketaid.R;
 public class SellerAddActivity extends AppCompatActivity {
 
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
+
     Bitmap imageBitmap = null;
 
     @Override
