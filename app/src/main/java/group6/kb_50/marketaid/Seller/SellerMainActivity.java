@@ -82,15 +82,10 @@ public class SellerMainActivity extends AppCompatActivity
 
                 break;
 
-                //Pass the image title and url to DetailsActivity
-                intent.putExtra("ID", item.getID());
-                Toast.makeText(getBaseContext(),item.getID(),Toast.LENGTH_SHORT).show();
-                //Start details activity
-                startActivity(intent);
             }
-        });
 
-        }
+
+
         if(fragment != null) {
             // update the main content by replacing fragments
             FragmentManager fragmentManager = getSupportFragmentManager();
