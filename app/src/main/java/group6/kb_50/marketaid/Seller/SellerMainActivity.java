@@ -83,8 +83,6 @@ public class SellerMainActivity extends AppCompatActivity
 
                 //Pass the image title and url to DetailsActivity
                 intent.putExtra("ID", item.getID());
-                Toast.makeText(getBaseContext(),item.getID(),Toast.LENGTH_SHORT).show();
-                //Start details activity
                 startActivity(intent);
             }
         });
