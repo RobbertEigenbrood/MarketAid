@@ -102,7 +102,6 @@ public class SellerEditProductActivity extends AppCompatActivity {
         final EditText name_et = (EditText) findViewById(R.id.EnterProductTitleEdit);
         final EditText description_et = (EditText) findViewById(R.id.EditProductDescriptionEdit);
         final EditText category_et = (EditText) findViewById(R.id.EnterProductCategoryEdit);
-        final ParseImageView imageview = (ParseImageView) findViewById(R.id.view2);
 
         final String inputname = name_et.getText().toString();
         final String inputcategory = category_et.getText().toString();

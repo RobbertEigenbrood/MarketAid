@@ -13,6 +13,9 @@ import android.widget.Switch;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import com.parse.ParseGeoPoint;
+import com.parse.ParseUser;
+
 /**
  * A placeholder fragment containing a simple view.
  */
@@ -44,7 +47,7 @@ public class SettingsActivityFragment extends Fragment {
 
                 }
                 else{
-                    Toast.makeText(getActivity(),"Unhecked!",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(),"Unchecked!",Toast.LENGTH_SHORT).show();
 
                 }
             }
@@ -54,8 +57,22 @@ public class SettingsActivityFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v)
             {
-                //TODO Get GPS location and save in in two differend doubles, long and lat
-                Toast.makeText(getActivity(),"GPS Clicked!",Toast.LENGTH_SHORT).show();
+                if(ParseUser.getCurrentUser() != null) {
+                    //TODO Get GPS location and save in in two differend doubles, long and lat
+                    GPSWrapper mLocation = new GPSWrapper(getActivity());
+                    ParseGeoPoint geoPoint = new ParseGeoPoint();
+                    geoPoint.setLatitude(mLocation.getCurrentLatDouble());
+                    geoPoint.setLongitude(mLocation.getCurrentLongDouble());
+
+                    ParseUser.getCurrentUser().put("LatLong", geoPoint);
+
+                    Toast.makeText(getActivity(), "Lat putted = " + mLocation.getCurrentLatitude(), Toast.LENGTH_SHORT).show();
+
+                    Toast.makeText(getActivity(),"Location of " + ParseUser.getCurrentUser().getUsername() + " has been set", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(getActivity(), "No user is logged in!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

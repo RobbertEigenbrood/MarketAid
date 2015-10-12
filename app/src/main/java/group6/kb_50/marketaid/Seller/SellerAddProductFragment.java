@@ -59,7 +59,7 @@ public class SellerAddProductFragment extends Fragment implements View.OnClickLi
         }
     }
 
-    private void AddProduct(View v){
+    public void AddProduct(View v){
         EditText inputnameTV = (EditText) view.findViewById(R.id.EnterProductTitleAdd);
         EditText inputpriceTV = (EditText) view.findViewById(R.id.EnterProductCategoryAdd);
         EditText inputdescriptionTV = (EditText) view.findViewById(R.id.AddProductDescriptionEdit);

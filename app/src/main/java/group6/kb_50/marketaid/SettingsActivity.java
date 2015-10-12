@@ -21,6 +21,10 @@ public class SettingsActivity extends AppCompatActivity {
         return true;
     }
 
+    public void setLocationOfCurrentUser(){
+
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will

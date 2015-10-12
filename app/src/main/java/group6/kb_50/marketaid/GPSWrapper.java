@@ -32,6 +32,7 @@ public class GPSWrapper {
         getCurrentLocation();
     }
 
+
     private boolean isGpsOn;
 
     private void getCurrentLocation() {
