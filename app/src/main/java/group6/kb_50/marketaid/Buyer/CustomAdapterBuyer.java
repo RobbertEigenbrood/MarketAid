@@ -22,6 +22,7 @@ public class CustomAdapterBuyer extends ParseQueryAdapter<ParseObject> {
 		super(context, new QueryFactory<ParseObject>() {
 			public ParseQuery create() {
 				ParseQuery query = new ParseQuery("Products");
+                query.fromLocalDatastore();
 				return query;
 			}
 		});

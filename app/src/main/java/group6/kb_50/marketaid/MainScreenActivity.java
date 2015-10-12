@@ -8,17 +8,24 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.parse.FindCallback;
 import com.parse.Parse;
+import com.parse.ParseException;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseSession;
 import com.parse.ParseUser;
+
+import java.util.List;
 
 import group6.kb_50.marketaid.Buyer.BuyerMainActivity;
 import group6.kb_50.marketaid.Seller.SellerLoginActivity;
@@ -49,9 +56,10 @@ public class MainScreenActivity extends AppCompatActivity {
 
         // Enable Local Datastore.
         if(first) {
-            Parse.enableLocalDatastore(this);
             ParseObject.registerSubclass(Product.class);
+            Parse.enableLocalDatastore(this);
             Parse.initialize(this, "eWtFfVxalDS39OF2hA8k2R3hTy8l125jU2fn4Mnx", "6q0qhKaUUDd1p2nUtCXUlOFwGqreFdoROVT7QQ2a");
+            storeDatabase();
             first = false;
         }
     }
@@ -104,5 +112,20 @@ public class MainScreenActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void storeDatabase(){
+
+        ParseQuery<Product> query = ParseQuery.getQuery(Product.class);
+        query.findInBackground(new FindCallback<Product>() {
+            public void done(List<Product> productList, ParseException e) {
+                if (e == null) {
+                    ParseObject.pinAllInBackground(productList);
+                    Toast.makeText(getApplicationContext(), "Saved successfull", Toast.LENGTH_SHORT).show();
+                } else {
+                    Log.d("score", "Error: " + e.getMessage());
+                }
+            }
+        });
     }
 }

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.ActionBar;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,8 +16,14 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.parse.FindCallback;
+import com.parse.GetCallback;
+import com.parse.ParseException;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
+
+import java.util.List;
 
 import group6.kb_50.marketaid.Seller.CustomAdapterSeller;
 import group6.kb_50.marketaid.Product;
@@ -41,7 +48,6 @@ public class BuyerMainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buyer_main);
-
         fillList();
     }
 
@@ -69,6 +75,8 @@ public class BuyerMainActivity extends AppCompatActivity {
 
         mainAdapter.loadObjects();
     }
+
+
 
 
 }

@@ -78,6 +78,7 @@ public class BuyerProductActivity extends AppCompatActivity {
         final ParseImageView imageview = (ParseImageView) findViewById(R.id.view);
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Products");
+        query.fromLocalDatastore();
         query.getInBackground(ID, new GetCallback<ParseObject>() {
             public void done(ParseObject object, ParseException e) {
                 String name = object.get("Name").toString();
