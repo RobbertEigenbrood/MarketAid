@@ -2,6 +2,7 @@ package group6.kb_50.marketaid;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -11,8 +12,15 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+
+        //Log.e("GPS", getLocation());
     }
 
+    /* As we can't use the GPSWrapper in the Oncreate(), use getLocation() */
+    private String getLocation(){
+        GPSWrapper mLocation = new GPSWrapper(this);
+        return mLocation.getLatLong();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

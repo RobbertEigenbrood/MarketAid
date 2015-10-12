@@ -8,9 +8,11 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
@@ -23,10 +25,6 @@ import com.parse.ParseUser;
 import group6.kb_50.marketaid.Buyer.BuyerMainActivity;
 import group6.kb_50.marketaid.Seller.SellerLoginActivity;
 import group6.kb_50.marketaid.Seller.SellerMainActivity;
-/*
-import android.view.Menu;
-import android.view.MenuItem;
-*/
 
 public class MainScreenActivity extends AppCompatActivity {
 
@@ -46,7 +44,6 @@ public class MainScreenActivity extends AppCompatActivity {
         ft.addToBackStack(null);
         ft.commit();
 
-
         // Enable Local Datastore.
         if(first) {
             Parse.enableLocalDatastore(this);
@@ -54,6 +51,15 @@ public class MainScreenActivity extends AppCompatActivity {
             Parse.initialize(this, "eWtFfVxalDS39OF2hA8k2R3hTy8l125jU2fn4Mnx", "6q0qhKaUUDd1p2nUtCXUlOFwGqreFdoROVT7QQ2a");
             first = false;
         }
+
+        //Log.e("GPS", getLocation());
+
+    }
+
+    /* As we can't use the GPSWrapper in the Oncreate(), use getLocation() */
+    private String getLocation(){
+        GPSWrapper mLocation = new GPSWrapper(this);
+        return mLocation.getLatLong();
     }
 
     public void ToSellerMain(View view) {

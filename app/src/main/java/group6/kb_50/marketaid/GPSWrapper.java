@@ -123,8 +123,8 @@ public class GPSWrapper {
 
         // Check whether the new location fix is newer or older
         long timeDelta = newLocation.getTime() - currentBestLocation.getTime();
-        boolean isSignificantlyNewer = timeDelta > FIFTEEN_MINUTES;
-        boolean isSignificantlyOlder = timeDelta < -FIFTEEN_MINUTES;
+        boolean isSignificantlyNewer = timeDelta > TWO_MINUTES;
+        boolean isSignificantlyOlder = timeDelta < -TWO_MINUTES;
         boolean isNewer = timeDelta > 0;
 
         // If it's been more than fifteen minutes since the current location, use
@@ -164,7 +164,7 @@ public class GPSWrapper {
     private Location requestUpdatesFromProvider(String provider) {
         Location location = null;
         if (mLocationManager.isProviderEnabled(provider)) {
-            mLocationManager.requestLocationUpdates(provider, FIFTEEN_MINUTES, HUNDRED_METRES, listener);
+            mLocationManager.requestLocationUpdates(provider, TEN_SECONDS, TEN_METRES, listener);
             location = mLocationManager.getLastKnownLocation(provider);
         }
         return location;
