@@ -1,5 +1,7 @@
 package group6.kb_50.marketaid.Seller;
 
+import android.content.Intent;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -8,6 +10,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
@@ -65,13 +68,36 @@ public class SellerCreateAccountActivity extends AppCompatActivity {
                     Toast.makeText(getBaseContext(), "New User Created", Toast.LENGTH_SHORT).show();
 
                 } else {
-                    Toast.makeText(getBaseContext(),"Error creating account",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(), "Error creating account", Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
-
+        logInNewUser(user.getText().toString(), password.getText().toString());
+        Intent i = new Intent(getBaseContext(), SellerMainActivity.class);
+        startActivity(i);
+        finish();
     }
+
+    public void logInNewUser(String username,String password){
+
+            final String usern = username;
+            final String passw = password;
+
+            ParseUser.logInInBackground(usern, passw, new LogInCallback() {
+                @Override
+                public void done(ParseUser parseUser, ParseException e) {
+                    if (parseUser != null) {
+                        Toast.makeText(getBaseContext(), "Logged in", Toast.LENGTH_SHORT).show();
+                        PreferenceManager.getDefaultSharedPreferences(getBaseContext()).edit().putString("settingsusername", usern).commit();
+                        PreferenceManager.getDefaultSharedPreferences(getBaseContext()).edit().putString("settingspassword", passw).commit();
+
+                    }
+                }
+            });
+        }
+
+
 
     public void onClickBack(View v)
     {

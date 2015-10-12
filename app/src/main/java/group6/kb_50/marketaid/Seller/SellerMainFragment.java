@@ -69,7 +69,6 @@ public class SellerMainFragment extends Fragment {
 
                 //Pass the image title and url to DetailsActivity
                 intent.putExtra("ID", item.getID());
-                Toast.makeText(getActivity(), item.getID(), Toast.LENGTH_SHORT).show();
                 //Start details activity
                 startActivity(intent);
             }

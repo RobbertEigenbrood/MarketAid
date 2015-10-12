@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,8 +23,31 @@ public class SellerLoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seller_login);
-    }
 
+        /* From Stackoverflow.com: "listener-for-done-button-on-edittext" */
+        final EditText username = (EditText)findViewById(R.id.editTextusername);
+        final EditText pass = (EditText)findViewById(R.id.editTextpassword);
+
+        /* If the user pressed "Enter" or "Gereed", log in immediately */
+        username.setOnKeyListener(new View.OnKeyListener() {
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    onClickLogin( new View(getBaseContext()) );
+                    return true;
+                }
+                return false;
+            }
+        });
+        pass.setOnKeyListener(new View.OnKeyListener() {
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    onClickLogin( new View(getBaseContext()) );
+                    return true;
+                }
+                return false;
+            }
+        });
+    }
 
     public void onClickLogin(View v){
 
@@ -41,9 +65,11 @@ public class SellerLoginActivity extends AppCompatActivity {
 
                     Intent i = new Intent(getBaseContext(), SellerMainActivity.class);
                     startActivity(i);
+                    finish();
                 }
             }
         });
+        //finish();
     }
 
     @Override
@@ -68,7 +94,7 @@ public class SellerLoginActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void onClickCreate(View v)
+    public void onClickCreateUser(View v)
     {
         startActivity(new Intent(this, SellerCreateAccountActivity.class));
     }

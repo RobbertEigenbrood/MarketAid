@@ -23,10 +23,12 @@
     <string name="title_activity_buyer_main">BuyerMainActivity</string>
     <string name="title_activity_buyer_product">BuyerProductActivity</string>
     <string name="title_activity_buyer_filter">BuyerFilterActivity</string>
-    <string name="title_activity_seller_login">SellerLoginActivity</string>
+    <!-- <string name="title_activity_seller_login">SellerLoginActivity</string> -->
+    <string name="title_activity_seller_login">Please login</string>
     <string name="title_activity_create_seller">CreateSellerActivity</string>
     <string name="title_activity_seller_main">SellerMainActivity</string>
     <string name="title_activity_seller_add">SellerAddActivity</string>
+    <string name="title_activity_seller_create">SellerCreateActivity</string>
     <string name="SellerButton">Seller</string>
     <string name="BuyerButton">Buyer</string>
     <string name="BuyerOverview">Buyer Overview</string>
@@ -60,7 +62,7 @@
     <string name="Description">Description</string>
     <string name="EditImage">Edit Image</string>
     <string name="AddProduct">Add Product</string>
-    <string name="createAccountText">No account yet? Click here to create one!</string>
+    <string name="createAccountText">No account yet? Click on the button "Register" to create one!</string>
     <string name="title_activity_create_account">CreateAccountActivity</string>
     <string name="usernameText">Username</string>
     <string name="passwordText">Password</string>
@@ -74,5 +76,6 @@
     <string name="settingspresent">Present</string>
     <string name="title_activity_settings">SettingsActivity</string>
     <string name="Switch">Present</string>
-    <string name="buttonSetGPS">Set GPS</string>
+    <string name="buttonSettingsLogin">Login</string>
+    <string name="buttonSetGPS">Set Location</string>
 </resources>

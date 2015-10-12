@@ -58,32 +58,6 @@ public class SellerAddActivity extends AppCompatActivity {
         }
     }
 
-/*    public void onClickAddProduct(View v){
-        TextView inputnameTV = (TextView) findViewById(R.id.EnterProductTitleEdit);
-        TextView inputpriceTV = (TextView) findViewById(R.id.EnterProductCategoryEdit);
-        TextView inputdescriptionTV = (TextView) findViewById(R.id.EditProductDescriptionEdit);
-
-        String inputname = inputnameTV.getText().toString();
-        String inputprice = inputpriceTV.getText().toString();
-        String inputdescription = inputdescriptionTV.getText().toString();
-
-        Product p = new Product();
-        p.setName(inputname);
-        p.setCategory(inputprice);
-        p.setDescription(inputdescription);
-        p.setSeller(ParseUser.getCurrentUser());
-        *//* Check for a nullpointer. The app shuts down if the user hasn't added an image *//*
-        if( imageBitmap != null){
-            ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-            byte[] image = stream.toByteArray();
-            ParseFile file = new ParseFile(image);
-            p.setImage(file);
-        }
-
-        p.saveInBackground();
-        Toast.makeText(this,"Product Added!",Toast.LENGTH_SHORT).show();
-    }*/
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
