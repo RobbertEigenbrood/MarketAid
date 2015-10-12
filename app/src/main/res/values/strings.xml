@@ -36,7 +36,8 @@
 
     <string name="title_section1">Main Overview</string>
     <string name="title_section2">Add Product</string>
-    <string name="title_section3">Logout</string>
+    <string name="title_section3">Settings</string>
+    <string name="title_section4">Logout</string>
 
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
