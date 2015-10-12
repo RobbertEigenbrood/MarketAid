@@ -68,7 +68,7 @@ public class SellerLoginActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void onClickCreate(View v)
+    public void onClickCreateUser(View v)
     {
         startActivity(new Intent(this, SellerCreateAccountActivity.class));
     }

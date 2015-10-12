@@ -30,8 +30,8 @@
             android:label="@string/title_activity_edit_product" >
         </activity>
         <activity
-            android:name=".LoginActivity"
-            android:label="@string/title_activity_login" >
+            android:name=".Seller.SellerCreateAccountActivity"
+            android:label="@string/title_activity_seller_create" >
         </activity>
         <activity
             android:name=".MainScreenActivity"
