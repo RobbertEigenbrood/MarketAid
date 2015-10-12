@@ -2,19 +2,14 @@ package group6.kb_50.marketaid;
 
 import android.app.Fragment;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ProgressBar;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
@@ -22,7 +17,6 @@ import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
-import com.parse.ParseSession;
 import com.parse.ParseUser;
 
 import java.util.List;
@@ -45,14 +39,13 @@ public class MainScreenActivity extends AppCompatActivity {
 
         FragmentManager manager = getFragmentManager();
         FragmentTransaction ft = manager.beginTransaction();
-        Fragment fragment = new MainFragment();
+        Fragment fragment = new MainScreenFragment();
 
         ft.setCustomAnimations(R.anim.fadein,R.anim.fadeout);
 
         ft.replace(R.id.framelayout, fragment);
         ft.addToBackStack(null);
         ft.commit();
-
 
         // Enable Local Datastore.
         if(first) {
@@ -71,24 +64,11 @@ public class MainScreenActivity extends AppCompatActivity {
         }
         else
             startActivity(new Intent(this,SellerLoginActivity.class));
-
-
     }
 
     public void ToBuyerMain(View view) {
         startActivity(new Intent(this, BuyerMainActivity.class));
     }
-
-
-
-
-
-
-
-
-
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -105,12 +85,11 @@ public class MainScreenActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+/*        if (id == R.id.action_settings) {
 
             startActivity(new Intent(this,SettingsActivity.class));
             return true;
-        }
-
+        }*/
         return super.onOptionsItemSelected(item);
     }
 

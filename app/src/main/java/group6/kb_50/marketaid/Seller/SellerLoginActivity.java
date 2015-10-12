@@ -69,7 +69,6 @@ public class SellerLoginActivity extends AppCompatActivity {
                 }
             }
         });
-        //finish();
     }
 
     @Override
@@ -90,12 +89,10 @@ public class SellerLoginActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
-    public void onClickCreateUser(View v)
-    {
+    public void onClickCreateUser(View v) {
         startActivity(new Intent(this, SellerCreateAccountActivity.class));
     }
 }

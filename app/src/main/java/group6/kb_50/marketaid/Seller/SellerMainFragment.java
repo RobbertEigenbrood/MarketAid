@@ -74,7 +74,6 @@ public class SellerMainFragment extends Fragment {
             }
         });
 
-
         mainAdapter.loadObjects();
     }
 }

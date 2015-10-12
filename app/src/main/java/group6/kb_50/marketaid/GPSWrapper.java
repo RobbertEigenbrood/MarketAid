@@ -85,7 +85,6 @@ public class GPSWrapper {
 
         @Override
         public void onProviderDisabled(String provider) {
-
             if (provider != null)
                 Log.d(DEBUG_TAG, provider + " provider disabled");
         }
@@ -94,7 +93,6 @@ public class GPSWrapper {
         public void onProviderEnabled(String provider) {
             if (provider != null)
                 Log.d(DEBUG_TAG, provider + " provider enabled");
-
         }
 
         @Override
@@ -189,7 +187,6 @@ public class GPSWrapper {
      * @return
      */
     public boolean isGPSON() {
-
         return isGpsOn;
     }
 
@@ -203,5 +200,4 @@ public class GPSWrapper {
             }
         }
     }
-
 }

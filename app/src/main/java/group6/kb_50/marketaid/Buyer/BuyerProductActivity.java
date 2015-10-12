@@ -1,35 +1,23 @@
 package group6.kb_50.marketaid.Buyer;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.parse.FindCallback;
 import com.parse.GetCallback;
-import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseGeoPoint;
 import com.parse.ParseImageView;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
-import com.parse.ParseRelation;
-import com.parse.ParseUser;
-
-import java.io.ByteArrayOutputStream;
-import java.util.List;
 
 import group6.kb_50.marketaid.GPSWrapper;
-import group6.kb_50.marketaid.Product;
 import group6.kb_50.marketaid.R;
 
 /* The Buyer product Detail Screen */
@@ -112,7 +100,6 @@ public class BuyerProductActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -124,8 +111,7 @@ public class BuyerProductActivity extends AppCompatActivity {
         query.getInBackground(ID, new GetCallback<ParseObject>() {
             public void done(ParseObject p, ParseException e) {
                 if (e == null) {
-                    // Now let's update it with some new data. In this case, only cheatMode and score
-                    // will get sent to the Parse Cloud. playerName hasn't changed.
+                    // Now let's update it with some new data.
 
                     p.getParseUser("Seller").fetchIfNeededInBackground(new GetCallback<ParseObject>() {
                         @Override
@@ -141,16 +127,10 @@ public class BuyerProductActivity extends AppCompatActivity {
                             Uri googlemapsUri = Uri.parse("http://maps.google.com/maps?saddr=" + ownLat + "," + ownLong + "&daddr=" + sellerLat + "," + sellerLong);
                             Intent intent = new Intent(android.content.Intent.ACTION_VIEW,googlemapsUri);
                             startActivity(intent);
-
                         }
                     });
-
-
-
                 }
             }
         });
-
-
     }
 }

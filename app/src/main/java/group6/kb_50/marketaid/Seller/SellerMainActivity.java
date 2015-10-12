@@ -3,7 +3,6 @@ package group6.kb_50.marketaid.Seller;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -17,18 +16,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
-import android.widget.AdapterView;
-import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.Toast;
 
-import com.parse.ParseObject;
-import com.parse.ParseQueryAdapter;
 import com.parse.ParseUser;
 
-import group6.kb_50.marketaid.Product;
 import group6.kb_50.marketaid.R;
-import group6.kb_50.marketaid.SettingsActivity;
 
 public class SellerMainActivity extends AppCompatActivity
         implements SellerNavigationFragment.NavigationDrawerCallbacks {
@@ -43,9 +34,6 @@ public class SellerMainActivity extends AppCompatActivity
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
-    private ParseQueryAdapter mainAdapter;
-    private CustomAdapterSeller customAdapterSeller;
-    private GridView gridView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,10 +48,7 @@ public class SellerMainActivity extends AppCompatActivity
         mSellerNavigationFragment.setUp(
                 R.id.navigation_drawer1,
                 (DrawerLayout) findViewById(R.id.drawer_layout1));
-        /*fillList();*/
     }
-
-   
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
@@ -84,16 +69,12 @@ public class SellerMainActivity extends AppCompatActivity
             case 3 :
                 onLogout();
                 break;
-
-            }
-
-
-
+        }
         if(fragment != null) {
             // update the main content by replacing fragments
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction()
-                    .replace(R.id.container, fragment)/*PlaceholderFragment.newInstance(position + 1)*/
+                    .replace(R.id.container, fragment)
                     .commit();
         }
     }
@@ -122,7 +103,6 @@ public class SellerMainActivity extends AppCompatActivity
         actionBar.setTitle(mTitle);
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         if (!mSellerNavigationFragment.isDrawerOpen()) {
@@ -143,12 +123,11 @@ public class SellerMainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+/*        if (id == R.id.action_settings) {
 
             startActivity(new Intent(this,SettingsActivity.class));
             return true;
-        }
-
+        }*/
         return super.onOptionsItemSelected(item);
     }
 
@@ -219,9 +198,4 @@ public class SellerMainActivity extends AppCompatActivity
             return builder.create();
         }
     }
-
-
-
-
-
 }

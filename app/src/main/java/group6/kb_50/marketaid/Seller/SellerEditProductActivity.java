@@ -9,8 +9,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.GetCallback;
@@ -19,7 +17,6 @@ import com.parse.ParseFile;
 import com.parse.ParseImageView;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
-import com.parse.ParseUser;
 
 import java.io.ByteArrayOutputStream;
 
@@ -67,7 +64,6 @@ public class SellerEditProductActivity extends AppCompatActivity {
         }
     }
 
-
     public void handleIntent(){
             Intent i = getIntent();
             ID = i.getStringExtra("ID");
@@ -76,7 +72,6 @@ public class SellerEditProductActivity extends AppCompatActivity {
             final EditText descriptiontv = (EditText) findViewById(R.id.EditProductDescriptionEdit);
             final EditText categorytv = (EditText) findViewById(R.id.EnterProductCategoryEdit);
             final ParseImageView imageview = (ParseImageView) findViewById(R.id.view2);
-
 
             ParseQuery<ParseObject> query = ParseQuery.getQuery("Products");
             query.getInBackground(ID, new GetCallback<ParseObject>() {
@@ -111,15 +106,11 @@ public class SellerEditProductActivity extends AppCompatActivity {
         query.getInBackground(ID, new GetCallback<Product>() {
             public void done(Product p, ParseException e) {
                 if (e == null) {
-                    // Now let's update it with some new data. In this case, only cheatMode and score
-                    // will get sent to the Parse Cloud. playerName hasn't changed.
+                    // Now let's update it with some new data.
                     p.put("Name",inputname);
                     p.put("Category",inputcategory);
                     p.put("Description",inputdescription);
 
-                    //p.setName(inputname);
-                    //p.setCategory(inputcategory);
-                    //p.setDescription(inputdescription);
                     if (imageBitmap != null) {
                         ByteArrayOutputStream stream = new ByteArrayOutputStream();
                         imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
@@ -128,7 +119,6 @@ public class SellerEditProductActivity extends AppCompatActivity {
                         //p.setImage(file);
                         p.put("Image",file);
                     }
-
                     p.saveInBackground();
                     Toast.makeText(getBaseContext(), "Product Edited!", Toast.LENGTH_SHORT).show();
                 }

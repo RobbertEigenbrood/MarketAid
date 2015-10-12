@@ -10,7 +10,6 @@ import com.parse.ParseImageView;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
-import com.parse.ParseUser;
 
 import group6.kb_50.marketaid.R;
 
@@ -49,5 +48,4 @@ public class CustomAdapterBuyer extends ParseQueryAdapter<ParseObject> {
 		titleTextView.setText(object.getString("Name"));
 		return v;
 	}
-
 }
