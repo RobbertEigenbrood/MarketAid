@@ -1,4 +1,4 @@
-package group6.kb_50.marketaid;
+package group6.kb_50.marketaid.Seller;
 
 import android.content.SharedPreferences;
 import android.support.v4.app.Fragment;
@@ -17,6 +17,9 @@ import android.widget.ToggleButton;
 
 import com.parse.ParseGeoPoint;
 import com.parse.ParseUser;
+
+import group6.kb_50.marketaid.GPSWrapper;
+import group6.kb_50.marketaid.R;
 
 /**
  * A placeholder fragment containing a simple view.

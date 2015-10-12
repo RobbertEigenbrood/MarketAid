@@ -79,8 +79,10 @@ public class SellerMainActivity extends AppCompatActivity
                 fragment = new SellerAddProductFragment();
                 break;
             case 2:
+                fragment = new SettingsActivityFragment();
+                break;
+            case 3 :
                 onLogout();
-
                 break;
 
             }
@@ -106,6 +108,9 @@ public class SellerMainActivity extends AppCompatActivity
                 break;
             case 3:
                 mTitle = getString(R.string.title_section3);
+                break;
+            case 4:
+                mTitle = getString(R.string.title_section4);
                 break;
         }
     }

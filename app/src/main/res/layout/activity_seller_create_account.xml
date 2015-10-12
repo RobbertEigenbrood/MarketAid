@@ -34,7 +34,6 @@
         android:layout_height="wrap_content"
         android:text="@string/passwordText"
         android:id="@+id/textView4"
-        android:password="true"
         android:layout_below="@+id/editTextusername"
         android:layout_centerHorizontal="true" />
 
@@ -48,7 +47,8 @@
         android:layout_alignEnd="@+id/editTextusername"
         android:layout_toEndOf="@+id/textView2"
         android:layout_alignLeft="@+id/editTextusername"
-        android:layout_alignStart="@+id/editTextusername" />
+        android:layout_alignStart="@+id/editTextusername"
+        android:password="true" />
 
     <TextView
         android:layout_width="wrap_content"
