@@ -86,4 +86,7 @@
     <string name="noConnectionCancel">Cancel</string>
     <string name="noConnectionOk">Settings</string>
     <string name="wrongLgin">Wrong username or password</string>
+    <string name="gpswarning">GPS is turned of. Do you want to go to location settings?</string>
+    <string name="gotosettings">Go to settings</string>
+    <string name="locationsettings">Location settings</string>
 </resources>

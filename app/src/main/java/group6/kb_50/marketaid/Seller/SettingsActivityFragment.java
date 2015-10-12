@@ -1,7 +1,15 @@
 package group6.kb_50.marketaid.Seller;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.v4.app.DialogFragment;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -63,6 +71,11 @@ public class SettingsActivityFragment extends Fragment {
                     /* Let's hope we have a fix. If not, maybe wait in Thread for a fix? */
 
                     Log.e("GPS", getLocation());
+                    if(!mLocation.isGPSON()){
+                        Log.e("GPS", "GPS is off!"); DialogFragment newFragment = new GPSWarningDialogFragment();
+                        newFragment.show(getFragmentManager(), "GPSonDialog");
+                        return;
+                    }
 
                     /* Save the Latitude and Longitude in global variable so we can use the later on */
                     mLat = mLocation.getCurrentLatDouble();
@@ -99,7 +112,7 @@ public class SettingsActivityFragment extends Fragment {
         SharedPreferences settings = getActivity().getBaseContext().getSharedPreferences(PREF_NAME, 0);
         SharedPreferences.Editor editor = settings.edit();
         Switch switch1 = (Switch) view.findViewById(R.id.switch1);
-        editor.putBoolean("present",switch1.isSelected());
+        editor.putBoolean("present", switch1.isSelected());
         //editor.commit();
         editor.putFloat("Latitude", (float) mLat);
         editor.putFloat("Longitude", (float) mLong);
@@ -110,6 +123,32 @@ public class SettingsActivityFragment extends Fragment {
 
     public void onClickSettingsLogin(View view){
 
+    }
+
+    /* Show this dialog when the GPS is off */
+    public static class GPSWarningDialogFragment extends DialogFragment {
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            // Use the Builder class for convenient dialog construction
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setMessage(getString(R.string.gpswarning))
+                    .setCancelable(false) // Doesn't seem to ve working though
+                    .setIcon(R.drawable.location_logo)
+                    .setTitle(getString(R.string.locationsettings))
+                    .setPositiveButton(getString(R.string.gotosettings), new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            Intent viewIntent = new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                            startActivity(viewIntent);
+                        }
+                    })
+                    .setNegativeButton(getString(R.string.logoutcancel), new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            // User cancelled the dialog
+                        }
+                    });
+            // Create the AlertDialog object and return it
+            return builder.create();
+        }
     }
 
 }
