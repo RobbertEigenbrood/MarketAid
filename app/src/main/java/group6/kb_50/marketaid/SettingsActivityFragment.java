@@ -66,9 +66,8 @@ public class SettingsActivityFragment extends Fragment {
 
                     ParseUser.getCurrentUser().put("LatLong", geoPoint);
 
-                    Toast.makeText(getActivity(), "Lat putted = " + mLocation.getCurrentLatitude(), Toast.LENGTH_SHORT).show();
-
                     Toast.makeText(getActivity(),"Location of " + ParseUser.getCurrentUser().getUsername() + " has been set", Toast.LENGTH_SHORT).show();
+                    ParseUser.getCurrentUser().saveInBackground();
                 }
                 else {
                     Toast.makeText(getActivity(), "No user is logged in!", Toast.LENGTH_SHORT).show();
