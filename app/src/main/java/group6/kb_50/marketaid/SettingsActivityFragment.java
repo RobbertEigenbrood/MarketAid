@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
@@ -32,24 +33,21 @@ public class SettingsActivityFragment extends Fragment {
 
        view  = inflater.inflate(R.layout.fragment_settings, container, false);
         // Restore preferences
-        SharedPreferences settings = getActivity().getBaseContext().getSharedPreferences(PREF_NAME, 0);
 
-        String username =  settings.getString("settingsusername", "Error");
-        EditText editText =(EditText)view.findViewById(R.id.settingsusernameedit);
-        editText.setText(username);
+        TextView tv = (TextView) view.findViewById(R.id.textView8);
+        tv.setText("You are logged in as: " + ParseUser.getCurrentUser().getUsername());
 
         Switch switch1 = (Switch) view.findViewById(R.id.switch1);
         switch1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
             public void onCheckedChanged(CompoundButton buttonView,boolean isChecked){
                 if(isChecked) {
-                    Toast.makeText(getActivity(),"Checked!",Toast.LENGTH_SHORT).show();
-
-
+                    Toast.makeText(getActivity(), "Checked!", Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    Toast.makeText(getActivity(),"Unchecked!",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Unchecked!", Toast.LENGTH_SHORT).show();
 
                 }
+                ParseUser.getCurrentUser().saveInBackground();
             }
         });
 
@@ -90,8 +88,8 @@ public class SettingsActivityFragment extends Fragment {
         // All objects are from android.context.Context
         SharedPreferences settings = getActivity().getBaseContext().getSharedPreferences(PREF_NAME, 0);
         SharedPreferences.Editor editor = settings.edit();
-        EditText editText =(EditText)view.findViewById(R.id.settingsusernameedit);
-        editor.putString("settingsusername", editText.getText().toString());
+        Switch switch1 = (Switch) view.findViewById(R.id.switch1);
+        editor.putBoolean("present",switch1.isSelected());
         editor.commit();
 
     }

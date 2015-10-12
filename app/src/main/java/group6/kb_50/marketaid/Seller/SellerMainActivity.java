@@ -28,6 +28,7 @@ import com.parse.ParseUser;
 
 import group6.kb_50.marketaid.Product;
 import group6.kb_50.marketaid.R;
+import group6.kb_50.marketaid.SettingsActivity;
 
 public class SellerMainActivity extends AppCompatActivity
         implements SellerNavigationFragment.NavigationDrawerCallbacks {
@@ -129,7 +130,6 @@ public class SellerMainActivity extends AppCompatActivity
         }
         return super.onCreateOptionsMenu(menu);
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -139,6 +139,8 @@ public class SellerMainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+
+            startActivity(new Intent(this,SettingsActivity.class));
             return true;
         }
 
@@ -212,6 +214,8 @@ public class SellerMainActivity extends AppCompatActivity
             return builder.create();
         }
     }
+
+
 
 
 
