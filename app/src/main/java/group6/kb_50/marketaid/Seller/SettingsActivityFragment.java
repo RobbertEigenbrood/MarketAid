@@ -44,14 +44,10 @@ public class SettingsActivityFragment extends Fragment {
         tv.setText("You are logged in as: " + ParseUser.getCurrentUser().getUsername());
 
         Switch switch1 = (Switch) view.findViewById(R.id.switch1);
+        switch1.setChecked(ParseUser.getCurrentUser().getBoolean("Present"));
         switch1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    Toast.makeText(getActivity(), "Checked!", Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    Toast.makeText(getActivity(), "Unchecked!", Toast.LENGTH_SHORT).show();
-                }
+                ParseUser.getCurrentUser().put("Present",isChecked);
                 ParseUser.getCurrentUser().saveInBackground();
             }
         });
