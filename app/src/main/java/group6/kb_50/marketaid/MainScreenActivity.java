@@ -1,9 +1,18 @@
 package group6.kb_50.marketaid;
 
+import android.app.Dialog;
 import android.app.Fragment;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.preference.PreferenceManager;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.support.v4.app.DialogFragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -52,6 +61,7 @@ public class MainScreenActivity extends AppCompatActivity {
             ParseObject.registerSubclass(Product.class);
             Parse.enableLocalDatastore(this);
             Parse.initialize(this, "eWtFfVxalDS39OF2hA8k2R3hTy8l125jU2fn4Mnx", "6q0qhKaUUDd1p2nUtCXUlOFwGqreFdoROVT7QQ2a");
+            checkConnection();
             storeDatabase();
             first = false;
         }
@@ -102,9 +112,42 @@ public class MainScreenActivity extends AppCompatActivity {
                     ParseObject.pinAllInBackground(productList);
                     Toast.makeText(getApplicationContext(), "Saved successfull", Toast.LENGTH_SHORT).show();
                 } else {
-                    Log.d("score", "Error: " + e.getMessage());
+
                 }
             }
         });
+    }
+
+    private void checkConnection(){
+        ConnectivityManager cm = (ConnectivityManager)getBaseContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        boolean isConnected = activeNetwork != null &&
+                activeNetwork.isConnectedOrConnecting();
+        if(!isConnected){
+            NoConnectionDialogFragment dialog = new NoConnectionDialogFragment();
+            dialog.show(getSupportFragmentManager(),"No Connection");
+        }
+    }
+
+    public static class NoConnectionDialogFragment extends DialogFragment {
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            // Use the Builder class for convenient dialog construction
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setMessage(getString(R.string.noConnectionText))
+                    .setPositiveButton(getString(R.string.noConnectionOk), new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            startActivity(new Intent(android.provider.Settings.ACTION_WIRELESS_SETTINGS));
+                        }
+                    })
+                    .setNegativeButton(getString(R.string.noConnectionCancel), new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            // User cancelled the dialog
+                        }
+                    });
+            // Create the AlertDialog object and return it
+            return builder.create();
+        }
     }
 }

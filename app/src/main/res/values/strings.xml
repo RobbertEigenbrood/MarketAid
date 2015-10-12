@@ -81,4 +81,8 @@
     <string name="Switch">Present</string>
     <string name="buttonSettingsLogin">Login</string>
     <string name="buttonSetGPS">Set Location</string>
+
+    <string name="noConnectionText">You have no internet connection.\n Click Settings to open the settings menu\n Click Cancel to use the local database</string>
+    <string name="noConnectionCancel">Cancel</string>
+    <string name="noConnectionOk">Settings</string>
 </resources>
