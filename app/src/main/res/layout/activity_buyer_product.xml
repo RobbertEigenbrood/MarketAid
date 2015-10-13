@@ -57,14 +57,37 @@
         android:gravity="center"
         android:layout_margin="5dp" />
 
-    <Button
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/ShowLocation"
-        android:id="@+id/LocationProductButton"
+        android:layout_weight="1">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ShowLocation"
+            android:id="@+id/LocationProductButton"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_margin="5dp"
+            android:onClick="onClickFindLocation"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/commentButton"
+            android:id="@+id/WriteCommentButton"
+            android:layout_margin="5dp"
+            android:onClick="onClickCommentButton"
+            android:gravity="center"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
         android:layout_gravity="center_horizontal"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:layout_margin="5dp"
-        android:onClick="onClickFindLocation"/>
+        android:id="@+id/commentframelayout"
+        android:layout_weight="1"></FrameLayout>
 </LinearLayout>

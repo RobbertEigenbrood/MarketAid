@@ -92,4 +92,9 @@
     <string name="gpswarning">Location could not be found. Do you want to go to location settings?</string>
     <string name="gotosettings">Go to settings</string>
     <string name="locationsettings">Location settings</string>
+    <string name="title_activity_comment">CommentActivity</string>
+    <string name="commentButton">Write Comment</string>
+    <string name="commentName">Name</string>
+    <string name="commentComment">Comment:</string>
+    <string name="commentPostButton">Post!</string>
 </resources>

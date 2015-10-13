@@ -3,12 +3,14 @@ package group6.kb_50.marketaid.Buyer;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -27,16 +29,21 @@ import com.parse.ParseGeoPoint;
 import com.parse.ParseImageView;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseQueryAdapter;
+import com.parse.ParseRelation;
 
 import group6.kb_50.marketaid.GPSWrapper;
 import group6.kb_50.marketaid.MainScreenActivity;
 import group6.kb_50.marketaid.R;
 import group6.kb_50.marketaid.Seller.SettingsActivityFragment;
 
+
 /* The Buyer product Detail Screen */
 
-public class BuyerProductActivity extends AppCompatActivity {
+public class BuyerProductActivity extends AppCompatActivity
+        implements CommentFragment.OnFragmentInteractionListener {
     private String ID;
+
 
     /* Don't use GPS until the user requests to. Also, leave it as a global variable so we can remove it (updates) in the onPause() */
     GPSWrapper mLocation = null;
@@ -63,6 +70,18 @@ public class BuyerProductActivity extends AppCompatActivity {
         progressBar.setVisibility(View.GONE);
         productTitle.setVisibility(TextView.VISIBLE);
         productDescription.setVisibility(TextView.VISIBLE);
+
+        FragmentManager manager = getFragmentManager();
+        FragmentTransaction ft = manager.beginTransaction();
+        Fragment fragment = new CommentFragment();
+
+        Bundle bundle =  new Bundle();
+        bundle.putString("ID",ID);
+        fragment.setArguments(bundle);
+
+        ft.replace(R.id.commentframelayout, fragment);
+        ft.addToBackStack(null);
+        ft.commit();
     }
 
 
@@ -180,6 +199,17 @@ public class BuyerProductActivity extends AppCompatActivity {
             }
         });
         //mLocation.removeUpdates(); //Moved to the onPause method in case the user wants to wait for a GPS lock
+    }
+
+    @Override
+    public void onFragmentInteraction(String id) {
+
+    }
+
+    public void onClickCommentButton(View v){
+                Intent i = new Intent(getApplicationContext(), CommentActivity.class);
+                i.putExtra("Product",ID);
+                startActivity(i);
     }
 
     private boolean checkConnection(){

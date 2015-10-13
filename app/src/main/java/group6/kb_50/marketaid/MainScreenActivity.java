@@ -59,6 +59,7 @@ public class MainScreenActivity extends AppCompatActivity {
         // Enable Local Datastore.
         if(first) {
             ParseObject.registerSubclass(Product.class);
+            ParseObject.registerSubclass(Comment.class);
             Parse.enableLocalDatastore(this);
             Parse.initialize(this, "eWtFfVxalDS39OF2hA8k2R3hTy8l125jU2fn4Mnx", "6q0qhKaUUDd1p2nUtCXUlOFwGqreFdoROVT7QQ2a");
             checkConnection();

@@ -57,10 +57,17 @@
             android:name=".Buyer.BuyerMainActivity"
             android:label="@string/title_activity_buyer_main" >
         </activity>
-<!--        <activity
+        <!--
+            <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings" >
-        </activity>-->
+        </activity>
+        -->
+        <activity
+            android:name=".Buyer.CommentActivity"
+            android:label="@string/title_activity_comment"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
     </application>
 
 </manifest>
