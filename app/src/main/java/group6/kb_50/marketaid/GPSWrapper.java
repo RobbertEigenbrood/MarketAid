@@ -35,7 +35,7 @@ public class GPSWrapper {
 
     private boolean isGpsOn = false;
 
-    private void getCurrentLocation() {
+    public void getCurrentLocation() {  //Changed to Public so we can keep searching for a Lock
         Location gpsLocation = null;
         Location networkLocation = null;
         mLocationManager.removeUpdates(listener);

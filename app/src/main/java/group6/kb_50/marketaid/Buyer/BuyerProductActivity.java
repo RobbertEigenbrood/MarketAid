@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.Looper;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -47,6 +48,7 @@ public class BuyerProductActivity extends AppCompatActivity
 
     /* Don't use GPS until the user requests to. Also, leave it as a global variable so we can remove it (updates) in the onPause() */
     GPSWrapper mLocation = null;
+    GPSWrapper tempLocation = null;
     boolean onLocationFirst = true;    //Makes sure the GPSWrapper is instantiated only once in case of no connection
 
     @Override
@@ -167,22 +169,26 @@ public class BuyerProductActivity extends AppCompatActivity
                                     new Thread(new Runnable() {
                                         public void run() {
                                             int count = 1;
+                                            Looper.prepare();//Gave Runtime Exception when not implemented
                                             while (!mLocation.hasALock()) {
+                                                tempLocation.getCurrentLocation();
                                                 // Wait until GPS lock
-                                                try{
+                                                try {
                                                     Thread.sleep(1000);
-                                                }catch (Exception e){e.printStackTrace();}
-                                                Log.e("GPS", "No lock found after " + count + "seconds");
+                                                } catch (Exception e) {
+                                                    e.printStackTrace();
+                                                }
+                                                Log.e("GPS", "Run1: No lock found after " + count + " seconds");
                                                 count++;
                                             }
                                             /* GPS lock found! */
-                                            Log.e("GPS", "Lock has been found after " + count + "seconds");
+                                            Log.e("GPS", "Run!: Lock has been found after " + count + " seconds");
                                             startActivity(intent);
                                             mLocation.removeUpdates();
                                         }
                                     }).start();
 
-                                } else{ // We already have a location (GPS is fast or newer device)
+                                } else { // We already have a location (GPS is fast or newer device)
                                     startActivity(intent);
                                     mLocation.removeUpdates();
                                 }
@@ -191,6 +197,30 @@ public class BuyerProductActivity extends AppCompatActivity
                                 DialogFragment newFragment = new SettingsActivityFragment.GPSWarningDialogFragment();
                                 newFragment.show(getSupportFragmentManager(), "GPSonDialog");
                                 mLocation.removeUpdates();
+                                if(onLocationFirst) {
+                                    onLocationFirst = false;
+                                    tempLocation = new GPSWrapper(BuyerProductActivity.this);
+                                    new Thread(new Runnable() {
+                                        public void run() {
+                                            int count = 1;
+                                            Looper.prepare();//Gave Runtime Exception when not implemented
+                                            while (!tempLocation.hasALock()) {
+                                                tempLocation.getCurrentLocation();
+                                                // Wait until GPS lock
+                                                try {
+                                                    Thread.sleep(1000);
+                                                } catch (Exception e) {
+                                                    e.printStackTrace();
+                                                }
+                                                Log.e("GPS", "Run2: No lock found after " + count + " seconds");
+                                                count++;
+                                            }
+                                                /* GPS lock found! */
+                                            Log.e("GPS", "Run2: Lock has been found after " + count + " seconds");
+                                            //tempLocation.removeUpdates();
+                                        }
+                                    }).start();
+                                }
                                 return;
                             }
                         }
@@ -255,6 +285,12 @@ public class BuyerProductActivity extends AppCompatActivity
             mLocation.removeUpdates();
         } else{ //Object will be null when user hasn't used Set GPS button */
             Log.e("GPS", "mLocation was null when trying to remove!");
+        }
+
+        if(tempLocation != null) {
+            tempLocation.removeUpdates();
+        } else{ //Object will be null when user hasn't used Set GPS button */
+            Log.e("GPS", "backupLocation was null when trying to remove!");
         }
     }
 }

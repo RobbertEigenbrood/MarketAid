@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Looper;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -38,6 +39,9 @@ public class SettingsActivityFragment extends Fragment {
     double mLat = 0.0,
            mLong = 0.0;
 
+    GPSWrapper tempLocation = null;
+    boolean onLocationFirst = true;    //Makes sure the GPSWrapper is instantiated only once in case of no connection
+
     public SettingsActivityFragment() {
     }
 
@@ -60,6 +64,7 @@ public class SettingsActivityFragment extends Fragment {
             }
         });
 
+        //TODO: maybe implement saving GPS location at database in Thread? This way, it will only be saved when a Lock has been found
         /* The "Set GPS" button */
         Button button = (Button) view.findViewById(R.id.buttonGPS);
         button.setOnClickListener(new View.OnClickListener() {
@@ -68,17 +73,43 @@ public class SettingsActivityFragment extends Fragment {
                     GPSWrapper mLocation = new GPSWrapper(getActivity());
                     ParseGeoPoint geoPoint = new ParseGeoPoint();
 
-                    /* Let's hope we have a fix. If not, maybe wait in Thread for a fix? */
+                    /* Let's hope we have a fix. If not, wait in Thread for a fix */
+                    //TODO: the user can ONLY save the current location by pressing the button (again)
 
                     //Log.e("GPS", getLocation());
                     if(!mLocation.isGPSON()){
                         Log.e("GPS", "GPS is off!");
                         DialogFragment newFragment = new GPSWarningDialogFragment();
                         newFragment.show(getFragmentManager(), "GPSonDialog");
+                        /* Search for GPS location in temporary GPSWrapper in case the user has enabled Location Settings */
+                        if(onLocationFirst) {
+                            onLocationFirst = false;
+                            tempLocation = new GPSWrapper(getActivity());
+                            new Thread(new Runnable() {
+                                public void run() {
+                                    int count = 1;
+                                    Looper.prepare();//Gave Runtime Exception when not implemented
+                                    while (!tempLocation.hasALock()) {
+                                        tempLocation.getCurrentLocation();
+                                        // Wait until GPS lock
+                                        try {
+                                            Thread.sleep(1000);
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+                                        }
+                                        Log.e("GPS", "SettingsRun: No lock found after " + count + " seconds");
+                                        count++;
+                                    }
+                                    /* GPS lock found! */
+                                    Log.e("GPS", "SettingsRun: Lock has been found after " + count + " seconds");
+                                    //tempLocation.removeUpdates(); //Moved to onPause()
+                                }
+                            }).start();
+                        }
                         return;
                     }
 
-                    /* Save the Latitude and Longitude in global variable so we can use the later on */
+                    /* Save the Latitude and Longitude in global variables so we can use them later on */
                     mLat = mLocation.getCurrentLatDouble();
                     geoPoint.setLatitude(mLat);
                     mLong = mLocation.getCurrentLongDouble();
@@ -152,6 +183,17 @@ public class SettingsActivityFragment extends Fragment {
                     });
             // Create the AlertDialog object and return it
             return builder.create();
+        }
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+
+        if(tempLocation != null) {
+            tempLocation.removeUpdates();
+        } else{ //Object will be null when user hasn't used Set GPS button */
+            Log.e("GPS", "tempLocation was null when trying to remove!");
         }
     }
 
