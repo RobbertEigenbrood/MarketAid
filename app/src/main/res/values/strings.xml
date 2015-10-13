@@ -85,8 +85,11 @@
     <string name="noConnectionText">You have no internet connection.\n Click Settings to open the settings menu\n Click Cancel to use the local database</string>
     <string name="noConnectionCancel">Cancel</string>
     <string name="noConnectionOk">Settings</string>
+    <string name="noConnectionMapsText">No internet connection found. Maps might not be able to load properly. \nWould you like to go to settings?</string>
+    <string name="noConnectionMapsCancel">Continue</string>
+    <string name="noConnectionMapsOk">Settings</string>
     <string name="wrongLgin">Wrong username or password</string>
-    <string name="gpswarning">GPS is turned of. Do you want to go to location settings?</string>
+    <string name="gpswarning">Location could not be found. Do you want to go to location settings?</string>
     <string name="gotosettings">Go to settings</string>
     <string name="locationsettings">Location settings</string>
 </resources>

@@ -14,6 +14,7 @@ public class GPSWrapper {
 
     public static final String DEBUG_TAG = "GPSWrapper";
 
+    //TODO: should we change the default value from 0 to "bullshit"?
     private String currentLatitude = "";
     private double currentLatDouble = 0.0;
     private String currentLongitude = "";
@@ -32,7 +33,7 @@ public class GPSWrapper {
         getCurrentLocation();
     }
 
-    private boolean isGpsOn;
+    private boolean isGpsOn = false;
 
     private void getCurrentLocation() {
         Location gpsLocation = null;
@@ -41,14 +42,16 @@ public class GPSWrapper {
 
         gpsLocation = requestUpdatesFromProvider(LocationManager.GPS_PROVIDER);
         networkLocation = requestUpdatesFromProvider(LocationManager.NETWORK_PROVIDER);
-        isGpsOn = true;
 
         if (gpsLocation != null && networkLocation != null) {
             updateLocation(getBetterLocation(gpsLocation, networkLocation));
+            isGpsOn = true;
         } else if (gpsLocation != null) {
             updateLocation(gpsLocation);
+            isGpsOn = true;
         } else if (networkLocation != null) {
             updateLocation(networkLocation);
+            isGpsOn = true;
         } else {
             isGpsOn = false;
         }
@@ -72,6 +75,14 @@ public class GPSWrapper {
 
     public String getLatLong() {
         return currentLatitude + ", " + currentLongitude;
+    }
+
+    public boolean hasALock() {
+        if (getCurrentLatDouble() == 0 && getCurrentLongDouble() == 0) {
+            Log.e("GPS", "No GPS lock found!");
+            return false;
+        }
+        return true;
     }
 
     private final LocationListener listener = new LocationListener() {
@@ -193,9 +204,11 @@ public class GPSWrapper {
         if (listener != null) {
             try {
                 mLocationManager.removeUpdates(listener);
+                Log.e(DEBUG_TAG, "GPS updates removed.");
             } catch (Exception e) {
                 // if (e != null)
                 // e.printStackTrace();
+                Log.e(DEBUG_TAG, "Removing GPS failed!");
             }
         }
     }

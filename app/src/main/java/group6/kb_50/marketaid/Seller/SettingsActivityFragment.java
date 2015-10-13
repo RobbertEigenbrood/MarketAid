@@ -70,9 +70,10 @@ public class SettingsActivityFragment extends Fragment {
 
                     /* Let's hope we have a fix. If not, maybe wait in Thread for a fix? */
 
-                    Log.e("GPS", getLocation());
+                    //Log.e("GPS", getLocation());
                     if(!mLocation.isGPSON()){
-                        Log.e("GPS", "GPS is off!"); DialogFragment newFragment = new GPSWarningDialogFragment();
+                        Log.e("GPS", "GPS is off!");
+                        DialogFragment newFragment = new GPSWarningDialogFragment();
                         newFragment.show(getFragmentManager(), "GPSonDialog");
                         return;
                     }
@@ -87,6 +88,8 @@ public class SettingsActivityFragment extends Fragment {
 
                     Toast.makeText(getActivity(), "Location of " + ParseUser.getCurrentUser().getUsername() + " has been set", Toast.LENGTH_SHORT).show();
                     ParseUser.getCurrentUser().saveInBackground();
+                    /* Dismiss the GPSWrapper object */
+                    mLocation.removeUpdates();
                 } else {
                     Toast.makeText(getActivity(), "No user is logged in!", Toast.LENGTH_SHORT).show();
                 }
@@ -99,7 +102,9 @@ public class SettingsActivityFragment extends Fragment {
     /* Use getLocation() for logging/debugging */
     private String getLocation(){
         GPSWrapper mLocation = new GPSWrapper(getActivity());
-        return mLocation.getLatLong();
+        String s = mLocation.getLatLong();
+        mLocation.removeUpdates();
+        return s;
     }
 
     @Override
@@ -118,7 +123,6 @@ public class SettingsActivityFragment extends Fragment {
         editor.putFloat("Longitude", (float) mLong);
         //editor.commit();
         editor.apply();
-
     }
 
     public void onClickSettingsLogin(View view){
