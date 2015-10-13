@@ -15,14 +15,22 @@
         android:textSize="20sp"
         android:layout_margin="5dp"
         android:textColor="#000000"
-        android:typeface="serif" />
+        android:typeface="serif"
+        android:layout_weight="1"
+        android:gravity="center" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center">
 
     <Button
         android:text="@string/SellerButton"
         android:textColor="#000000"
         android:textSize="20sp"
 
-        android:layout_width="200dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:background="@drawable/buttonshape"
         android:shadowColor="#A8A8A8"
@@ -31,7 +39,7 @@
         android:shadowRadius="5"
         android:onClick="ToSellerMain"
         android:id="@+id/SellerButton"
-        android:layout_margin="5dp"
+        android:layout_margin="10dp"
         android:typeface="serif" />
 
     <TextView
@@ -49,7 +57,7 @@
         android:textColor="#000000"
         android:textSize="20sp"
 
-        android:layout_width="200dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:background="@drawable/buttonshape"
         android:shadowColor="#A8A8A8"
@@ -58,7 +66,8 @@
         android:shadowRadius="5"
         android:onClick="ToBuyerMain"
         android:id="@+id/BuyerButton"
-        android:layout_margin="5dp"
+        android:layout_margin="10dp"
         android:typeface="serif" />
+    </LinearLayout>
 </LinearLayout>
 

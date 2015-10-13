@@ -4,4 +4,4 @@
     android:valueFrom="1"
     android:valueTo="0"
     android:propertyName="alpha"
-    android:duration="500" />
+    android:duration="2000" />

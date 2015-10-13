@@ -5,7 +5,6 @@ import android.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.preference.PreferenceManager;
@@ -15,13 +14,14 @@ import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.KeyEvent;
 import android.view.View;
+import android.widget.EditText;
+import android.view.View.OnKeyListener;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
+import com.parse.LogInCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -31,12 +31,10 @@ import com.parse.ParseUser;
 import java.util.List;
 
 import group6.kb_50.marketaid.Buyer.BuyerMainActivity;
+import group6.kb_50.marketaid.Seller.SellerCreateAccountActivity;
 import group6.kb_50.marketaid.Seller.SellerLoginActivity;
+import group6.kb_50.marketaid.Seller.SellerLoginFragment;
 import group6.kb_50.marketaid.Seller.SellerMainActivity;
-/*
-import android.view.Menu;
-import android.view.MenuItem;
-*/
 
 public class MainScreenActivity extends AppCompatActivity {
 
@@ -45,16 +43,6 @@ public class MainScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
-
-        FragmentManager manager = getFragmentManager();
-        FragmentTransaction ft = manager.beginTransaction();
-        Fragment fragment = new MainScreenFragment();
-
-        ft.setCustomAnimations(R.anim.fadein,R.anim.fadeout);
-
-        ft.replace(R.id.framelayout, fragment);
-        ft.addToBackStack(null);
-        ft.commit();
 
         // Enable Local Datastore.
         if(first) {
@@ -66,6 +54,15 @@ public class MainScreenActivity extends AppCompatActivity {
             storeDatabase();
             first = false;
         }
+
+        FragmentManager manager = getFragmentManager();
+        FragmentTransaction ft = manager.beginTransaction();
+        Fragment fragment = new MainScreenFragment();
+        if(savedInstanceState == null) {
+            ft.setCustomAnimations(R.anim.fadein, R.anim.slide_out_right);
+        }
+        ft.replace(R.id.framelayout, fragment);
+        ft.commit();
     }
 
     public void ToSellerMain(View view) {
@@ -73,35 +70,29 @@ public class MainScreenActivity extends AppCompatActivity {
         if(user != null) {
             startActivity(new Intent(this, SellerMainActivity.class));
         }
-        else
-            startActivity(new Intent(this,SellerLoginActivity.class));
+        else{
+//            startActivity(new Intent(this, SellerLoginActivity.class));
+            Fragment fragment = new SellerLoginFragment();
+            FragmentManager fm = getFragmentManager();
+            FragmentTransaction transaction = fm.beginTransaction();
+            transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_right);
+            transaction.replace(R.id.framelayout, fragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+        }
     }
+
 
     public void ToBuyerMain(View view) {
         startActivity(new Intent(this, BuyerMainActivity.class));
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main_screen, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-/*        if (id == R.id.action_settings) {
-
-            startActivity(new Intent(this,SettingsActivity.class));
-            return true;
-        }*/
-        return super.onOptionsItemSelected(item);
+    public void onBackPressed() {
+        if (getFragmentManager().getBackStackEntryCount() == 0) {
+            this.finish();
+        } else {
+            getFragmentManager().popBackStack();
+        }
     }
 
     private void storeDatabase(){

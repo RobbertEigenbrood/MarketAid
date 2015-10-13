@@ -18,7 +18,7 @@
     <!--Settings Strings -->
     <string name="settingsusername">Username</string>
     <string name="settingspassword">Password</string>
-    <string name="title_activity_main_screen">MainScreenActivity</string>
+    <string name="title_activity_main_screen">Welcome to the Market!</string>
     <string name="title_activity_how_to">HowToActivity</string>
     <string name="title_activity_buyer_main">BuyerMainActivity</string>
     <string name="title_activity_buyer_product">BuyerProductActivity</string>
@@ -31,8 +31,8 @@
     <string name="title_activity_seller_create">SellerCreateActivity</string>
     <string name="SellerButton">Sell</string>
     <string name="BuyerButton">Buy</string>
-    <string name="BuySelltext1">Are you here today to</string>
-    <string name="BuySelltext2">or to</string>
+    <string name="BuySelltext1"><b>Are you here today to</b></string>
+    <string name="BuySelltext2"><b>or to</b></string>
     <string name="BuyerOverview">Buyer Overview</string>
     <string name="SellerOverview">Seller Overview</string>
 
