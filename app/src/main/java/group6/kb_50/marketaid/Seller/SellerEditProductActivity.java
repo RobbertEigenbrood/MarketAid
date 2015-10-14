@@ -32,7 +32,7 @@ public class SellerEditProductActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_seller_edit_product);
+        setContentView(R.layout.seller_activity_edit_product);
         EditText textView = (EditText ) findViewById(R.id.EnterProductTitleEdit);
         textView.requestFocus();
         handleIntent();
@@ -147,9 +147,9 @@ public class SellerEditProductActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+/*        if (id == R.id.action_settings) {
             return true;
-        }
+        }*/
 
         return super.onOptionsItemSelected(item);
     }

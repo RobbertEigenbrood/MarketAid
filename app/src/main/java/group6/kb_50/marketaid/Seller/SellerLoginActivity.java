@@ -5,7 +5,6 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -22,7 +21,7 @@ public class SellerLoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_seller_login);
+        setContentView(R.layout.seller_activity_login);
 
         /* From Stackoverflow.com: "listener-for-done-button-on-edittext" */
         final EditText username = (EditText)findViewById(R.id.editTextusername);
@@ -41,7 +40,7 @@ public class SellerLoginActivity extends AppCompatActivity {
         pass.setOnKeyListener(new View.OnKeyListener() {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
-                    onClickLogin( new View(getBaseContext()) );
+                    onClickLogin(new View(getBaseContext()));
                     return true;
                 }
                 return false;
@@ -66,9 +65,8 @@ public class SellerLoginActivity extends AppCompatActivity {
                     Intent i = new Intent(getBaseContext(), SellerMainActivity.class);
                     startActivity(i);
                     finish();
-                }
-                else{
-                    Toast.makeText(getBaseContext(), getString(R.string.wrongLgin),Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getBaseContext(), getString(R.string.wrongLgin), Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -81,10 +79,10 @@ public class SellerLoginActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
+/*        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
-        }
+        }*/
         return super.onOptionsItemSelected(item);
     }
 

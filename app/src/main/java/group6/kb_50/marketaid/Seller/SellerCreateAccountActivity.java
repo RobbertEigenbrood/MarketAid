@@ -22,7 +22,7 @@ public class SellerCreateAccountActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_seller_create_account);
+        setContentView(R.layout.seller_activity_create_account);
     }
 
     @Override
@@ -40,9 +40,9 @@ public class SellerCreateAccountActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+/*        if (id == R.id.action_settings) {
             return true;
-        }
+        }*/
         return super.onOptionsItemSelected(item);
     }
 

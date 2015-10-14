@@ -24,7 +24,7 @@ public class SellerLoginFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_seller_login, container, false);
+        view = inflater.inflate(R.layout.seller_fragment_login, container, false);
 
         /* From Stackoverflow.com: "listener-for-done-button-on-edittext" */
         final EditText username = (EditText)view.findViewById(R.id.editTextusername);

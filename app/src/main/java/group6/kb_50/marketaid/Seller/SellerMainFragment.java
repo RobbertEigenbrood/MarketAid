@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.parse.ParseObject;
 import com.parse.ParseQueryAdapter;
@@ -37,7 +36,7 @@ public class SellerMainFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.activity_seller_main, container, false);
+        view = inflater.inflate(R.layout.seller_activity_main, container, false);
         fillList();
         return view;
 

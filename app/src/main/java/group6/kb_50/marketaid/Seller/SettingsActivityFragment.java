@@ -7,10 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Looper;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,11 +15,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ToggleButton;
 
 import com.parse.ParseGeoPoint;
 import com.parse.ParseUser;
@@ -48,7 +43,7 @@ public class SettingsActivityFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_settings, container, false);
+        view = inflater.inflate(R.layout.seller_fragment_settings, container, false);
         // Restore preferences
         final SharedPreferences settings = getActivity().getBaseContext().getSharedPreferences(PREF_NAME, 0);
 

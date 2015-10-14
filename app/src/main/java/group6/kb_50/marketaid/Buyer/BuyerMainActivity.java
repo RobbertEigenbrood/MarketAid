@@ -23,7 +23,7 @@ public class BuyerMainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_buyer_main);
+        setContentView(R.layout.buyer_activity_main);
         fillList();
     }
 

@@ -54,7 +54,7 @@ public class BuyerProductActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_buyer_product);
+        setContentView(R.layout.buyer_activity_product);
 
         /* Display the ProgressBar */
         final ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBarBuyerProduct);
@@ -126,9 +126,9 @@ public class BuyerProductActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+/*        if (id == R.id.action_settings) {
             return true;
-        }
+        }*/
         return super.onOptionsItemSelected(item);
     }
 

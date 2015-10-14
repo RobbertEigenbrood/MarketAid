@@ -36,7 +36,7 @@ public class SellerAddProductFragment extends Fragment implements View.OnClickLi
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        view = inflater.inflate(R.layout.activity_seller_add, container, false);
+        view = inflater.inflate(R.layout.seller_activity_add, container, false);
 
         Button b = (Button) view.findViewById(R.id.AddImageButton);
         b.setOnClickListener(this);
