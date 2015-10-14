@@ -38,20 +38,21 @@ public class SellerLoginFragment extends Fragment implements View.OnClickListene
         final EditText username = (EditText)view.findViewById(R.id.editTextusername);
         final EditText pass = (EditText)view.findViewById(R.id.editTextpassword);
 
-        /* If the user pressed "Enter" or "Gereed", log in immediately */
+        /* If the user pressed "Enter" or "Gereed", Go to password field */
         username.setOnKeyListener(new View.OnKeyListener() {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
-                    /* Lekker vies de onClick van de button aanroepen */
-                    onClick( loginButton );
+                if ((event.getAction() == KeyEvent.ACTION_UP) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    pass.requestFocus();
                     return true;
                 }
                 return false;
             }
         });
+        /* If the user pressed "Enter" or "Gereed", log in immediately */
         pass.setOnKeyListener(new View.OnKeyListener() {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                if ((event.getAction() == KeyEvent.ACTION_UP) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    /* Lekker vies de onClick van de button aanroepen */
                     onClick( loginButton );
                     return true;
                 }
@@ -64,13 +65,24 @@ public class SellerLoginFragment extends Fragment implements View.OnClickListene
     @Override
     public void onClick(View v){
         final EditText username = (EditText)view.findViewById(R.id.editTextusername);
+        String userstring = username.getText().toString();
+        /* Check if last character is a space due to auto-fill functionality */
+        if( userstring.length() > 0 ) {
+            int charAtDelete = userstring.length() - 1; //At end of string
+            char c = userstring.charAt(charAtDelete);
+            if( c ==  ' '){ //Space at the end of the Username? Delete.
+                userstring = userstring.substring(0, userstring.length() - 1);
+            }
+        }
+        /* Because we "can't assign a value to a Final object" */
+        final String userFinalString = userstring;
         final EditText pass = (EditText)view.findViewById(R.id.editTextpassword);
 
-        ParseUser user = new ParseUser();
+        //ParseUser user = new ParseUser(); //We don't need this
 
         switch (v.getId()) {
             case R.id.buttonLogin:
-                ParseUser.logInInBackground(username.getText().toString(), pass.getText().toString(), new LogInCallback() {
+                ParseUser.logInInBackground(userFinalString, pass.getText().toString(), new LogInCallback() {
                     @Override
                     public void done(ParseUser parseUser, ParseException e) {
                         if (parseUser != null) {
@@ -93,7 +105,6 @@ public class SellerLoginFragment extends Fragment implements View.OnClickListene
             default:
                 break;
         }
-
 
     }
 

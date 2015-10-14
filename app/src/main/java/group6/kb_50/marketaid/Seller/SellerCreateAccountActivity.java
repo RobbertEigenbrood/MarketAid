@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -49,16 +50,27 @@ public class SellerCreateAccountActivity extends AppCompatActivity {
     public void onClickCreate(View v)
     {
         EditText user = (EditText)findViewById(R.id.editTextusername);
+        String userstring = user.getText().toString();
+        /* Check if last character is a space due to auto-fill functionality */
+        if( userstring.length() > 0 ) {
+            int charAtDelete = userstring.length() - 1; //At end of string
+            char c = userstring.charAt(charAtDelete);
+            if( c ==  ' '){ //Space at the end of the Username? Delete.
+                userstring = userstring.substring(0, userstring.length() - 1);
+            }
+        }
         EditText password = (EditText)findViewById(R.id.editTextpassword);
         EditText email = (EditText)findViewById(R.id.editTextemail);
         ParseUser parseUser = new ParseUser();
         try{
-        parseUser.setUsername(user.getText().toString());
-        parseUser.setPassword(password.getText().toString());
-        parseUser.setEmail(email.getText().toString());}
+            parseUser.setUsername(userstring);
+            parseUser.setPassword(password.getText().toString());
+            parseUser.setEmail(email.getText().toString());
+        }
         catch (Exception e)
         {
-            Toast.makeText(getBaseContext(), e.toString(), Toast.LENGTH_SHORT).show();
+            Log.e("Creating new account", e.toString());
+            //Toast.makeText(getBaseContext(), e.toString(), Toast.LENGTH_SHORT).show();
         }
 
         parseUser.signUpInBackground(new SignUpCallback() {
