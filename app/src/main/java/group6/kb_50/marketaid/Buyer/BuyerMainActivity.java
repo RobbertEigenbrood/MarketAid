@@ -34,7 +34,6 @@ public class BuyerMainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.buyer_activity_main);
-        setContentView(R.layout.activity_buyer_main);
 
         swipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.swiperefresh);
         swipeRefreshLayout.setOnRefreshListener(
@@ -55,22 +54,7 @@ public class BuyerMainActivity extends AppCompatActivity {
     }
 
     public void fillList() {
-       final List<ParseUser> list = new ArrayList<ParseUser>();
-        ParseQuery<ParseUser> query = ParseUser.getQuery();
-        query.whereEqualTo("gender", "female");
-        query.findInBackground(new FindCallback<ParseUser>() {
-            public void done(List<ParseUser> objects, ParseException e) {
-                if (e == null) {
-                    list.addAll(objects);
-                    Toast.makeText(getBaseContext(), list.get(0).toString(), Toast.LENGTH_SHORT).show();
-                } else {
-                    // Something went wrong.
-                }
-            }
-        });
-
-
-        customAdapterBuyer = new CustomAdapterBuyer(this);
+              customAdapterBuyer = new CustomAdapterBuyer(this);
         gridView = (GridView) findViewById(R.id.GridViewBuyer);
         gridView.setAdapter(customAdapterBuyer);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

@@ -18,14 +18,13 @@ import group6.kb_50.marketaid.R;
 
 public class CustomAdapterBuyer extends ParseQueryAdapter<ParseObject> {
 
-	public CustomAdapterBuyer(Context context, final List<ParseUser> user) {
+	public CustomAdapterBuyer(Context context) {
 		// Use the QueryFactory to construct a PQA that will only show
 		// Todos marked as high-pri\
 		super(context, new QueryFactory<ParseObject>() {
 			public ParseQuery create() {
 				ParseQuery query = new ParseQuery("Products");
                 query.fromLocalDatastore();
-				query.whereContainedIn("Seller",user);
 				return query;
 			}
 		});
