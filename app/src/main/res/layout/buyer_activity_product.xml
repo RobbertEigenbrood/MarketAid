@@ -90,4 +90,5 @@
         android:layout_gravity="center_horizontal"
         android:id="@+id/commentframelayout"
         android:layout_weight="1"></FrameLayout>
+
 </LinearLayout>

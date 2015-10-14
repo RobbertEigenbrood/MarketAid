@@ -1,15 +1,24 @@
 package group6.kb_50.marketaid.Buyer;
 
 import android.content.Intent;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.parse.FindCallback;
+import com.parse.ParseException;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
+import com.parse.ParseUser;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import group6.kb_50.marketaid.Product;
 import group6.kb_50.marketaid.R;
@@ -19,18 +28,47 @@ public class BuyerMainActivity extends AppCompatActivity {
     private ParseQueryAdapter mainAdapter;
     private CustomAdapterBuyer customAdapterBuyer;
     private GridView gridView;
+    SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.buyer_activity_main);
+        setContentView(R.layout.activity_buyer_main);
+
+        swipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.swiperefresh);
+        swipeRefreshLayout.setOnRefreshListener(
+                new SwipeRefreshLayout.OnRefreshListener() {
+
+                    @Override
+                    public void onRefresh() {
+                        storeDatabase();
+                        fillList();
+
+                    }
+                }
+        );
+
         fillList();
+
+
     }
 
     public void fillList() {
-        mainAdapter = new ParseQueryAdapter<ParseObject>(this, Product.class);
-        mainAdapter.setTextKey("Name");
-        mainAdapter.setImageKey("Image");
+       final List<ParseUser> list = new ArrayList<ParseUser>();
+        ParseQuery<ParseUser> query = ParseUser.getQuery();
+        query.whereEqualTo("gender", "female");
+        query.findInBackground(new FindCallback<ParseUser>() {
+            public void done(List<ParseUser> objects, ParseException e) {
+                if (e == null) {
+                    list.addAll(objects);
+                    Toast.makeText(getBaseContext(), list.get(0).toString(), Toast.LENGTH_SHORT).show();
+                } else {
+                    // Something went wrong.
+                }
+            }
+        });
+
 
         customAdapterBuyer = new CustomAdapterBuyer(this);
         gridView = (GridView) findViewById(R.id.GridViewBuyer);
@@ -48,6 +86,21 @@ public class BuyerMainActivity extends AppCompatActivity {
             }
         });
 
-        mainAdapter.loadObjects();
+        swipeRefreshLayout.setRefreshing(false);
+    }
+
+    private void storeDatabase(){
+
+        ParseQuery<Product> query = ParseQuery.getQuery(Product.class);
+        query.findInBackground(new FindCallback<Product>() {
+            public void done(List<Product> productList, ParseException e) {
+                if (e == null) {
+                    ParseObject.pinAllInBackground(productList);
+                    Toast.makeText(getApplicationContext(), "Refreshed", Toast.LENGTH_SHORT).show();
+                } else {
+
+                }
+            }
+        });
     }
 }

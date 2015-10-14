@@ -12,6 +12,7 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Looper;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -44,6 +45,7 @@ import group6.kb_50.marketaid.Seller.SettingsActivityFragment;
 public class BuyerProductActivity extends AppCompatActivity
         implements CommentFragment.OnFragmentInteractionListener {
     private String ID;
+    SwipeRefreshLayout swipeRefreshLayout;
 
 
     /* Don't use GPS until the user requests to. Also, leave it as a global variable so we can remove it (updates) in the onPause() */
@@ -84,6 +86,8 @@ public class BuyerProductActivity extends AppCompatActivity
         ft.replace(R.id.commentframelayout, fragment);
         ft.addToBackStack(null);
         ft.commit();
+
+
     }
 
 

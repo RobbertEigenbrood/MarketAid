@@ -22,8 +22,7 @@ public class Comment extends ParseObject {
     }
 
     public void setComment(String comment) {
-        put("Comment",comment);
-    }
+        put("Comment",comment);}
 
     public String getUser() {
         return getString("User");
