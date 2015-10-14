@@ -3,6 +3,7 @@ package group6.kb_50.marketaid.Seller;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -33,6 +34,8 @@ public class SellerMainActivity extends AppCompatActivity
      */
     private CharSequence mTitle;
 
+    SharedPreferences prefs = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +49,21 @@ public class SellerMainActivity extends AppCompatActivity
         mSellerNavigationFragment.setUp(
                 R.id.navigation_drawer1,
                 (DrawerLayout) findViewById(R.id.drawer_layout1));
+
+        prefs = getSharedPreferences("group6.kb_50.marketaid", MODE_PRIVATE);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if(prefs.getBoolean("firstrun", true)) {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction()
+                    .replace(R.id.container, new SellerFirstRunFragment())
+                    .commit();
+            prefs.edit().putBoolean("firstrun", false).commit();
+        }
     }
 
     @Override

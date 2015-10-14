@@ -63,8 +63,10 @@ android:layout_width="match_parent"
         android:verticalSpacing="5sp"
         android:horizontalSpacing="5sp"
         android:layout_centerVertical="true"
-        android:layout_below="@+id/SellerTextMain" />
+        android:layout_below="@+id/SellerTextMain"
+        />
 </RelativeLayout>
+
 
 
 
