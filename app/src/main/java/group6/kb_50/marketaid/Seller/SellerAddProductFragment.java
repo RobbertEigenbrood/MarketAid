@@ -42,14 +42,21 @@ public class SellerAddProductFragment extends Fragment implements View.OnClickLi
         b.setOnClickListener(this);
         Button addbutton =(Button) view.findViewById(R.id.AddButton);
         addbutton.setOnClickListener(this);
+        Button browseButton =(Button) view.findViewById(R.id.BrowseAddButton);
+        addbutton.setOnClickListener(this);
         return view;
     }
 
     @Override
     public void onClick(View v) {
+        Intent intent;
         switch (v.getId()) {
             case R.id.AddImageButton:
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(intent, 100);
+                break;
+            case R.id.BrowseAddButton:
+                intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 startActivityForResult(intent, 100);
                 break;
             case R.id.AddButton:

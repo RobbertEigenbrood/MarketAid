@@ -86,7 +86,6 @@ public class MainScreenActivity extends AppCompatActivity {
         }
     }
 
-
     public void ToBuyerMain(View view) {
         startActivity(new Intent(this, BuyerMainActivity.class));
     }
