@@ -24,6 +24,7 @@ import com.parse.FindCallback;
 import com.parse.LogInCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
+import com.parse.ParseInstallation;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
@@ -50,6 +51,7 @@ public class MainScreenActivity extends AppCompatActivity {
             ParseObject.registerSubclass(Comment.class);
             Parse.enableLocalDatastore(this);
             Parse.initialize(this, "eWtFfVxalDS39OF2hA8k2R3hTy8l125jU2fn4Mnx", "6q0qhKaUUDd1p2nUtCXUlOFwGqreFdoROVT7QQ2a");
+            ParseInstallation.getCurrentInstallation().saveInBackground();
             checkConnection();
             storeDatabase();
             first = false;
