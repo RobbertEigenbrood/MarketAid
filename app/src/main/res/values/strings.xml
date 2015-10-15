@@ -72,8 +72,16 @@
     <string name="emailText">Email</string>
     <string name="createButton">Create Account</string>
     <string name="backButton">Back</string>
+    <string name="noImageTitle">Image</string>
+    <string name="noImageText">This product will be added without an image. Continue?</string>
+    <string name="noImageCancel">Cancel</string>
+    <string name="noImageContinue">Continue</string>
+    <string name="addToYourProductsPart1">Do you want to add \"</string>
+    <string name="addToYourProductsPart2">\" to your products?</string>
+    <string name="addToYourProductsAdd">Add to my products</string>
+    <string name="addToYourProductsCancel">Cancel</string>
 
-    <string name="logoutok">Ok</string>
+    <string name="logoutok">@android:string/ok</string>
     <string name="logoutcancel">Cancel</string>
     <string name="logouttext">Are you sure you want to log out?</string>
     <string name="settingspresent">Present</string>
