@@ -11,8 +11,11 @@ import android.widget.GridView;
 import android.widget.ImageView;
 
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
+import com.parse.ParseUser;
 
+import group6.kb_50.marketaid.CustomAdapter;
 import group6.kb_50.marketaid.Product;
 import group6.kb_50.marketaid.R;
 
@@ -22,7 +25,7 @@ import group6.kb_50.marketaid.R;
 public class SellerMainFragment extends Fragment {
 
     private ParseQueryAdapter mainAdapter;
-    private CustomAdapterSeller customAdapterSeller;
+    private CustomAdapter customAdapter;
     private GridView gridView;
     View view;
 
@@ -47,9 +50,16 @@ public class SellerMainFragment extends Fragment {
         mainAdapter.setTextKey("Name");
         mainAdapter.setImageKey("Image");
 
-        customAdapterSeller = new CustomAdapterSeller(getActivity());
+        customAdapter = new CustomAdapter(getActivity(), new ParseQueryAdapter.QueryFactory<ParseObject>() {
+            public ParseQuery create() {
+                ParseQuery query = new ParseQuery("Products");
+                query.whereEqualTo("Seller", ParseUser.getCurrentUser());
+                return query;
+            }
+        });
+
         gridView = (GridView) view.findViewById(R.id.GridViewSeller);
-        gridView.setAdapter(customAdapterSeller);
+        gridView.setAdapter(customAdapter);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                 //Get item at position
