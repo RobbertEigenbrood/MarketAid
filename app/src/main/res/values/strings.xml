@@ -33,7 +33,7 @@
     <string name="BuyerButton">Buy</string>
     <string name="BuySelltext1"><b>Are you here today to</b></string>
     <string name="BuySelltext2"><b>or to</b></string>
-    <string name="BuyerOverview">Buyer Overview</string>
+    <string name="BuyerOverview">Market Products</string>
     <string name="SellerOverview">Seller Overview</string>
 
     <string name="title_section1">Main Overview</string>
@@ -98,5 +98,5 @@
     <string name="commentComment">Comment:</string>
     <string name="commentPostButton">Post!</string>
 
-    <string name ="queryhintsearchview">Zoek op producten!</string>
+    <string name ="queryhintsearchview">Search for products!</string>
 </resources>

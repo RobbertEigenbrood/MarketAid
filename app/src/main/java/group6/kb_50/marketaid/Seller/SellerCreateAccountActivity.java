@@ -49,7 +49,7 @@ public class SellerCreateAccountActivity extends AppCompatActivity {
 
     public void onClickCreate(View v)
     {
-        EditText user = (EditText)findViewById(R.id.editTextusername);
+        final EditText user = (EditText)findViewById(R.id.editTextusername);
         String userstring = user.getText().toString();
         /* Check if last character is a space due to auto-fill functionality */
         if( userstring.length() > 0 ) {
@@ -59,8 +59,8 @@ public class SellerCreateAccountActivity extends AppCompatActivity {
                 userstring = userstring.substring(0, userstring.length() - 1);
             }
         }
-        EditText password = (EditText)findViewById(R.id.editTextpassword);
-        EditText email = (EditText)findViewById(R.id.editTextemail);
+        final EditText password = (EditText)findViewById(R.id.editTextpassword);
+        final EditText email = (EditText)findViewById(R.id.editTextemail);
         ParseUser parseUser = new ParseUser();
         try{
             parseUser.setUsername(userstring);
@@ -77,17 +77,27 @@ public class SellerCreateAccountActivity extends AppCompatActivity {
             public void done(ParseException e) {
                 if (e == null) {
                     Toast.makeText(getBaseContext(), "New User Created", Toast.LENGTH_SHORT).show();
-
+                    logInNewUser(user.getText().toString(), password.getText().toString());
+                    Intent i = new Intent(getBaseContext(), SellerMainActivity.class);
+                    startActivity(i);
+                    finish();
                 } else {
-                    Toast.makeText(getBaseContext(), "Error creating account", Toast.LENGTH_SHORT).show();
+                    if(e.getCode() == 202) {
+                        Toast.makeText(getBaseContext(), "Username already exists.", Toast.LENGTH_SHORT).show();
+                    }
+                    else if(e.getCode() == 203) {
+                        Toast.makeText(getBaseContext(), "Email already exists.", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        Toast.makeText(getBaseContext(), "Something went wrong when creating the account.", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
 
-        logInNewUser(user.getText().toString(), password.getText().toString());
-        Intent i = new Intent(getBaseContext(), SellerMainActivity.class);
-        startActivity(i);
-        finish();
+
+
+
     }
 
     public void logInNewUser(String username,String password){

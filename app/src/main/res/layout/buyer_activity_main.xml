@@ -17,7 +17,7 @@
             android:text="@string/BuyerOverview"
             android:id="@+id/SellerTextMain"
             android:gravity="center"
-            android:textSize="50sp"
+            android:textSize="30sp"
             android:layout_centerHorizontal="true"
             android:layout_margin="5sp" />
         <android.support.v4.widget.SwipeRefreshLayout
@@ -36,7 +36,8 @@
             android:horizontalSpacing="5sp"
             android:layout_centerVertical="true"
             android:layout_below="@+id/SellerTextMain"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:focusable="false" />
         </android.support.v4.widget.SwipeRefreshLayout>
 
         <SearchView
@@ -45,7 +46,9 @@
             android:id="@+id/searchView"
             android:layout_below="@+id/SellerTextMain"
             android:layout_centerHorizontal="true"
-            android:queryHint="@string/queryhintsearchview" />
+            android:queryHint="@string/queryhintsearchview"
+            android:iconifiedByDefault="false"
+            android:focusable="false" />
     </RelativeLayout>
 
 
