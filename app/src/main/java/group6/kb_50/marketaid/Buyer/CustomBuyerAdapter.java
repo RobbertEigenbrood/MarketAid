@@ -27,6 +27,7 @@ public class CustomBuyerAdapter extends ParseQueryAdapter<ParseObject>{
             public ParseQuery create(){
                 ParseQuery query = new ParseQuery("Products");
                 query.whereContainedIn("Seller", users);
+                query.orderByAscending("Name");
                 return query;
             }
         });
@@ -40,11 +41,10 @@ public class CustomBuyerAdapter extends ParseQueryAdapter<ParseObject>{
             v = View.inflate(getContext(), R.layout.listview_layout, null);
         }
 
-        super.getItemView(object, v, parent);
-
         // Add and download the image
         ParseImageView todoImage = (ParseImageView) v.findViewById(R.id.icon);
         ParseFile imageFile = object.getParseFile("Image");
+
         if (imageFile != null) {
             todoImage.setParseFile(imageFile);
             todoImage.loadInBackground();
@@ -52,6 +52,7 @@ public class CustomBuyerAdapter extends ParseQueryAdapter<ParseObject>{
         // Add the title view
         TextView titleTextView = (TextView) v.findViewById(R.id.text1);
         titleTextView.setText(object.getString("Name"));
+        super.getItemView(object, v, parent);
         return v;
     }
 }

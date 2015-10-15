@@ -9,22 +9,11 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/SellerButton"
-        android:id="@+id/SellerAddText"
-        android:layout_centerHorizontal="true"
-        android:textSize="30sp"
-        android:gravity="center"
-        android:layout_alignParentTop="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="@string/AddProduct"
         android:id="@+id/AddProductText"
         android:layout_centerHorizontal="true"
-        android:textSize="20sp"
-        android:gravity="center"
-        android:layout_below="@+id/SellerAddText" />
+        android:textSize="30sp"
+        android:gravity="center" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -56,12 +45,9 @@
         android:src="@mipmap/ic_launcher"
         android:layout_above="@+id/AddImageButton"
         android:layout_below="@+id/EnterProductTitleAdd"
-        android:layout_alignLeft="@+id/SellerAddText"
-        android:layout_alignStart="@+id/SellerAddText"
-        android:layout_alignRight="@+id/SellerAddText"
-        android:layout_alignEnd="@+id/SellerAddText"
         android:layout_alignParentEnd="false"
-        android:layout_alignParentStart="false" />
+        android:layout_alignParentStart="false"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"

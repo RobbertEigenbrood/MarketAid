@@ -28,7 +28,7 @@ public class Product extends ParseObject {
         put("Name",name);
     }
 
-    /*public String getCategory() {return getString("Category"); }*/
+    public String getCategory() {return getString("Category"); }
 
     public void setCategory(String category) {
         put("Category",category);

@@ -75,11 +75,13 @@ public class SellerEditProductActivity extends AppCompatActivity {
 
             ParseQuery<ParseObject> query = ParseQuery.getQuery("Products");
             query.getInBackground(ID, new GetCallback<ParseObject>() {
-                public void done(ParseObject object, ParseException e) {
-                    String name = object.get("Name").toString();
-                    String description = object.get("Description").toString();
-                    String category = object.get("Category").toString();
-                    ParseFile file = object.getParseFile("Image");
+                public void done(ParseObject o, ParseException e) {
+                    Product p = (Product)o;
+
+                    String name = p.getName();
+                    String description = p.getDescription();
+                    String category = p.getCategory();
+                    ParseFile file = p.getImage();
 
                     nametv.setText(name);
                     descriptiontv.setText(description);
@@ -134,6 +136,10 @@ public class SellerEditProductActivity extends AppCompatActivity {
                 if (e == null) {
                     p.deleteInBackground();
                     Toast.makeText(getBaseContext(),"Product deleted with title:" +  p.getName() + "!", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+                else {
+                    Toast.makeText(getBaseContext(),"Error deleting the product!", Toast.LENGTH_SHORT).show();
                 }
             }
         });

@@ -105,6 +105,7 @@ public class SellerAddProductFragment extends Fragment implements View.OnClickLi
 
         p.saveInBackground();
         Toast.makeText(getActivity(),"Product Added!",Toast.LENGTH_SHORT).show();
+        getActivity().finish();
     }
 
     @Override

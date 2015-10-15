@@ -9,22 +9,11 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/SellerButton"
-        android:id="@+id/SellerEditText"
-        android:layout_centerHorizontal="true"
-        android:textSize="30sp"
-        android:gravity="center"
-        android:layout_alignParentTop="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="@string/EditProduct"
         android:id="@+id/EditProductText"
         android:layout_centerHorizontal="true"
-        android:textSize="20sp"
+        android:textSize="30sp"
         android:gravity="center"
-        android:layout_below="@+id/SellerEditText"
         android:layout_alignParentTop="false" />
 
     <TextView
