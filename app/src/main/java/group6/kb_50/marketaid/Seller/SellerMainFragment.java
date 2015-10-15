@@ -13,9 +13,6 @@ import android.widget.ImageView;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
-import com.parse.ParseUser;
-
-import group6.kb_50.marketaid.CustomAdapter;
 import group6.kb_50.marketaid.Product;
 import group6.kb_50.marketaid.R;
 
@@ -25,7 +22,7 @@ import group6.kb_50.marketaid.R;
 public class SellerMainFragment extends Fragment {
 
     private ParseQueryAdapter mainAdapter;
-    private CustomAdapter customAdapter;
+    private CustomSellerAdapter customAdapter;
     private GridView gridView;
     View view;
 
@@ -50,13 +47,7 @@ public class SellerMainFragment extends Fragment {
         mainAdapter.setTextKey("Name");
         mainAdapter.setImageKey("Image");
 
-        customAdapter = new CustomAdapter(getActivity(), new ParseQueryAdapter.QueryFactory<ParseObject>() {
-            public ParseQuery create() {
-                ParseQuery query = new ParseQuery("Products");
-                query.whereEqualTo("Seller", ParseUser.getCurrentUser());
-                return query;
-            }
-        });
+        customAdapter = new CustomSellerAdapter(getActivity());
 
         gridView = (GridView) view.findViewById(R.id.GridViewSeller);
         gridView.setAdapter(customAdapter);

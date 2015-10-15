@@ -25,7 +25,7 @@
             android:id="@+id/swiperefresh"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/SellerTextMain">
+            android:layout_below="@+id/searchView">
         <GridView
             android:id="@+id/GridViewBuyer"
             android:layout_width="fill_parent"
@@ -38,6 +38,14 @@
             android:layout_below="@+id/SellerTextMain"
             android:layout_gravity="center" />
         </android.support.v4.widget.SwipeRefreshLayout>
+
+        <SearchView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/searchView"
+            android:layout_below="@+id/SellerTextMain"
+            android:layout_centerHorizontal="true"
+            android:queryHint="@string/queryhintsearchview" />
     </RelativeLayout>
 
 

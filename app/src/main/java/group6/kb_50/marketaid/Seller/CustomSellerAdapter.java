@@ -1,9 +1,8 @@
-package group6.kb_50.marketaid.Buyer;
+package group6.kb_50.marketaid.Seller;
 
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.parse.ParseFile;
@@ -20,14 +19,13 @@ import group6.kb_50.marketaid.R;
 /**
  * Created by robbe on 13-10-2015.
  */
-public class CustomSearchAdapter extends ParseQueryAdapter<ParseObject>{
+public class CustomSellerAdapter extends ParseQueryAdapter<ParseObject>{
 
-    public CustomSearchAdapter(final Context context, final List<ParseUser> users, final SearchView v){
+    public CustomSellerAdapter(final Context context){
         super(context,new QueryFactory<ParseObject>() {
             public ParseQuery create(){
                 ParseQuery query = new ParseQuery("Products");
-                query.whereContainedIn("Seller", users);
-                query.whereContains("Name",v.getQuery().toString());
+                query.whereEqualTo("Seller", ParseUser.getCurrentUser());
                 return query;
             }
         });

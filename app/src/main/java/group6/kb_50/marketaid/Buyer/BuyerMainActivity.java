@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
@@ -25,8 +26,9 @@ import group6.kb_50.marketaid.R;
 
 public class BuyerMainActivity extends AppCompatActivity {
 
-    private ParseQueryAdapter mainAdapter;
-    private CustomAdapterBuyer customAdapterBuyer;
+    private SearchView searchView;
+    private CustomSearchAdapter customSearchAdapter;
+    private CustomBuyerAdapter customAdapterBuyer;
     private GridView gridView;
     SwipeRefreshLayout swipeRefreshLayout;
 
@@ -49,14 +51,65 @@ public class BuyerMainActivity extends AppCompatActivity {
         );
 
         fillList();
+        setSearchViewListener();
 
+    }
+
+    public void setSearchViewListener(){
+        searchView = (SearchView) findViewById(R.id.searchView);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                ParseQuery<ParseUser> pq = ParseUser.getQuery();
+                pq.whereEqualTo("Present", true);
+                pq.findInBackground(new FindCallback<ParseUser>() {
+                    @Override
+                    public void done(List<ParseUser> objects, ParseException e) {
+                        customSearchAdapter = new CustomSearchAdapter(getBaseContext(), objects, searchView);
+                        gridView.setAdapter(customSearchAdapter);
+
+                    }
+                });
+
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                ParseQuery<ParseUser> pq = ParseUser.getQuery();
+                pq.whereEqualTo("Present", true);
+                pq.findInBackground(new FindCallback<ParseUser>() {
+                    @Override
+                    public void done(List<ParseUser> objects, ParseException e) {
+                        customSearchAdapter = new CustomSearchAdapter(getBaseContext(), objects, searchView);
+                        gridView.setAdapter(customSearchAdapter);
+
+                    }
+                });
+                return true;
+            }
+        });
 
     }
 
     public void fillList() {
-              customAdapterBuyer = new CustomAdapterBuyer(this);
+
         gridView = (GridView) findViewById(R.id.GridViewBuyer);
-        gridView.setAdapter(customAdapterBuyer);
+
+
+        ParseQuery<ParseUser> pq = ParseUser.getQuery();
+        pq.whereEqualTo("Present", true);
+        pq.findInBackground(new FindCallback<ParseUser>() {
+            @Override
+            public void done(List<ParseUser> objects, ParseException e) {
+                customAdapterBuyer = new CustomBuyerAdapter(getBaseContext(), objects);
+                gridView.setAdapter(customAdapterBuyer);
+
+            }
+        });
+
+
+
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 

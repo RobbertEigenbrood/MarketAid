@@ -97,4 +97,6 @@
     <string name="commentName">Name</string>
     <string name="commentComment">Comment:</string>
     <string name="commentPostButton">Post!</string>
+
+    <string name ="queryhintsearchview">Zoek op producten!</string>
 </resources>
