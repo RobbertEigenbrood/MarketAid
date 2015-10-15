@@ -1,15 +1,21 @@
 package group6.kb_50.marketaid.Seller;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.parse.ParseFile;
@@ -17,6 +23,9 @@ import com.parse.ParseImageView;
 import com.parse.ParseUser;
 
 import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 
 import group6.kb_50.marketaid.Product;
 import group6.kb_50.marketaid.R;
@@ -30,6 +39,7 @@ public class SellerAddProductFragment extends Fragment implements View.OnClickLi
     View view;
     Bitmap imageBitmap = null;
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
+    private static final int MEDIA_SEARCH_IMAGE_ACTIVITY_REQUEST_CODE = 100 + 1;
     private static final int RESULT_OK = -1;
 
     @Override
@@ -43,24 +53,29 @@ public class SellerAddProductFragment extends Fragment implements View.OnClickLi
         Button addbutton =(Button) view.findViewById(R.id.AddButton);
         addbutton.setOnClickListener(this);
         Button browseButton =(Button) view.findViewById(R.id.BrowseAddButton);
-        addbutton.setOnClickListener(this);
+        browseButton.setOnClickListener(this);
         return view;
     }
 
     @Override
     public void onClick(View v) {
-        Intent intent;
+        Intent intent = new Intent();
         switch (v.getId()) {
             case R.id.AddImageButton:
                 intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(intent, 100);
+                startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
                 break;
             case R.id.BrowseAddButton:
-                intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(intent, 100);
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"), MEDIA_SEARCH_IMAGE_ACTIVITY_REQUEST_CODE);
+                //startActivityForResult(intent, MEDIA_SEARCH_IMAGE_ACTIVITY_REQUEST_CODE);
                 break;
             case R.id.AddButton:
                 AddProduct(v);
+                break;
+            default:
+                // Default value here
                 break;
         }
     }
@@ -94,6 +109,7 @@ public class SellerAddProductFragment extends Fragment implements View.OnClickLi
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode, data); //Always call overridden method first!
         if(requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE){
             if(resultCode == RESULT_OK){
                 Bundle extras = data.getExtras();
@@ -101,6 +117,25 @@ public class SellerAddProductFragment extends Fragment implements View.OnClickLi
                 ParseImageView iv = (ParseImageView)view.findViewById(R.id.SampleImageAddView);
                 iv.setImageBitmap(imageBitmap);
                 Toast.makeText(getActivity(), "Image Saved!", Toast.LENGTH_SHORT).show();
+
+            }
+        }
+        else if(requestCode == MEDIA_SEARCH_IMAGE_ACTIVITY_REQUEST_CODE){
+            if(resultCode == Activity.RESULT_OK){/*
+                Bundle extras = data.getExtras();
+                imageBitmap = (Bitmap) extras.get("data");
+                ParseImageView iv = (ParseImageView)view.findViewById(R.id.SampleImageAddView);
+                iv.setImageBitmap(imageBitmap);
+                Toast.makeText(getActivity(), "Image Saved!", Toast.LENGTH_SHORT).show();*/
+
+                Uri imageUri = data.getData();
+                try {
+                    imageBitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), imageUri);
+                    ParseImageView iv = (ParseImageView)view.findViewById(R.id.SampleImageAddView);
+                    iv.setImageBitmap(imageBitmap);
+                }catch (IOException e){
+                    Log.e("IOexeption", "IOexeption when creating bitmap");
+                }
 
             }
         }

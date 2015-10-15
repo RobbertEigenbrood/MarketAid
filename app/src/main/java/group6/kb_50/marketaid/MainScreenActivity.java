@@ -42,6 +42,8 @@ import group6.kb_50.marketaid.Seller.SellerMainActivity;
 public class MainScreenActivity extends AppCompatActivity {
 
     static boolean first = true;
+    static int fragnumber = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,15 +60,10 @@ public class MainScreenActivity extends AppCompatActivity {
             storeDatabase();
             first = false;
         }
-
-        FragmentManager manager = getFragmentManager();
-        FragmentTransaction ft = manager.beginTransaction();
-        Fragment fragment = new MainScreenFragment();
-        if(savedInstanceState == null) {
-            ft.setCustomAnimations(R.anim.fadein, R.anim.slide_out_right);
+        if (savedInstanceState == null){
+            fragnumber = 0;
         }
-        ft.replace(R.id.framelayout, fragment);
-        ft.commit();
+        ChooseFragment();
     }
 
     public void ToSellerMain(View view) {
@@ -75,15 +72,44 @@ public class MainScreenActivity extends AppCompatActivity {
             startActivity(new Intent(this, SellerMainActivity.class));
         }
         else{
+            fragnumber = 2;
+            ChooseFragment();
 //            startActivity(new Intent(this, SellerLoginActivity.class));
-            Fragment fragment = new SellerLoginFragment();
+            /*Fragment fragment = new SellerLoginFragment();
             FragmentManager fm = getFragmentManager();
             FragmentTransaction transaction = fm.beginTransaction();
             transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_right);
             transaction.replace(R.id.framelayout, fragment);
             transaction.addToBackStack(null);
-            transaction.commit();
+            transaction.commit();*/
         }
+    }
+
+    public void ChooseFragment(){
+
+        FragmentManager manager = getFragmentManager();
+        FragmentTransaction ft = manager.beginTransaction();
+        Fragment fragment = null;
+        switch (fragnumber){
+            case 0: fragment = new MainScreenFragment();
+                ft.setCustomAnimations(R.anim.fadein, R.anim.slide_out_right,R.anim.slide_in_right, R.anim.slide_out_right);
+                fragnumber = 1;
+                break;
+            case 1: fragment = new MainScreenFragment();
+                break;
+            case 2: fragment = new SellerLoginFragment();
+                ft.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_right,R.anim.slide_in_right, R.anim.slide_out_right);
+                fragnumber = 3;
+                ft.addToBackStack(null);
+                break;
+            case 3: fragment = new SellerLoginFragment();
+                manager.popBackStack();
+                ft.setCustomAnimations(0, 0,R.anim.slide_in_right, R.anim.slide_out_right);
+                ft.addToBackStack(null);
+                break;
+        }
+        ft.replace(R.id.framelayout, fragment);
+        ft.commit();
     }
 
     public void ToBuyerMain(View view) {
@@ -94,6 +120,11 @@ public class MainScreenActivity extends AppCompatActivity {
         if (getFragmentManager().getBackStackEntryCount() == 0) {
             this.finish();
         } else {
+            switch (fragnumber){
+                case 3:
+                    fragnumber = 1;
+                    break;
+            }
             getFragmentManager().popBackStack();
         }
     }

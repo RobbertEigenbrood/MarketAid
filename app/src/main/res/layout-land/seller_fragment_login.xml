@@ -1,42 +1,44 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="group6.kb_50.marketaid.Seller.SellerLoginFragment"
-    android:gravity="center"
-    android:background="@drawable/backgroundshape">
+    android:background="@drawable/backgroundshape"
+    android:gravity="left">
 
     <EditText
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/editTextusername"
-        android:inputType="textAutoComplete"
         android:hint="Enter username here."
-        android:layout_alignParentTop="false"
+        android:layout_alignParentTop="true"
         android:layout_alignLeft="@+id/editTextpassword"
         android:layout_alignStart="@+id/editTextpassword"
         android:textSize="20sp"
-        android:layout_alignEnd="@id/editTextpassword"
-        android:layout_alignRight="@+id/editTextpassword"
+        android:layout_alignEnd="@id/textViewcreate"
+        android:layout_alignRight="@+id/textViewcreate"
         android:typeface="serif" />
 
     <EditText
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:id="@+id/editTextpassword"
         android:hint="Enter password here."
         android:layout_below="@+id/editTextusername"
-        android:layout_centerHorizontal="true"
         android:textSize="20sp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_alignRight="@+id/textViewcreate"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:typeface="serif" />
 
     <Button
         android:text="Login"
         android:textColor="#000000"
         android:textSize="20sp"
-        android:layout_width="125dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:background="@drawable/buttonshape"
         android:shadowColor="#A8A8A8"
@@ -48,8 +50,6 @@
         android:onClick="onClickLogin"
         android:layout_below="@+id/textViewcreate"
         android:layout_marginRight="10dp"
-        android:layout_alignStart="@id/editTextpassword"
-        android:layout_alignLeft="@+id/editTextpassword"
         android:typeface="serif" />
 
     <TextView
@@ -58,10 +58,6 @@
         android:text="@string/createAccountText"
         android:id="@+id/textViewcreate"
         android:layout_below="@+id/editTextpassword"
-        android:layout_alignRight="@+id/editTextpassword"
-        android:layout_alignEnd="@+id/editTextpassword"
-        android:layout_alignLeft="@+id/editTextpassword"
-        android:layout_alignStart="@+id/editTextpassword"
         android:textSize="15sp"
         android:typeface="serif" />
 
@@ -69,7 +65,7 @@
         android:text="Register"
         android:textColor="#000000"
         android:textSize="20sp"
-        android:layout_width="125dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:background="@drawable/buttonshape"
         android:shadowColor="#A8A8A8"
@@ -77,10 +73,10 @@
         android:shadowDy="0"
         android:shadowRadius="5"
         android:id="@+id/buttonRegister"
-        android:layout_alignTop="@+id/buttonLogin"
         android:onClick="onClickCreateUser"
-        android:layout_marginLeft="10dp"
-        android:layout_alignRight="@+id/editTextpassword"
-        android:layout_alignEnd="@id/editTextpassword"
-        android:typeface="serif" />
+        android:typeface="serif"
+        android:layout_alignTop="@+id/buttonLogin"
+        android:layout_alignRight="@+id/textViewcreate"
+        android:layout_alignEnd="@+id/textViewcreate"
+        android:layout_alignBottom="@+id/buttonLogin" />
 </RelativeLayout>
