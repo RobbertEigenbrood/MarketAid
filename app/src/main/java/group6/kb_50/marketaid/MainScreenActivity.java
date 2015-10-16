@@ -1,10 +1,12 @@
 package group6.kb_50.marketaid;
 
+import android.app.ActionBar;
 import android.app.Dialog;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.preference.PreferenceManager;
@@ -48,6 +50,8 @@ public class MainScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_screen_activity);
+        /* Change the title of this screen */
+        this.setTitle(getString(R.string.title_activity_main_screen));
 
         // Enable Local Datastore.
         if(first) {

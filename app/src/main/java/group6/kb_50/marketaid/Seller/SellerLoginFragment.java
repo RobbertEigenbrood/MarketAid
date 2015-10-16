@@ -1,5 +1,6 @@
 package group6.kb_50.marketaid.Seller;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -9,8 +10,11 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.parse.LogInCallback;
@@ -82,11 +86,18 @@ public class SellerLoginFragment extends Fragment implements View.OnClickListene
 
         switch (v.getId()) {
             case R.id.buttonLogin:
+                /* "Loging in" and show a spinner */
+                hideKeyboard(true); //Hide the keyboard
+                buttonLoginShow(false);
+                progressBarLoginShow(true);
+
                 ParseUser.logInInBackground(userFinalString, pass.getText().toString(), new LogInCallback() {
                     @Override
                     public void done(ParseUser parseUser, ParseException e) {
                         if (parseUser != null) {
                             Toast.makeText(getActivity().getBaseContext(), "Logged in", Toast.LENGTH_SHORT).show();
+                            progressBarLoginShow(false);
+                            buttonLoginShow(true);
                             PreferenceManager.getDefaultSharedPreferences(getActivity().getBaseContext()).edit().putString("settingsusername", username.getText().toString()).commit();
                             PreferenceManager.getDefaultSharedPreferences(getActivity().getBaseContext()).edit().putString("settingspassword", pass.getText().toString()).commit();
 
@@ -94,6 +105,12 @@ public class SellerLoginFragment extends Fragment implements View.OnClickListene
                             startActivity(i);
                         } else {
                             Toast.makeText(getActivity().getBaseContext(), getString(R.string.wrongLgin), Toast.LENGTH_SHORT).show();
+                            getActivity().getWindow().setSoftInputMode(
+                                    WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+                            username.requestFocus();
+                            hideKeyboard(false); //show the keyboard: user can try again
+                            progressBarLoginShow(false);
+                            buttonLoginShow(true);
                         }
                     }
                 });
@@ -106,6 +123,33 @@ public class SellerLoginFragment extends Fragment implements View.OnClickListene
                 break;
         }
 
+    }
+
+    private void hideKeyboard(boolean b){
+        View view = getActivity().getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            if(b)
+                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+            else
+                imm.showSoftInputFromInputMethod(view.getWindowToken(), 0);
+        }
+    }
+
+    private void progressBarLoginShow(boolean b){
+        ProgressBar p = (ProgressBar) getActivity().findViewById(R.id.progressBarLogin);
+        if(b)
+            p.setVisibility(View.VISIBLE);
+        else
+            p.setVisibility(View.INVISIBLE);//gone?
+    }
+
+    private void buttonLoginShow(boolean b){
+        Button bu = (Button) getActivity().findViewById(R.id.buttonLogin);
+        if(b)
+            bu.setVisibility(View.VISIBLE);
+        else
+            bu.setVisibility(View.INVISIBLE);//gone?
     }
 
     public void onClickCreateUser(View v) {

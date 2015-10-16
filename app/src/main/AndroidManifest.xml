@@ -51,10 +51,12 @@
             android:name=".Seller.SellerCreateAccountActivity"
             android:label="@string/title_activity_seller_create" >
         </activity>
+        <!-- Leave the following label to "app_name": the Icon @ home screen uses this label. Change the title in MainScreenActivity.java -->
         <activity
             android:name=".MainScreenActivity"
-            android:label="@string/title_activity_main_screen" >
-            <intent-filter>
+            android:label="@string/app_name" >
+            <intent-filter
+                        android:label="@string/app_name">
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
