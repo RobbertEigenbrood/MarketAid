@@ -78,7 +78,7 @@ public class SellerLoginFragment extends Fragment implements View.OnClickListene
                 userstring = userstring.substring(0, userstring.length() - 1);
             }
         }
-        /* Because we "can't assign a value to a Final object" */
+        /* Because we "can only assign a value to a Final object", not change */
         final String userFinalString = userstring;
         final EditText pass = (EditText)view.findViewById(R.id.editTextpassword);
 
@@ -104,7 +104,7 @@ public class SellerLoginFragment extends Fragment implements View.OnClickListene
                             Intent i = new Intent(getActivity().getBaseContext(), SellerMainActivity.class);
                             startActivity(i);
                         } else {
-                            Toast.makeText(getActivity().getBaseContext(), getString(R.string.wrongLgin), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity().getBaseContext(), getString(R.string.wrongLogin), Toast.LENGTH_SHORT).show();
                             getActivity().getWindow().setSoftInputMode(
                                     WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
                             username.requestFocus();

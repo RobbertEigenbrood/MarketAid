@@ -10,7 +10,7 @@
     <Switch
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/Switch"
+        android:text="@string/Present"
         android:id="@+id/switch1"
         android:layout_alignParentStart="true"
         android:checked="false" />

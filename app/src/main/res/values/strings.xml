@@ -1,110 +1,114 @@
 <resources>
+    <!-- Name of the application as shown underneath icon -->
     <string name="app_name">Market Aid</string>
 
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
-    <string name="title_activity_edit_product">EditProductActivity</string>
-    <string name="title_activity_show_products">ShowProductsActivity</string>
-    <string name="title_activity_login">LoginActivity</string>
-    <string name="splash_screen">A project group 6 app</string>
+    <!-- Titles -->
+    <string name="title_activity_edit_product" translatable="false">EditProductActivity</string>
+    <string name="title_activity_show_products" translatable="false">ShowProductsActivity</string>
+    <string name="title_activity_create_seller" translatable="false">CreateSellerActivity</string>
+    <string name="title_activity_seller_main" translatable="false">SellerMainActivity</string>
+    <string name="title_activity_seller_add" translatable="false">SellerAddActivity</string>
+    <string name="title_activity_seller_create" translatable="false">SellerCreateActivity</string>
+    <string name="title_activity_settings" translatable="false">SettingsActivity</string>
+    <string name="title_activity_create_account" translatable="false">CreateAccountActivity</string>
+    <string name="title_activity_login" translatable="false">LoginActivity</string>
+    <string name="title_activity_how_to" translatable="false">HowToActivity</string>
+    <string name="title_activity_buyer_main" translatable="false">BuyerMainActivity</string>
+    <string name="title_activity_buyer_product" translatable="false">BuyerProductActivity</string>
+    <string name="title_activity_buyer_filter" translatable="false">BuyerFilterActivity</string>
+    <string name="title_activity_comment" translatable="false">CommentActivity</string>
 
-<!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
-    <!--Tijdelijke Strings-->
-    <string name="Howtoscreen">De how to screen, Hier komt informatie over bijv waar het menu scherm is, Dus Rechts boven in.</string>
-    <string name="AckHowtoscreen">OK! i get it</string>
-
-    <!--Settings Strings -->
-    <string name="settingsusername">Username</string>
-    <string name="settingspassword">Password</string>
     <string name="title_activity_main_screen">Welcome to the Market!</string>
-    <string name="title_activity_how_to">HowToActivity</string>
-    <string name="title_activity_buyer_main">BuyerMainActivity</string>
-    <string name="title_activity_buyer_product">BuyerProductActivity</string>
-    <string name="title_activity_buyer_filter">BuyerFilterActivity</string>
-    <!-- <string name="title_activity_seller_login">SellerLoginActivity</string> -->
     <string name="title_activity_seller_login">Please login</string>
-    <string name="title_activity_create_seller">CreateSellerActivity</string>
-    <string name="title_activity_seller_main">SellerMainActivity</string>
-    <string name="title_activity_seller_add">SellerAddActivity</string>
-    <string name="title_activity_seller_create">SellerCreateActivity</string>
-    <string name="SellerButton">Sell</string>
-    <string name="BuyerButton">Buy</string>
-    <string name="BuySelltext1"><b>Are you here today to</b></string>
-    <string name="BuySelltext2"><b>or to</b></string>
-    <string name="BuyerOverview">Market Products</string>
-    <string name="SellerOverview">My Products</string>
+
+    <string name="action_settings">Settings</string>
 
     <string name="title_section1">Main Overview</string>
     <string name="title_section2">Add Product</string>
     <string name="title_section3">Settings</string>
     <string name="title_section4">Logout</string>
 
-
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-
-    <string name="action_example">Example action</string>
+    <string name="noImageTitle">Image</string>
+    <string name="Title">Title</string>
     <string name="ProductTitle">Product Title</string>
-    <string name="ProductDescription">Product Description</string>
+    <string name="splash_screen">A project group 6 app</string>
+
+    <!--Temporary Strings-->
+    <string name="Howtoscreen" translatable="false">De how to screen, Hier komt informatie over bijv waar het menu scherm is, Dus Rechts boven in.</string>
+    <string name="AckHowtoscreen">OK, understood.</string>
+
+    <!-- Buttons -->
+    <string name="OK">@android:string/ok</string>
+    <string name="Cancel">@android:string/cancel</string>
+
+    <string name="Yes">Yes</string>
+
+    <string name="BuyerButton">Buy</string>
+    <string name="SellerButton">Sell</string>
+
+    <string name="AddImage">Open camera</string>
+    <string name="AddOrEdit">Add or Edit Product</string>
+    <string name="Browse">Browse</string>
+    <string name="RemoveProduct">Remove Product</string>
+
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
+
+    <string name="Present">Present</string>
+    <string name="buttonSettingsLogin">Login</string>
+    <string name="buttonSetGPS">Set Location</string>
+    <string name="noImageContinue">Continue</string>
+    <string name="backButton">Back</string>
+    <string name="EditImage">Open camera</string>
+    <string name="AddProduct">Add Product</string>
     <string name="ShowLocation">Show Location</string>
+    <string name="action_example" translatable="false">Example action</string>
     <string name="SetFilter">Set Filter</string>
     <string name="SelectFilter">Select Filter</string>
+
+    <string name="commentPostButton">Post!</string>
+    <string name="noConnectionMapsCancel">Continue</string>
+    <string name="Settings">Settings</string>
+    <string name="createButton">Create Account</string>
+    <string name="addToYourProductsAdd">Add to my products</string>
+
+    <!-- Descriptions and hints -->
+    <string name="Username">Username</string>
+    <string name="Password">Password</string>
+    <string name="BuyerOverview">Market Products</string>
+    <string name="SellerOverview">My Products</string>
+    <string name="BuySelltext1"><b>Are you here today to</b></string>
+    <string name="BuySelltext2"><b>or to</b></string>
+
+    <string name="ProductDescription">Product Description</string>
     <string name="EnterProductDescription">Enter Product description here</string>
     <string name="AddEditProduct">Add/Edit Product!</string>
     <string name="EnterProductTitle">Enter Product Title here</string>
     <string name="EnterProductCategory">Enter Product Category here</string>
-    <string name="AddImage">Add Image</string>
-    <string name="AddOrEdit">Add or Edit Product</string>
-    <string name="Title">Title</string>
-    <string name="Browse">Browse</string>
-    <string name="RemoveProduct">Remove Product</string>
     <string name="Category">Category</string>
     <string name="EditProduct">Edit Product</string>
     <string name="Description">Description</string>
-    <string name="EditImage">Edit Image</string>
-    <string name="AddProduct">Add Product</string>
     <string name="createAccountText">No account yet? Click on the button "Register" to create one!</string>
-    <string name="title_activity_create_account">CreateAccountActivity</string>
-    <string name="usernameText">Username</string>
-    <string name="passwordText">Password</string>
     <string name="emailText">Email</string>
-    <string name="createButton">Create Account</string>
-    <string name="backButton">Back</string>
-    <string name="noImageTitle">Image</string>
-    <string name="noImageText">This product will be added without an image. Continue?</string>
-    <string name="noImageCancel">Cancel</string>
-    <string name="noImageContinue">Continue</string>
     <string name="addToYourProductsPart1">Do you want to add \"</string>
     <string name="addToYourProductsPart2">\" to your products?</string>
-    <string name="addToYourProductsAdd">Add to my products</string>
-    <string name="addToYourProductsCancel">Cancel</string>
 
-    <string name="logoutok">@android:string/ok</string>
-    <string name="logoutcancel">Cancel</string>
-    <string name="logouttext">Are you sure you want to log out?</string>
-    <string name="settingspresent">Present</string>
-    <string name="title_activity_settings">SettingsActivity</string>
-    <string name="Switch">Present</string>
-    <string name="buttonSettingsLogin">Login</string>
-    <string name="buttonSetGPS">Set Location</string>
-
-    <string name="noConnectionText">You have no internet connection.\n Click Settings to open the settings menu\n Click Cancel to use the local database</string>
-    <string name="noConnectionCancel">Cancel</string>
-    <string name="noConnectionOk">Settings</string>
-    <string name="noConnectionMapsText">No internet connection found. Maps might not be able to load properly. \nWould you like to go to settings?</string>
-    <string name="noConnectionMapsCancel">Continue</string>
-    <string name="noConnectionMapsOk">Settings</string>
-    <string name="wrongLgin">Wrong username or password</string>
-    <string name="gpswarning">Location could not be found. Do you want to go to location settings?</string>
     <string name="gotosettings">Go to settings</string>
     <string name="locationsettings">Location settings</string>
-    <string name="title_activity_comment">CommentActivity</string>
     <string name="commentButton">Write Comment</string>
     <string name="commentName">Name</string>
     <string name="commentComment">Comment:</string>
-    <string name="commentPostButton">Post!</string>
 
     <string name ="queryhintsearchview">Search for products!</string>
+
+    <!-- Notifications and warnings -->
+    <string name="noConnectionText">You have no internet connection.\nClick Settings to open the settings menu\nClick Cancel to use the local database</string>
+    <string name="noConnectionMapsText">No internet connection found. Maps might not be able to load properly. \nWould you like to go to settings?</string>
+    <string name="locationtext">Location could not be found. Do you want to go to location settings?</string>
+    <string name="noImageText">This product will be added without an image. Continue?</string>
+    <string name="logouttext">Are you sure you want to log out?</string>
+    <string name="wrongLogin">Wrong username or password</string>
+    <!-- Instead of "..." we use "&#8230;" -->
+    <string name="obtaining_location">Obtaining location&#8230;</string>
+    <string name="saving_location">Saving location&#8230;</string>
 </resources>

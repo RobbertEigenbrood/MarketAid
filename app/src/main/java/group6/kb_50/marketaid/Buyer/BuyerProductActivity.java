@@ -1,5 +1,6 @@
 package group6.kb_50.marketaid.Buyer;
 
+import android.annotation.TargetApi;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -7,13 +8,17 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Looper;
+import android.provider.Settings;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AlertDialog;
+//import android.support.v7.app.AlertDialog;
+import android.app.AlertDialog; //This one instead
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,6 +38,7 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
 import com.parse.ParseRelation;
+import com.parse.ParseUser;
 
 import group6.kb_50.marketaid.GPSWrapper;
 import group6.kb_50.marketaid.MainScreenActivity;
@@ -136,103 +142,178 @@ public class BuyerProductActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Gets the state of Airplane Mode.
+     *
+     * @param context
+     * @return true if enabled.
+     */
+    @SuppressWarnings("deprecation")
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    public static boolean isAirplaneModeOn(Context context) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            return Settings.System.getInt(context.getContentResolver(),
+                    Settings.System.AIRPLANE_MODE_ON, 0) != 0;
+        } else {
+            return Settings.Global.getInt(context.getContentResolver(),
+                    Settings.Global.AIRPLANE_MODE_ON, 0) != 0;
+        }
+    }
+
     public void onClickFindLocation(View view) {
-        /* Go to or show location of seller */
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("Products");
-        mLocation = new GPSWrapper(this);
-         /* Check for internet connection in order to load Maps properly */
-        checkConnection();
-        // Retrieve the object by id
-        //TODO: waarom willen we data online (van de server) ophalen? Hierdoor wordt Maps niet geladen wanneer er geen internet is!
-        query.getInBackground(ID, new GetCallback<ParseObject>() {
-            public void done(ParseObject p, ParseException e) {
-                if (e == null) {
-                    // Now let's update it with some new data.
 
-                    p.getParseUser("Seller").fetchIfNeededInBackground(new GetCallback<ParseObject>() {
+        if(isAirplaneModeOn(this)){
+            AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+            dialogBuilder.setIcon(R.drawable.airplane)
+                    .setTitle("Airplane Mode")
+                    .setMessage("The phone is in airplane mode.")
+                    .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
                         @Override
-                        public void done(ParseObject seller, ParseException e) {
-                            ParseGeoPoint sellerGeoPoint = (ParseGeoPoint) seller.get("LatLong");
-
-                            double ownLat = mLocation.getCurrentLatDouble();
-                            double ownLong = mLocation.getCurrentLongDouble();
-
-                            double sellerLat = sellerGeoPoint.getLatitude();
-                            double sellerLong = sellerGeoPoint.getLongitude();
-
-                            Uri googlemapsUri = Uri.parse("http://maps.google.com/maps?saddr=" + ownLat + "," + ownLong + "&daddr=" + sellerLat + "," + sellerLong);
-                            final Intent intent = new Intent(android.content.Intent.ACTION_VIEW, googlemapsUri);
-
-                            /* Check GPS status */
-                            if (mLocation.isGPSON()) {
-                                /* Do we have a location already? */
-                                if (!mLocation.hasALock()) {    //(GPS is slow or older device)
-                                    Toast.makeText(getBaseContext(), "Waiting for GPS location", Toast.LENGTH_SHORT).show();
-
-                                    /* Wait in Thread until GPS lock is found. Check every second. */
-                                    new Thread(new Runnable() {
-                                        public void run() {
-                                            int count = 1;
-                                            Looper.prepare();//Gave Runtime Exception when not implemented
-                                            while (!mLocation.hasALock()) {
-                                                tempLocation.getCurrentLocation();
-                                                // Wait until GPS lock
-                                                try {
-                                                    Thread.sleep(1000);
-                                                } catch (Exception e) {
-                                                    e.printStackTrace();
-                                                }
-                                                Log.e("GPS", "Run1: No lock found after " + count + " seconds");
-                                                count++;
-                                            }
-                                            /* GPS lock found! */
-                                            Log.e("GPS", "Run!: Lock has been found after " + count + " seconds");
-                                            startActivity(intent);
-                                            mLocation.removeUpdates();
-                                        }
-                                    }).start();
-
-                                } else { // We already have a location (GPS is fast or newer device)
-                                    startActivity(intent);
-                                    mLocation.removeUpdates();
-                                }
-                            } else {    //Location settings are off
-                                Log.e("GPS", "GPS is off!");
-                                DialogFragment newFragment = new SettingsActivityFragment.GPSWarningDialogFragment();
-                                newFragment.show(getSupportFragmentManager(), "GPSonDialog");
-                                mLocation.removeUpdates();
-                                if(onLocationFirst) {
-                                    onLocationFirst = false;
-                                    tempLocation = new GPSWrapper(BuyerProductActivity.this);
-                                    new Thread(new Runnable() {
-                                        public void run() {
-                                            int count = 1;
-                                            Looper.prepare();//Gave Runtime Exception when not implemented
-                                            while (!tempLocation.hasALock()) {
-                                                tempLocation.getCurrentLocation();
-                                                // Wait until GPS lock
-                                                try {
-                                                    Thread.sleep(1000);
-                                                } catch (Exception e) {
-                                                    e.printStackTrace();
-                                                }
-                                                Log.e("GPS", "Run2: No lock found after " + count + " seconds");
-                                                count++;
-                                            }
-                                                /* GPS lock found! */
-                                            Log.e("GPS", "Run2: Lock has been found after " + count + " seconds");
-                                            //tempLocation.removeUpdates();
-                                        }
-                                    }).start();
-                                }
-                                return;
-                            }
+                        public void onClick(DialogInterface paramDialogInterface, int paramInt) {
+                        }
+                    })
+                    .setNegativeButton(getString(R.string.noConnectionMapsCancel), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface paramDialogInterface, int paramInt) {
+                            Log.e("GPS", "User clicked/cancelled this AlertDialog");
+                        }
+                    })
+                    .setOnCancelListener(new DialogInterface.OnCancelListener() {
+                        @Override
+                        public void onCancel(DialogInterface dialog) {
+                            Log.e("GPS", "User cancelled this AlertDialog");
                         }
                     });
+            AlertDialog alertDialog = dialogBuilder.create();
+            alertDialog.show();
+            return;
+        }
+
+        /* Go to or show location of seller */
+        final ParseQuery<ParseObject> query = ParseQuery.getQuery("Products");
+         /* Check for internet connection in order to load Maps properly */
+        checkConnection();
+        /* Create only one instance of GPSWrapper in case the button is pressed again */
+        if(mLocation == null) {
+            mLocation = new GPSWrapper(this);
+        }
+        mLocation.removeUpdates();
+        // Retrieve the object by id
+        //TODO: waarom willen we de locatie online (van de server) ophalen? Hierdoor wordt Maps niet geladen wanneer er geen internet is!
+
+        LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        boolean gps_enabled = false;
+        boolean network_enabled = false;
+
+        try {
+            gps_enabled = lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        } catch(Exception ex) {}
+
+        try {
+            network_enabled = lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+        } catch(Exception ex) {}
+
+        if(!gps_enabled && !network_enabled) {
+            /* Notify the user */
+
+            AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+            dialogBuilder.setIcon(R.drawable.location_logo)
+                    .setTitle(getString(R.string.locationsettings))
+                    .setMessage(getString(R.string.locationtext))
+                    .setPositiveButton(getString(R.string.gotosettings), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface paramDialogInterface, int paramInt) {
+                            Intent myIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                            startActivity(myIntent);
+                            LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+                            if (lm.isProviderEnabled(LocationManager.GPS_PROVIDER) && lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
+                                Toast.makeText(getBaseContext(), "Location settings where enabled", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    })
+                    .setNegativeButton(getString(R.string.noConnectionMapsCancel), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface paramDialogInterface, int paramInt) {
+                            Log.e("GPS", "User clicked/cancelled this AlertDialog");
+                        }
+                    })
+                    .setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialog) {
+                        Log.e("GPS", "User cancelled this AlertDialog");
+                    }
+            });
+            AlertDialog alertDialog = dialogBuilder.create();
+            alertDialog.show();
+
+        }
+        /* Check again, as the user might not have enabled Location settings */
+        try {
+            gps_enabled = lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        } catch(Exception ex) {}
+
+        try {
+            network_enabled = lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+        } catch(Exception ex) {}
+
+        if(!gps_enabled && !network_enabled) {
+            //Settings where not enabled: "cancel" the click of this button
+            return;
+        }
+
+        /* Wait in a Thread until a Location has been found */
+        //TODO: change the following Toast to an AlertDialog or delete it
+        Toast.makeText(this, getString(R.string.obtaining_location), Toast.LENGTH_SHORT).show();
+        new Thread(new Runnable() {
+            public void run() {
+                int count = 1;
+                Looper.prepare();//Gave Runtime Exception when not implemented
+                while (!mLocation.hasALock()) {
+                    mLocation.getCurrentLocation();
+                    // Wait until GPS lock
+                    try {
+                        Thread.sleep(1000);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    Log.e("GPS", "BuyerProductRun: No lock found after " + ( count>1 ? " seconds" : " second"));
+                    count++;
                 }
+                /* GPS lock found! */
+                Log.e("GPS", "BuyerProductRun: Lock has been found after " + count + " seconds");
+                Log.e("GPS", "BuyerProductRun: Location is " + mLocation.getLatLong());
+
+                /* Save the Latitude and Longitude in global variables so we can use them later on */
+                mLocation.getCurrentLatDouble();
+                mLocation.getCurrentLongDouble();
+
+                query.getInBackground(ID, new GetCallback<ParseObject>() {
+                    public void done(ParseObject p, ParseException e) {
+                        if (e == null) {
+
+                            p.getParseUser("Seller").fetchIfNeededInBackground(new GetCallback<ParseObject>() {
+                                @Override
+                                public void done(ParseObject seller, ParseException e) {
+                                    ParseGeoPoint sellerGeoPoint = (ParseGeoPoint) seller.get("LatLong");
+                                    double ownLat = mLocation.getCurrentLatDouble();
+                                    double ownLong = mLocation.getCurrentLongDouble();
+
+                                    double sellerLat = sellerGeoPoint.getLatitude();
+                                    double sellerLong = sellerGeoPoint.getLongitude();
+                                    Uri googlemapsUri = Uri.parse("http://maps.google.com/maps?saddr=" + ownLat + "," + ownLong + "&daddr=" + sellerLat + "," + sellerLong);
+                                    Intent intent = new Intent(android.content.Intent.ACTION_VIEW, googlemapsUri);
+                                    startActivity(intent);
+
+                                    /* Dismiss the GPSWrapper object (which also clears the Location icon in Taskbar) */
+                                    mLocation.removeUpdates();
+                                }
+                            });
+                        }
+                    }
+                });
             }
-        });
-        //mLocation.removeUpdates(); //Moved to the onPause method in case the user wants to wait for a GPS lock
+        }).start();
+
     }
 
     @Override
@@ -267,7 +348,7 @@ public class BuyerProductActivity extends AppCompatActivity
             // Use the Builder class for convenient dialog construction
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
             builder.setMessage(getString(R.string.noConnectionMapsText))
-                    .setPositiveButton(getString(R.string.noConnectionMapsOk), new DialogInterface.OnClickListener() {
+                    .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             startActivity(new Intent(android.provider.Settings.ACTION_WIRELESS_SETTINGS));
                         }
@@ -285,16 +366,12 @@ public class BuyerProductActivity extends AppCompatActivity
     @Override
     public void onPause(){
         super.onPause();
+        /* Remove the GPS location when the user leaves this activity */
         if(mLocation != null) {
             mLocation.removeUpdates();
         } else{ //Object will be null when user hasn't used Set GPS button */
             Log.e("GPS", "mLocation was null when trying to remove!");
         }
 
-        if(tempLocation != null) {
-            tempLocation.removeUpdates();
-        } else{ //Object will be null when user hasn't used Set GPS button */
-            Log.e("GPS", "backupLocation was null when trying to remove!");
-        }
     }
 }

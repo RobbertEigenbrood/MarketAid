@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <EditTextPreference
-        android:title="@string/settingsusername"
+        android:title="@string/Username"
         android:key="settingsusername"
         android:summary=""
-        android:defaultValue="@string/settingsusername"/>
+        android:defaultValue="@string/Username"/>
     <EditTextPreference
-        android:title="@string/settingspassword"
+        android:title="@string/Password"
         android:key="settingsusername"
         android:summary=""
         android:inputType="textPassword"
-        android:defaultValue="@string/settingspassword"/>
+        android:defaultValue="@string/Password"/>
 </PreferenceScreen>

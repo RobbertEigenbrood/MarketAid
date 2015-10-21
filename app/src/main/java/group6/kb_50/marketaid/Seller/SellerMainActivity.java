@@ -114,9 +114,13 @@ public class SellerMainActivity extends AppCompatActivity
 
     public void restoreActionBar() {
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-        actionBar.setDisplayShowTitleEnabled(true);
-        actionBar.setTitle(mTitle);
+        try {
+            actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+            actionBar.setDisplayShowTitleEnabled(true);
+            actionBar.setTitle(mTitle);
+        }catch (NullPointerException e){
+
+        }
     }
 
 
@@ -173,13 +177,13 @@ public class SellerMainActivity extends AppCompatActivity
             // Use the Builder class for convenient dialog construction
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
             builder.setMessage(getString(R.string.logouttext))
-                    .setPositiveButton(getString(R.string.logoutok), new DialogInterface.OnClickListener() {
+                    .setPositiveButton(getString(R.string.Yes), new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             ParseUser.logOut();
                             getActivity().finish();
                         }
                     })
-                    .setNegativeButton(getString(R.string.logoutcancel), new DialogInterface.OnClickListener() {
+                    .setNegativeButton(getString(R.string.Cancel), new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             // User cancelled the dialog
                         }

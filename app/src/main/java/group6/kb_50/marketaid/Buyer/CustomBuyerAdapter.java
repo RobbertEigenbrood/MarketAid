@@ -26,8 +26,10 @@ public class CustomBuyerAdapter extends ParseQueryAdapter<ParseObject>{
         super(context,new QueryFactory<ParseObject>() {
             public ParseQuery create(){
                 ParseQuery query = new ParseQuery("Products");
-                query.whereContainedIn("Seller", users);
-                query.orderByAscending("Name");
+                if(query != null) {
+                    query.whereContainedIn("Seller", users);
+                    query.orderByAscending("Name");
+                }
                 return query;
             }
         });

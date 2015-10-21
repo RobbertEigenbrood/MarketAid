@@ -1,10 +1,13 @@
 package group6.kb_50.marketaid.Seller;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.location.LocationManager;
 import android.os.Looper;
+import android.provider.Settings;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v4.app.Fragment;
@@ -34,8 +37,7 @@ public class SettingsActivityFragment extends Fragment {
     double mLat = 0.0,
            mLong = 0.0;
 
-    GPSWrapper tempLocation = null;
-    boolean onLocationFirst = true;    //Makes sure the GPSWrapper is instantiated only once in case of no connection
+    GPSWrapper mLocation = null;
 
     public SettingsActivityFragment() {
     }
@@ -64,61 +66,120 @@ public class SettingsActivityFragment extends Fragment {
         Button button = (Button) view.findViewById(R.id.buttonGPS);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (ParseUser.getCurrentUser() != null) {
-                    GPSWrapper mLocation = new GPSWrapper(getActivity());
-                    ParseGeoPoint geoPoint = new ParseGeoPoint();
 
-                    /* Let's hope we have a fix. If not, wait in Thread for a fix */
-                    //TODO: the user can ONLY save the current location by pressing the button (again)
-
-                    //Log.e("GPS", getLocation());
-                    if(!mLocation.isGPSON()){
-                        Log.e("GPS", "GPS is off!");
-                        DialogFragment newFragment = new GPSWarningDialogFragment();
-                        newFragment.show(getFragmentManager(), "GPSonDialog");
-                        /* Search for GPS location in temporary GPSWrapper in case the user has enabled Location Settings */
-                        if(onLocationFirst) {
-                            onLocationFirst = false;
-                            tempLocation = new GPSWrapper(getActivity());
-                            new Thread(new Runnable() {
-                                public void run() {
-                                    int count = 1;
-                                    Looper.prepare();//Gave Runtime Exception when not implemented
-                                    while (!tempLocation.hasALock()) {
-                                        tempLocation.getCurrentLocation();
-                                        // Wait until GPS lock
-                                        try {
-                                            Thread.sleep(1000);
-                                        } catch (Exception e) {
-                                            e.printStackTrace();
-                                        }
-                                        Log.e("GPS", "SettingsRun: No lock found after " + count + " seconds");
-                                        count++;
-                                    }
-                                    /* GPS lock found! */
-                                    Log.e("GPS", "SettingsRun: Lock has been found after " + count + " seconds");
-                                    //tempLocation.removeUpdates(); //Moved to onPause()
-                                }
-                            }).start();
-                        }
-                        return;
-                    }
-
-                    /* Save the Latitude and Longitude in global variables so we can use them later on */
-                    mLat = mLocation.getCurrentLatDouble();
-                    geoPoint.setLatitude(mLat);
-                    mLong = mLocation.getCurrentLongDouble();
-                    geoPoint.setLongitude(mLong);
-
-                    ParseUser.getCurrentUser().put("LatLong", geoPoint);
-
-                    Toast.makeText(getActivity(), "Location of " + ParseUser.getCurrentUser().getUsername() + " has been set", Toast.LENGTH_SHORT).show();
-                    ParseUser.getCurrentUser().saveInBackground();
-                    /* Dismiss the GPSWrapper object */
-                    mLocation.removeUpdates();
-                } else {
+                if (ParseUser.getCurrentUser() == null) {
+                    //No user logged in: better safe than sorry
                     Toast.makeText(getActivity(), "No user is logged in!", Toast.LENGTH_SHORT).show();
+                    return;
                 }
+
+                LocationManager lm = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+                boolean gps_enabled = false;
+                boolean network_enabled = false;
+
+                try {
+                    gps_enabled = lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
+                } catch(Exception ex) {}
+
+                try {
+                    network_enabled = lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+                } catch(Exception ex) {}
+
+                if(!gps_enabled && !network_enabled) {
+                    /* Notify the user */
+                    AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
+                    dialog.setIcon(R.drawable.location_logo)
+                    .setTitle(getString(R.string.locationsettings))
+                    .setMessage(getActivity().getResources().getString(R.string.locationtext))
+                    .setPositiveButton(getActivity().getString(R.string.gotosettings), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface paramDialogInterface, int paramInt) {
+                            Intent myIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                            getActivity().startActivity(myIntent);
+                            LocationManager lm = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+                            if (lm.isProviderEnabled(LocationManager.GPS_PROVIDER) && lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
+                                Toast.makeText(getActivity(), "Location settings where enabled", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                    dialog.setNegativeButton(getActivity().getString(R.string.noConnectionMapsCancel), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface paramDialogInterface, int paramInt) {
+                            Log.e("GPS", "User clicked/cancelled this AlertDialog");
+                        }
+                    });
+                    dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                        @Override
+                        public void onCancel(DialogInterface dialog) {
+                            Log.e("GPS", "User cancelled this AlertDialog");
+                        }
+                    });
+                    dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                        @Override
+                        public void onDismiss(DialogInterface dialog) {
+                            Log.e("GPS", "User dismissed this AlertDialog");
+                        }
+                    });
+                    dialog.show();
+
+                }
+                /* Check again, as the user might not have enabled Location settings */
+                try {
+                    gps_enabled = lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
+                } catch(Exception ex) {}
+
+                try {
+                    network_enabled = lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+                } catch(Exception ex) {}
+
+                if(!gps_enabled && !network_enabled) {
+                    //Settings where not enabled: "cancel" the click of this button
+                    return;
+                }
+
+                 /* Create only one instance of GPSWrapper in case the button is pressed again */
+                if(mLocation == null) {
+                    mLocation = new GPSWrapper(getActivity());
+                    Toast.makeText(getActivity(), R.string.saving_location, Toast.LENGTH_SHORT).show();
+                }
+                mLocation.removeUpdates();
+
+                /* Wait in a Thread until a Location has been found */
+                new Thread(new Runnable() {
+                    public void run() {
+                        int count = 1;
+                        Looper.prepare();//Gave Runtime Exception when not implemented
+                        while (!mLocation.hasALock()) {
+                            mLocation.getCurrentLocation();
+                            // Wait until GPS lock
+                            try {
+                                Thread.sleep(1000);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                            Log.e("GPS", "SettingsRun: No lock found after " + ( count>1 ? " seconds" : " second"));
+                            count++;
+                        }
+                        /* GPS lock found! */
+                        Log.e("GPS", "SettingsRun: Lock has been found after " + count + " seconds");
+                        Log.e("GPS", "SettingsRun: Location is " + mLocation.getLatLong());
+
+                        /* Save the Latitude and Longitude in global variables so we can use them later on */
+                        ParseGeoPoint geoPoint = new ParseGeoPoint();
+                        mLat = mLocation.getCurrentLatDouble();
+                        geoPoint.setLatitude(mLat);
+                        mLong = mLocation.getCurrentLongDouble();
+                        geoPoint.setLongitude(mLong);
+
+                        ParseUser.getCurrentUser().put("LatLong", geoPoint);
+
+                        Toast.makeText(getActivity(), "Location of " + ParseUser.getCurrentUser().getUsername() + " has been set", Toast.LENGTH_SHORT).show();
+                        //TODO: check for internet connection here and inform user if not
+                        ParseUser.getCurrentUser().saveInBackground();
+                        /* Dismiss the GPSWrapper object (which also clears the Location icon in Taskbar) */
+                        mLocation.removeUpdates();
+                    }
+                }).start();
             }
         });
 
@@ -149,47 +210,6 @@ public class SettingsActivityFragment extends Fragment {
         editor.putFloat("Longitude", (float) mLong);
         //editor.commit();
         editor.apply();
-    }
-
-    public void onClickSettingsLogin(View view){
-
-    }
-
-    /* Show this dialog when the GPS is off */
-    public static class GPSWarningDialogFragment extends DialogFragment {
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            // Use the Builder class for convenient dialog construction
-            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            builder.setMessage(getString(R.string.gpswarning))
-                    .setCancelable(false) // Doesn't seem to ve working though
-                    .setIcon(R.drawable.location_logo)
-                    .setTitle(getString(R.string.locationsettings))
-                    .setPositiveButton(getString(R.string.gotosettings), new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            Intent viewIntent = new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                            startActivity(viewIntent);
-                        }
-                    })
-                    .setNegativeButton(getString(R.string.logoutcancel), new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            // User cancelled the dialog
-                        }
-                    });
-            // Create the AlertDialog object and return it
-            return builder.create();
-        }
-    }
-
-    @Override
-    public void onPause(){
-        super.onPause();
-
-        if(tempLocation != null) {
-            tempLocation.removeUpdates();
-        } else{ //Object will be null when user hasn't used Set GPS button */
-            Log.e("GPS", "tempLocation was null when trying to remove!");
-        }
     }
 
 }

@@ -52,6 +52,8 @@ public class SellerAddProductFragment extends Fragment implements View.OnClickLi
     private static final int MEDIA_SEARCH_IMAGE_ACTIVITY_REQUEST_CODE = 100 + 1;
     //private static final int RESULT_OK = -1; //We can use view.RESULT_OK
 
+    private static final int MAX_IMAGE_SIZE = 10485000;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -86,7 +88,8 @@ public class SellerAddProductFragment extends Fragment implements View.OnClickLi
         inputdescriptionTV.setOnKeyListener(new View.OnKeyListener() {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if ((event.getAction() == KeyEvent.ACTION_UP) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
-                    inputnameTV.requestFocus();
+                    //inputnameTV.requestFocus();
+                    onClick(view.findViewById(R.id.AddButton));
                     return true;
                 }
                 return false;
@@ -147,7 +150,7 @@ public class SellerAddProductFragment extends Fragment implements View.OnClickLi
                                     AddProduct(hulpjeView);
                                 }
                             })
-                            .setNegativeButton(getString(R.string.addToYourProductsCancel), new DialogInterface.OnClickListener() {
+                            .setNegativeButton(getString(R.string.Cancel), new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
                                     // User cancelled the dialog
                                 }
@@ -180,7 +183,19 @@ public class SellerAddProductFragment extends Fragment implements View.OnClickLi
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
             imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
             byte[] image = stream.toByteArray();
-            ParseFile file = new ParseFile(image);
+            ParseFile file = null;
+            // TODO: ParseFile mag niet groter zijn dan 10 MB! (10.48)
+            try {
+                file = new ParseFile(image);
+            }catch (IllegalArgumentException e){
+                Log.e("ParseFile", "IllegalArgumentException: " + e.toString());
+            }
+            if(file == null){
+                if( image.length > MAX_IMAGE_SIZE) {
+                    Toast.makeText(getActivity(), "File too large", Toast.LENGTH_SHORT).show();
+                }
+                return;
+            }
             p.setImage(file);
             p.saveInBackground();
             Toast.makeText(getActivity(),"Product Added!",Toast.LENGTH_SHORT).show();
@@ -197,7 +212,7 @@ public class SellerAddProductFragment extends Fragment implements View.OnClickLi
                             getActivity().finish();//TODO: should be changed to "finishing and go back to overview"
                         }
                     })
-                    .setNegativeButton(getString(R.string.noImageCancel), new DialogInterface.OnClickListener() {
+                    .setNegativeButton(getString(R.string.Cancel), new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             // User cancelled the dialog
                         }
@@ -261,31 +276,4 @@ public class SellerAddProductFragment extends Fragment implements View.OnClickLi
         }
     }
 
-
-    private void onNoImageAdded(){
-        DialogFragment newFragment = new NoImageDialogFragment();
-        newFragment.show(getActivity().getSupportFragmentManager(), "image");
-
-    }
-
-    public static class NoImageDialogFragment extends DialogFragment {
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            // Use the Builder class for convenient dialog construction
-            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            builder.setTitle(R.string.noImageTitle)
-                    .setMessage(getString(R.string.noImageText))
-                    .setPositiveButton(getString(R.string.noImageContinue), new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                        }
-                    })
-                    .setNegativeButton(getString(R.string.noImageCancel), new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            // User cancelled the dialog
-                        }
-                    });
-            // Create the AlertDialog object and return it
-            return builder.create();
-        }
-    }
 }

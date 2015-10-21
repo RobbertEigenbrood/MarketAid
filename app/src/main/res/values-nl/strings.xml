@@ -1,0 +1,113 @@
+<resources>
+    <!-- Name of the application as shown underneath icon -->
+    <string name="app_name">Markt-hulp</string>
+
+    <!-- Titles -->
+    <string name="title_activity_edit_product">EditProductActivity</string>
+    <string name="title_activity_show_products">ShowProductsActivity</string>
+    <string name="title_activity_create_seller">CreateSellerActivity</string>
+    <string name="title_activity_seller_main">SellerMainActivity</string>
+    <string name="title_activity_seller_add">SellerAddActivity</string>
+    <string name="title_activity_seller_create">SellerCreateActivity</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="title_activity_create_account">CreateAccountActivity</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_how_to">HowToActivity</string>
+    <string name="title_activity_buyer_main">BuyerMainActivity</string>
+    <string name="title_activity_buyer_product">BuyerProductActivity</string>
+    <string name="title_activity_buyer_filter">BuyerFilterActivity</string>
+    <string name="title_activity_comment">CommentActivity</string>
+
+    <string name="title_activity_main_screen">Welkom op de markt!</string>
+    <string name="title_activity_seller_login">Log in alstublieft</string>
+
+    <string name="action_settings">Instellingen</string>
+
+    <string name="title_section1">Overzicht</string>
+    <string name="title_section2">Product toevoegen</string>
+    <string name="title_section3">Instellingen</string>
+    <string name="title_section4">Uitloggen</string>
+
+    <string name="noImageTitle">Afbeelding</string>
+    <string name="Title">Titel</string>
+    <string name="splash_screen">A projectgroep 6 app</string>
+
+    <!--Temporary Strings-->
+    <string name="Howtoscreen">De how to screen, Hier komt informatie over bijv waar het menu scherm is, Dus Rechts boven in.</string>
+    <string name="AckHowtoscreen">OK, begrepen.</string>
+
+    <!-- Buttons -->
+    <string name="OK">@android:string/ok</string>
+    <string name="Cancel">Annuleren</string>
+
+    <string name="Yes">Ja</string>
+
+    <string name="BuyerButton">Kopen</string>
+    <string name="SellerButton">Verkopen</string>
+
+    <string name="AddImage">Open camera</string>
+    <string name="AddOrEdit">Add or Edit Product</string>
+    <string name="RemoveProduct">Product\nverwijderen</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="Present">Aanwezig</string>
+    <string name="buttonSettingsLogin">Inloggen</string>
+    <string name="buttonSetGPS">Locatie instellen</string>
+    <string name="noImageContinue">Doorgaan</string>
+    <string name="backButton">Terug</string>
+    <string name="EditImage">Open camera</string>
+    <string name="AddProduct">Product toevoegen</string>
+    <string name="ShowLocation">Toon Locatie</string>
+    <string name="action_example">Example action</string>
+    <string name="SetFilter">Filter instellen</string>
+    <string name="SelectFilter">Selecteer Filter</string>
+
+    <string name="commentPostButton">Post!</string>
+    <string name="noConnectionMapsCancel">Doorgaan</string>
+    <string name="Settings">Instellingen</string>
+    <string name="createButton">Account aanmaken</string>
+    <string name="addToYourProductsAdd">Toevoegen aan\nmijn producten</string>
+
+    <!-- Descriptions and hints -->
+    <string name="Username">Gebruikersnaam</string>
+    <string name="Password">Wachtwoord</string>
+    <string name="BuyerOverview">Producten op de markt</string>
+    <string name="SellerOverview">Mijn Producten</string>
+    <string name="BuySelltext1"><b>Ben je hier om te</b></string>
+    <string name="BuySelltext2"><b>of te</b></string>
+
+    <string name="ProductDescription">Omschrijving</string>
+    <string name="EnterProductDescription">Voer hier de omschrijving van het product in</string>
+    <string name="AddEditProduct">Product toevoegen/aanpassen!</string>
+    <string name="EnterProductTitle">Voer hier de titel van het product in</string>
+    <string name="EnterProductCategory">Voer hier de categorie van het product in</string>
+    <string name="Category">Categorie</string>
+    <string name="EditProduct">Product\naanpassen</string>
+    <string name="Description">Omschrijving</string>
+    <string name="createAccountText">Nog geen account? Klik op de knop "Registreren" om er één aan te maken!</string>
+    <string name="emailText">Email</string>
+    <string name="addToYourProductsPart1">Wilt u \"</string>
+    <string name="addToYourProductsPart2">\" toevoegen aan uw producten?</string>
+
+    <string name="gotosettings">Naar instellingen</string>
+    <string name="locationsettings">Locatie-instellingen</string>
+    <string name="commentButton">Commentaar toevoegen</string>
+    <string name="commentName">Naam</string>
+    <string name="commentComment">Commentaar:</string>
+
+    <string name ="queryhintsearchview">Zoek naar producten!</string>
+
+    <!-- Notifications and warnings -->
+    <string name="noConnectionText">U heeft geen internetverbinding.\nKlik op Instellingen om het instellingen-menu te openen.\nDruk op Annuleren om gebruik te maken van de locale opslag</string>
+    <string name="noConnectionMapsText">Geen internetverbinding gevonden. Maps wordt wellicht niet goed weergeven. \nWilt u naar instellingen?</string>
+    <string name="locationtext">Locatie kan niet gevonden worden. Wilt u naar locatie-instellingen?</string>
+    <string name="noImageText">Dit product wordt toegevoegd zonder afbeelding. Doorgaan?</string>
+    <string name="logouttext">Weet u zeker dat u uit wilt loggen?</string>
+    <string name="wrongLogin">Verkeerde gebruikersnaam of wachtwoord</string>
+    <string name="Browse">Bladeren</string>
+    <!-- Instead of "..." we use "&#8230;" -->
+    <string name="obtaining_location">Locatie wordt opgehaald&#8230;</string>
+    <string name="saving_location">Locatie wordt opgeslagen&#8230;</string>
+</resources>

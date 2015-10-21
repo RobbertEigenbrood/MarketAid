@@ -66,7 +66,7 @@ public class SellerLoginActivity extends AppCompatActivity {
                     startActivity(i);
                     finish();
                 } else {
-                    Toast.makeText(getBaseContext(), getString(R.string.wrongLgin), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(), getString(R.string.wrongLogin), Toast.LENGTH_SHORT).show();
                 }
             }
         });

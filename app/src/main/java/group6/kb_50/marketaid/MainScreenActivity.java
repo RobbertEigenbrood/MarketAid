@@ -141,8 +141,6 @@ public class MainScreenActivity extends AppCompatActivity {
                 if (e == null) {
                     ParseObject.pinAllInBackground(productList);
                     Toast.makeText(getApplicationContext(), "Saved successfull", Toast.LENGTH_SHORT).show();
-                } else {
-
                 }
             }
         });
@@ -166,12 +164,12 @@ public class MainScreenActivity extends AppCompatActivity {
             // Use the Builder class for convenient dialog construction
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
             builder.setMessage(getString(R.string.noConnectionText))
-                    .setPositiveButton(getString(R.string.noConnectionOk), new DialogInterface.OnClickListener() {
+                    .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             startActivity(new Intent(android.provider.Settings.ACTION_WIRELESS_SETTINGS));
                         }
                     })
-                    .setNegativeButton(getString(R.string.noConnectionCancel), new DialogInterface.OnClickListener() {
+                    .setNegativeButton(getString(R.string.Cancel), new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             // User cancelled the dialog
                         }

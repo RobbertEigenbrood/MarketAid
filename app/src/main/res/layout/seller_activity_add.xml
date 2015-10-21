@@ -15,39 +15,23 @@
         android:textSize="30sp"
         android:gravity="center" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/Title"
-        android:id="@+id/TitleAddText"
-        android:layout_centerHorizontal="true"
-        android:textSize="20sp"
-        android:layout_below="@+id/AddProductText"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:gravity="bottom" />
-
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/EnterProductTitleAdd"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/TitleAddText"
         android:gravity="bottom"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:inputType="textAutoComplete" />
+        android:inputType="textAutoComplete"
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true" />
 
     <com.parse.ParseImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/SampleImageAddView"
-        android:src="@mipmap/ic_launcher"
-        android:layout_above="@+id/AddImageButton"
+        android:src="@mipmap/faallogoo"
         android:layout_below="@+id/EnterProductTitleAdd"
-        android:layout_alignParentEnd="false"
-        android:layout_alignParentStart="false"
         android:layout_centerHorizontal="true" />
 
     <Button
@@ -55,78 +39,84 @@
         android:layout_height="wrap_content"
         android:text="@string/AddImage"
         android:id="@+id/AddImageButton"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:onClick="onClickAddImage"
         android:gravity="center"
-        android:layout_above="@+id/CategoryAddText" />
+        android:layout_below="@+id/SampleImageAddView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/Browse"
         android:id="@+id/BrowseAddButton"
-        android:layout_alignTop="@+id/AddImageButton"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:gravity="center"
-        android:layout_above="@+id/CategoryAddText" />
+        android:layout_below="@+id/SampleImageAddView"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/Category"
         android:id="@+id/CategoryAddText"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
         android:gravity="bottom"
         android:textSize="20sp"
-        android:layout_above="@+id/EnterProductCategoryAdd" />
+        android:layout_below="@+id/AddImageButton"
+        android:layout_centerHorizontal="true" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/EnterProductCategoryAdd"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
         android:gravity="bottom"
-        android:layout_above="@+id/DescriptionAddText"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:inputType="textAutoComplete" />
+        android:inputType="textAutoComplete"
+        android:layout_below="@+id/CategoryAddText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/Description"
         android:id="@+id/DescriptionAddText"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
         android:gravity="bottom"
         android:textSize="20sp"
-        android:layout_above="@+id/AddProductDescriptionEdit" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/AddProductDescriptionEdit"
-        android:layout_alignParentStart="true"
-        android:gravity="bottom"
-        android:lines="2"
-        android:layout_above="@+id/AddButton"
-        android:focusableInTouchMode="true"
-        android:focusable="true"
-        android:layout_alignParentLeft="true"
-        android:inputType="textAutoComplete" />
+        android:layout_below="@+id/EnterProductCategoryAdd"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/AddProduct"
         android:id="@+id/AddButton"
-        android:onClick="AddProduct"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true" />
-    <!--       android:onClick="onClickAddProduct"-->
+        android:onClick="onClick"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Title"
+        android:id="@+id/textView2"
+        android:textSize="20sp"
+        android:gravity="bottom"
+        android:layout_below="@+id/AddProductText"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/AddProductDescriptionEdit"
+        android:gravity="bottom"
+        android:lines="2"
+        android:focusableInTouchMode="true"
+        android:focusable="true"
+        android:inputType="textAutoComplete"
+        android:layout_below="@+id/DescriptionAddText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

@@ -45,7 +45,7 @@
         </activity>
         <activity
             android:name=".Seller.SellerEditProductActivity"
-            android:label="@string/title_activity_edit_product" >
+            android:label="@string/app_name" >
         </activity>
         <activity
             android:name=".Seller.SellerCreateAccountActivity"
@@ -63,7 +63,7 @@
         </activity>
         <activity
             android:name=".Buyer.BuyerProductActivity"
-            android:label="@string/title_activity_buyer_product" >
+            android:label="@string/app_name" >
         </activity>
         <activity
             android:name=".Buyer.BuyerFilterActivity"
@@ -75,15 +75,15 @@
         </activity>
         <activity
             android:name=".Seller.SellerMainActivity"
-            android:label="@string/title_activity_seller_main" >
+            android:label="@string/app_name" >
         </activity>
         <activity
             android:name=".Buyer.BuyerMainActivity"
-            android:label="@string/title_activity_buyer_main" >
+            android:label="@string/app_name" >
         </activity>
         <activity
             android:name=".Buyer.CommentActivity"
-            android:label="@string/title_activity_comment">
+            android:label="@string/commentButton">
         </activity>
 
 
