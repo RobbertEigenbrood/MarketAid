@@ -103,6 +103,7 @@ public class SellerLoginFragment extends Fragment implements View.OnClickListene
 
                             Intent i = new Intent(getActivity().getBaseContext(), SellerMainActivity.class);
                             startActivity(i);
+                            getActivity().getFragmentManager().popBackStack();
                         } else {
                             Toast.makeText(getActivity().getBaseContext(), getString(R.string.wrongLogin), Toast.LENGTH_SHORT).show();
                             getActivity().getWindow().setSoftInputMode(

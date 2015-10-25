@@ -109,20 +109,21 @@ public class SellerEditProductActivity extends AppCompatActivity {
             public void done(Product p, ParseException e) {
                 if (e == null) {
                     // Now let's update it with some new data.
-                    p.put("Name",inputname);
-                    p.put("Category",inputcategory);
-                    p.put("Description",inputdescription);
+                    p.setName(inputname);
+                    p.setDescription(inputdescription);
+                    p.setCategory(inputcategory);
+
 
                     if (imageBitmap != null) {
                         ByteArrayOutputStream stream = new ByteArrayOutputStream();
                         imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
                         byte[] image = stream.toByteArray();
                         ParseFile file = new ParseFile(image);
-                        //p.setImage(file);
-                        p.put("Image",file);
+                        p.setImage(file);
                     }
                     p.saveInBackground();
                     Toast.makeText(getBaseContext(), "Product Edited!", Toast.LENGTH_SHORT).show();
+                    finish();
                 }
             }
         });
