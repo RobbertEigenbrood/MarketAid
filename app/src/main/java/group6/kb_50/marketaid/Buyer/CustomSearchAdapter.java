@@ -22,12 +22,15 @@ import group6.kb_50.marketaid.R;
  */
 public class CustomSearchAdapter extends ParseQueryAdapter<ParseObject>{
 
-    public CustomSearchAdapter(final Context context, final List<ParseUser> users, final SearchView v){
+    public CustomSearchAdapter(final Context context, final List<ParseUser> users, final SearchView v,final String category){
         super(context,new QueryFactory<ParseObject>() {
             public ParseQuery create(){
                 ParseQuery query = new ParseQuery("Products");
                 query.whereContainedIn("Seller", users);
                 query.whereContains("Name",v.getQuery().toString());
+                if(!category.equals("All")){
+                    query.whereEqualTo("Category", category);
+                }
                 return query;
             }
         });

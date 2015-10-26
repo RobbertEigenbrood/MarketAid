@@ -34,6 +34,9 @@ public class BuyerMainActivity extends AppCompatActivity {
     private CustomBuyerAdapter customAdapterBuyer;
     private GridView gridView;
     private Spinner category_spinner;
+
+    public int position;
+
     SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
@@ -73,7 +76,7 @@ public class BuyerMainActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view,
                                        final int pos, long id) {
-
+                position = (int) pos;
                 ParseQuery<ParseUser> pq = ParseUser.getQuery();
                 pq.whereEqualTo("Present", true);
                 pq.findInBackground(new FindCallback<ParseUser>() {
@@ -106,7 +109,7 @@ public class BuyerMainActivity extends AppCompatActivity {
                 pq.findInBackground(new FindCallback<ParseUser>() {
                     @Override
                     public void done(List<ParseUser> objects, ParseException e) {
-                        customSearchAdapter = new CustomSearchAdapter(getBaseContext(), objects, searchView);
+                        customSearchAdapter = new CustomSearchAdapter(getBaseContext(), objects, searchView,category_spinner.getItemAtPosition(position).toString());
                         gridView.setAdapter(customSearchAdapter);
 
                     }
@@ -122,7 +125,7 @@ public class BuyerMainActivity extends AppCompatActivity {
                 pq.findInBackground(new FindCallback<ParseUser>() {
                     @Override
                     public void done(List<ParseUser> objects, ParseException e) {
-                        customSearchAdapter = new CustomSearchAdapter(getBaseContext(), objects, searchView);
+                        customSearchAdapter = new CustomSearchAdapter(getBaseContext(), objects, searchView,category_spinner.getItemAtPosition(position).toString());
                         gridView.setAdapter(customSearchAdapter);
 
                     }
