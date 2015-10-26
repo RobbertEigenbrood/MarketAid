@@ -6,9 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.SearchView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
@@ -28,8 +30,10 @@ public class BuyerMainActivity extends AppCompatActivity {
 
     private SearchView searchView;
     private CustomSearchAdapter customSearchAdapter;
+    private CustomCategoryAdapter customCategoryAdapter;
     private CustomBuyerAdapter customAdapterBuyer;
     private GridView gridView;
+    private Spinner category_spinner;
     SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
@@ -53,6 +57,43 @@ public class BuyerMainActivity extends AppCompatActivity {
         fillList();
         setSearchViewListener();
 
+        setSpinnerContent();
+    }
+
+
+
+    public void setSpinnerContent(){
+        category_spinner = (Spinner) findViewById(R.id.category_spinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.category_filter_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        category_spinner.setAdapter(adapter);
+        category_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view,
+                                       final int pos, long id) {
+
+                ParseQuery<ParseUser> pq = ParseUser.getQuery();
+                pq.whereEqualTo("Present", true);
+                pq.findInBackground(new FindCallback<ParseUser>() {
+                    @Override
+                    public void done(List<ParseUser> objects, ParseException e) {
+                        customCategoryAdapter = new CustomCategoryAdapter(getBaseContext(), objects, category_spinner.getItemAtPosition(pos).toString());
+                        gridView.setAdapter(customCategoryAdapter);
+
+                    }
+                });
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+                //another call
+
+            }
+
+        });
     }
 
     public void setSearchViewListener(){

@@ -21,11 +21,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.parse.ParseFile;
@@ -53,6 +55,8 @@ public class SellerAddProductFragment extends Fragment implements View.OnClickLi
     //private static final int RESULT_OK = -1; //We can use view.RESULT_OK
 
     private static final int MAX_IMAGE_SIZE = 10485000;
+    private Spinner category_spinner;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -63,20 +67,22 @@ public class SellerAddProductFragment extends Fragment implements View.OnClickLi
         final EditText inputnameTV = (EditText) view.findViewById(R.id.EnterProductTitleAdd);
         /* Start focus at first field */
         inputnameTV.requestFocus();
-        final EditText categoryTV = (EditText) view.findViewById(R.id.EnterProductCategoryAdd);
+
+        final Spinner categorySpinner = (Spinner) view.findViewById(R.id.category_spinner);
+
         final EditText inputdescriptionTV = (EditText) view.findViewById(R.id.AddProductDescriptionEdit);
 
         /* If the user pressed "Enter" or "Gereed", Go to next or first field */
         inputnameTV.setOnKeyListener(new View.OnKeyListener() {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if ((event.getAction() == KeyEvent.ACTION_UP) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
-                    categoryTV.requestFocus();
+                    categorySpinner.requestFocus();
                     return true;
                 }
                 return false;
             }
         });
-        categoryTV.setOnKeyListener(new View.OnKeyListener() {
+        categorySpinner.setOnKeyListener(new View.OnKeyListener() {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if ((event.getAction() == KeyEvent.ACTION_UP) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
                     inputdescriptionTV.requestFocus();
@@ -111,8 +117,16 @@ public class SellerAddProductFragment extends Fragment implements View.OnClickLi
                 //TODO: code here to show image in Full-screen mode
             }
         });
-
+        setSpinnerContent(view);
         return view;
+    }
+
+
+    public void setSpinnerContent(View v){
+        category_spinner = (Spinner) v.findViewById(R.id.category_spinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getActivity(),R.array.category_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        category_spinner.setAdapter(adapter);
     }
 
     @Override
@@ -166,13 +180,13 @@ public class SellerAddProductFragment extends Fragment implements View.OnClickLi
 
     public void AddProduct(View v){
         EditText inputnameTV = (EditText) view.findViewById(R.id.EnterProductTitleAdd);
-        EditText categoryTV = (EditText) view.findViewById(R.id.EnterProductCategoryAdd);
         EditText inputdescriptionTV = (EditText) view.findViewById(R.id.AddProductDescriptionEdit);
 
+        String inputcategory = category_spinner.getSelectedItem().toString();
         String inputname = inputnameTV.getText().toString();
-        String inputcategory = categoryTV.getText().toString();
         String inputdescription = inputdescriptionTV.getText().toString();
 
+        
         final Product p = new Product();
         p.setName(inputname);
         p.setCategory(inputcategory);

@@ -8,7 +8,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.parse.GetCallback;
@@ -28,6 +30,7 @@ public class SellerEditProductActivity extends AppCompatActivity {
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
     Bitmap imageBitmap = null;
     private String ID;
+    private Spinner category_spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +38,12 @@ public class SellerEditProductActivity extends AppCompatActivity {
         setContentView(R.layout.seller_activity_edit_product);
         EditText textView = (EditText ) findViewById(R.id.EnterProductTitleEdit);
         textView.requestFocus();
+
+        category_spinner = (Spinner) findViewById(R.id.category_spinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.category_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        category_spinner.setAdapter(adapter);
+
         handleIntent();
     }
 
@@ -70,7 +79,6 @@ public class SellerEditProductActivity extends AppCompatActivity {
 
             final EditText nametv = (EditText) findViewById(R.id.EnterProductTitleEdit);
             final EditText descriptiontv = (EditText) findViewById(R.id.EditProductDescriptionEdit);
-            final EditText categorytv = (EditText) findViewById(R.id.EnterProductCategoryEdit);
             final ParseImageView imageview = (ParseImageView) findViewById(R.id.view2);
 
             ParseQuery<ParseObject> query = ParseQuery.getQuery("Products");
@@ -80,12 +88,10 @@ public class SellerEditProductActivity extends AppCompatActivity {
 
                     String name = p.getName();
                     String description = p.getDescription();
-                    String category = p.getCategory();
                     ParseFile file = p.getImage();
 
                     nametv.setText(name);
                     descriptiontv.setText(description);
-                    categorytv.setText(category);
                     imageview.setParseFile(file);
                     imageview.loadInBackground();
                 }
@@ -98,10 +104,9 @@ public class SellerEditProductActivity extends AppCompatActivity {
 
         final EditText name_et = (EditText) findViewById(R.id.EnterProductTitleEdit);
         final EditText description_et = (EditText) findViewById(R.id.EditProductDescriptionEdit);
-        final EditText category_et = (EditText) findViewById(R.id.EnterProductCategoryEdit);
 
         final String inputname = name_et.getText().toString();
-        final String inputcategory = category_et.getText().toString();
+        final String inputcategory = category_spinner.getSelectedItem().toString();
         final String inputdescription = description_et.getText().toString();
 
         // Retrieve the object by id

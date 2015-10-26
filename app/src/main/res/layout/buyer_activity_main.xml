@@ -40,15 +40,35 @@
             android:focusable="false" />
         </android.support.v4.widget.SwipeRefreshLayout>
 
+        <Spinner
+            android:layout_width="60dip"
+            android:layout_height="wrap_content"
+            android:id="@+id/category_spinner"
+            android:layout_below="@+id/SellerTextMain"
+            android:layout_above="@+id/swiperefresh"
+            android:layout_toRightOf="@+id/view3"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
         <SearchView
-            android:layout_width="wrap_content"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:id="@+id/searchView"
-            android:layout_below="@+id/SellerTextMain"
-            android:layout_centerHorizontal="true"
             android:queryHint="@string/queryhintsearchview"
             android:iconifiedByDefault="false"
-            android:focusable="false" />
+            android:focusable="false"
+            android:layout_below="@+id/SellerTextMain"
+            android:layout_toLeftOf="@+id/view3"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <android.support.v4.widget.Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/view3"
+            android:layout_below="@+id/SellerTextMain"
+            android:layout_centerHorizontal="true" />
+
     </RelativeLayout>
 
 

@@ -99,7 +99,20 @@
     <string name="commentName">Name</string>
     <string name="commentComment">Comment:</string>
 
-    <string name ="queryhintsearchview">Search for products!</string>
+    <string name ="queryhintsearchview">Search!</string>
+
+    <string-array name="category_array">
+        <item>Food</item>
+        <item>Asessoires</item>
+        <item>Electronics</item>
+    </string-array>
+
+    <string-array name="category_filter_array">
+        <item>All</item>
+        <item>Food</item>
+        <item>Asessoires</item>
+        <item>Electronics</item>
+    </string-array>
 
     <!-- Notifications and warnings -->
     <string name="noConnectionText">You have no internet connection.\nClick Settings to open the settings menu\nClick Cancel to use the local database</string>
