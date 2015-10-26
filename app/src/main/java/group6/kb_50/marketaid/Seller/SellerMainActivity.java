@@ -35,20 +35,23 @@ public class SellerMainActivity extends AppCompatActivity
     private CharSequence mTitle;
 
     SharedPreferences prefs = null;
+    final static String PREF_NAME = "Preferences";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.temp_empty);
+        if(savedInstanceState==null) {
 
-        mSellerNavigationFragment = (SellerNavigationFragment)
-                getSupportFragmentManager().findFragmentById(R.id.navigation_drawer1);
-        mTitle = getTitle();
+            mSellerNavigationFragment = (SellerNavigationFragment)
+                    getSupportFragmentManager().findFragmentById(R.id.navigation_drawer1);
+            mTitle = getTitle();
 
-        // Set up the drawer.
-        mSellerNavigationFragment.setUp(
-                R.id.navigation_drawer1,
-                (DrawerLayout) findViewById(R.id.drawer_layout1));
+            // Set up the drawer.
+            mSellerNavigationFragment.setUp(
+                    R.id.navigation_drawer1,
+                    (DrawerLayout) findViewById(R.id.drawer_layout1));
+        }
 
         prefs = getSharedPreferences("group6.kb_50.marketaid", MODE_PRIVATE);
     }
@@ -62,7 +65,13 @@ public class SellerMainActivity extends AppCompatActivity
             fragmentManager.beginTransaction()
                     .replace(R.id.container, new SellerFirstRunFragment())
                     .commit();
-            prefs.edit().putBoolean("firstrun", false).commit();
+            prefs.edit().putBoolean("firstrun", false).apply();
+
+            /* Set Shared boolean "product saved" to false at first time use */
+            SharedPreferences settings = getSharedPreferences(PREF_NAME, 0);
+            SharedPreferences.Editor editor = settings.edit();
+            editor.putBoolean("boolProductSaved", false);
+            editor.apply();
         }
     }
 

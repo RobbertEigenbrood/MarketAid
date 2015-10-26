@@ -24,15 +24,19 @@
         android:focusableInTouchMode="true"
         android:inputType="textAutoComplete"
         android:layout_below="@+id/textView2"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@+id/AddProductText"
+        android:layout_toStartOf="@+id/AddProductText" />
 
     <com.parse.ParseImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/SampleImageAddView"
         android:src="@mipmap/faallogoo"
-        android:layout_below="@+id/EnterProductTitleAdd"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/BrowseAddButton"
+        android:layout_toStartOf="@+id/BrowseAddButton" />
 
     <Button
         android:layout_width="wrap_content"
@@ -41,9 +45,9 @@
         android:id="@+id/AddImageButton"
         android:onClick="onClickAddImage"
         android:gravity="center"
-        android:layout_below="@+id/SampleImageAddView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/BrowseAddButton"
+        android:layout_toStartOf="@+id/BrowseAddButton" />
 
     <Button
         android:layout_width="wrap_content"
@@ -51,7 +55,7 @@
         android:text="@string/Browse"
         android:id="@+id/BrowseAddButton"
         android:gravity="center"
-        android:layout_below="@+id/SampleImageAddView"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
@@ -62,22 +66,24 @@
         android:id="@+id/CategoryAddText"
         android:gravity="bottom"
         android:textSize="20sp"
-        android:layout_below="@+id/AddImageButton"
-        android:layout_centerHorizontal="true" />
-<!--
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/EnterProductCategoryAdd"
-        android:gravity="bottom"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:inputType="textAutoComplete"
-        android:layout_below="@+id/CategoryAddText"
+        android:layout_below="@+id/EnterProductTitleAdd"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:editable="true" />
-        -->
+        android:layout_alignParentStart="true" />
+
+    <!--
+       <EditText
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:id="@+id/EnterProductCategoryAdd"
+           android:gravity="bottom"
+           android:focusable="true"
+           android:focusableInTouchMode="true"
+           android:inputType="textAutoComplete"
+           android:layout_below="@+id/CategoryAddText"
+           android:layout_alignParentLeft="true"
+           android:layout_alignParentStart="true"
+           android:editable="true" />
+           -->
 
     <Spinner
         android:layout_width="wrap_content"
@@ -86,8 +92,8 @@
         android:layout_below="@+id/CategoryAddText"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="false"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="false" />
+        android:layout_alignRight="@+id/EnterProductTitleAdd"
+        android:layout_alignEnd="@+id/EnterProductTitleAdd" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -96,8 +102,9 @@
         android:id="@+id/DescriptionAddText"
         android:gravity="bottom"
         android:textSize="20sp"
-        android:layout_below="@+id/category_spinner"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/SampleImageAddView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -106,7 +113,8 @@
         android:id="@+id/AddButton"
         android:onClick="onClick"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_toRightOf="@+id/textView2"
+        android:layout_toEndOf="@+id/textView2" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -116,7 +124,8 @@
         android:textSize="20sp"
         android:gravity="bottom"
         android:layout_below="@+id/AddProductText"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="match_parent"
@@ -130,7 +139,7 @@
         android:layout_below="@+id/DescriptionAddText"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignRight="@+id/category_spinner"
+        android:layout_alignEnd="@+id/category_spinner" />
 
 </RelativeLayout>

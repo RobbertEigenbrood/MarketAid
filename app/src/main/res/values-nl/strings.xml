@@ -97,7 +97,21 @@
     <string name="commentName">Naam</string>
     <string name="commentComment">Commentaar:</string>
 
-    <string name ="queryhintsearchview">Zoek naar producten!</string>
+
+    <string name ="queryhintsearchview">Zoek!</string>
+
+    <string-array name="category_array">
+        <item>Etenswaren</item>
+        <item>Accessoires</item>
+        <item>Electronica</item>
+    </string-array>
+
+    <string-array name="category_filter_array">
+        <item>Alle</item>
+        <item>Etenswaren</item>
+        <item>Accessoires</item>
+        <item>Electronica</item>
+    </string-array>
 
     <!-- Notifications and warnings -->
     <string name="noConnectionText">U heeft geen internetverbinding.\nKlik op Instellingen om het instellingen-menu te openen.\nDruk op Annuleren om gebruik te maken van de locale opslag</string>
@@ -110,4 +124,5 @@
     <!-- Instead of "..." we use "&#8230;" -->
     <string name="obtaining_location">Locatie wordt opgehaald&#8230;</string>
     <string name="saving_location">Locatie wordt opgeslagen&#8230;</string>
+    <string name="adding_product">Product wordt toegevoegd&#8230;</string>
 </resources>

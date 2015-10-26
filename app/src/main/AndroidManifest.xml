@@ -54,6 +54,7 @@
         <!-- Leave the following label to "app_name": the Icon @ home screen uses this label. Change the title in MainScreenActivity.java -->
         <activity
             android:name=".MainScreenActivity"
+            android:configChanges="orientation|screenSize"
             android:label="@string/app_name" >
             <intent-filter
                         android:label="@string/app_name">
@@ -71,18 +72,23 @@
         </activity>
         <activity
             android:name=".Seller.SellerLoginActivity"
+            android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_seller_login" >
         </activity>
+        <!-- Apply the following configChanges to the Activity to maintain data
+            android:configChanges="orientation|screenSize"            -->
         <activity
             android:name=".Seller.SellerMainActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
             android:name=".Buyer.BuyerMainActivity"
+            android:configChanges="orientation|screenSize"
             android:label="@string/app_name" >
         </activity>
         <activity
             android:name=".Buyer.CommentActivity"
+            android:configChanges="orientation|screenSize"
             android:label="@string/commentButton">
         </activity>
 

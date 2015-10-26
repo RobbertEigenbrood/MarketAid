@@ -103,14 +103,14 @@
 
     <string-array name="category_array">
         <item>Food</item>
-        <item>Asessoires</item>
+        <item>Accessories</item>
         <item>Electronics</item>
     </string-array>
 
     <string-array name="category_filter_array">
         <item>All</item>
         <item>Food</item>
-        <item>Asessoires</item>
+        <item>Accessories</item>
         <item>Electronics</item>
     </string-array>
 
@@ -124,4 +124,6 @@
     <!-- Instead of "..." we use "&#8230;" -->
     <string name="obtaining_location">Obtaining location&#8230;</string>
     <string name="saving_location">Saving location&#8230;</string>
+    <string name="adding_product">Adding product&#8230;</string>
+
 </resources>

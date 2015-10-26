@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -27,6 +28,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -47,7 +49,9 @@ import group6.kb_50.marketaid.R;
  */
 
 public class SellerAddProductFragment extends Fragment implements View.OnClickListener {
+    final static String PREF_NAME = "Preferences";
 
+    String toSave = "";
     View view;
     Bitmap imageBitmap = null;
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
@@ -56,8 +60,7 @@ public class SellerAddProductFragment extends Fragment implements View.OnClickLi
 
     private static final int MAX_IMAGE_SIZE = 10485000;
     private Spinner category_spinner;
-
-
+    
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -67,8 +70,11 @@ public class SellerAddProductFragment extends Fragment implements View.OnClickLi
         final EditText inputnameTV = (EditText) view.findViewById(R.id.EnterProductTitleAdd);
         /* Start focus at first field */
         inputnameTV.requestFocus();
+        inputnameTV.setSelection(inputnameTV.getText().length());
 
         final Spinner categorySpinner = (Spinner) view.findViewById(R.id.category_spinner);
+        categorySpinner.setFocusable(true);
+        categorySpinner.setFocusableInTouchMode(true);
 
         final EditText inputdescriptionTV = (EditText) view.findViewById(R.id.AddProductDescriptionEdit);
 
@@ -77,6 +83,7 @@ public class SellerAddProductFragment extends Fragment implements View.OnClickLi
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if ((event.getAction() == KeyEvent.ACTION_UP) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
                     categorySpinner.requestFocus();
+                    categorySpinner.performClick();
                     return true;
                 }
                 return false;
@@ -86,6 +93,7 @@ public class SellerAddProductFragment extends Fragment implements View.OnClickLi
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if ((event.getAction() == KeyEvent.ACTION_UP) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
                     inputdescriptionTV.requestFocus();
+                    inputnameTV.setSelection(inputnameTV.getText().length());
                     return true;
                 }
                 return false;
@@ -104,9 +112,9 @@ public class SellerAddProductFragment extends Fragment implements View.OnClickLi
 
         Button b = (Button) view.findViewById(R.id.AddImageButton);
         b.setOnClickListener(this);
-        Button addbutton =(Button) view.findViewById(R.id.AddButton);
+        Button addbutton = (Button) view.findViewById(R.id.AddButton);
         addbutton.setOnClickListener(this);
-        Button browseButton =(Button) view.findViewById(R.id.BrowseAddButton);
+        Button browseButton = (Button) view.findViewById(R.id.BrowseAddButton);
         browseButton.setOnClickListener(this);
 
         final ImageView imageView = (ImageView) view.findViewById(R.id.SampleImageAddView);
@@ -158,7 +166,7 @@ public class SellerAddProductFragment extends Fragment implements View.OnClickLi
                 }
                 String message = ( getString(R.string.addToYourProductsPart1) + inputnameTV.getText().toString() + getString(R.string.addToYourProductsPart2) );
                     builder.setTitle(inputnameTV.getText().toString())
-                    .setMessage( message )
+                            .setMessage( message )
                             .setPositiveButton(getString(R.string.addToYourProductsAdd), new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
                                     AddProduct(hulpjeView);
@@ -180,6 +188,7 @@ public class SellerAddProductFragment extends Fragment implements View.OnClickLi
 
     public void AddProduct(View v){
         EditText inputnameTV = (EditText) view.findViewById(R.id.EnterProductTitleAdd);
+        //EditText categoryTV = (EditText) view.findViewById(R.id.EnterProductCategoryAdd);
         EditText inputdescriptionTV = (EditText) view.findViewById(R.id.AddProductDescriptionEdit);
 
         String inputcategory = category_spinner.getSelectedItem().toString();
@@ -210,9 +219,16 @@ public class SellerAddProductFragment extends Fragment implements View.OnClickLi
                 }
                 return;
             }
+            Toast.makeText(getActivity(),getString(R.string.adding_product),Toast.LENGTH_SHORT).show();
             p.setImage(file);
             p.saveInBackground();
-            Toast.makeText(getActivity(),"Product Added!",Toast.LENGTH_SHORT).show();
+
+            /* When a product is added, set a "shared" boolean to true so data will be maintained */
+            SharedPreferences settings = getActivity().getBaseContext().getSharedPreferences(PREF_NAME, 0);
+            SharedPreferences.Editor editor = settings.edit();
+            editor.putBoolean("boolProductSaved", true);
+            editor.apply();
+
             getActivity().finish();//TODO: should be changed to "finishing and go back to overview"
         }else{
             /* "Are you sure you don't want to add an image?"*/
@@ -221,8 +237,15 @@ public class SellerAddProductFragment extends Fragment implements View.OnClickLi
                     .setMessage(getString(R.string.noImageText))
                     .setPositiveButton(getString(R.string.noImageContinue), new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
+                            Toast.makeText(getActivity(),getString(R.string.adding_product),Toast.LENGTH_SHORT).show();
                             p.saveInBackground();
-                            Toast.makeText(getActivity(),"Product Added!",Toast.LENGTH_SHORT).show();
+
+                            /* When a product is added, set a "shared" boolean to true so data will be maintained */
+                            SharedPreferences settings = getActivity().getBaseContext().getSharedPreferences(PREF_NAME, 0);
+                            SharedPreferences.Editor editor = settings.edit();
+                            editor.putBoolean("boolProductSaved", true);
+                            editor.apply();
+
                             getActivity().finish();//TODO: should be changed to "finishing and go back to overview"
                         }
                     })
@@ -247,7 +270,7 @@ public class SellerAddProductFragment extends Fragment implements View.OnClickLi
                     imageBitmap = (Bitmap) extras.get("data");
                     ParseImageView iv = (ParseImageView) view.findViewById(R.id.SampleImageAddView);
                     iv.setImageBitmap(imageBitmap);
-                    Toast.makeText(getActivity(), "Image Saved!", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getActivity(), "Image Saved!", Toast.LENGTH_SHORT).show();
 
                 } else if (requestCode == MEDIA_SEARCH_IMAGE_ACTIVITY_REQUEST_CODE) {/* //Working section with standard (documents) method
                         Uri imageUri = data.getData();
@@ -288,6 +311,59 @@ public class SellerAddProductFragment extends Fragment implements View.OnClickLi
         }catch (Exception e) {
             Log.e("BROWSE", "Exception: something went wrong. Hint: check Permission settings.");
         }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState){
+        /* Save everything the user entered with saveInstanceState. Use Preferences as the
+           activity is actually "shut down twice"
+         */
+        EditText inputnameTV = (EditText) view.findViewById(R.id.EnterProductTitleAdd);
+        EditText inputdescriptionTV = (EditText) view.findViewById(R.id.AddProductDescriptionEdit);
+
+        SharedPreferences settings = getActivity().getBaseContext().getSharedPreferences(PREF_NAME, 0);
+        SharedPreferences.Editor editor = settings.edit();
+        if(inputnameTV.getText().toString() != "") {
+            editor.putString("inputnameTV", inputnameTV.getText().toString());
+        }
+        if(inputdescriptionTV.getText().toString() != "") {
+            editor.putString("inputdescriptionTV", inputdescriptionTV.getText().toString());
+        }
+        editor.putInt("category_spinner", category_spinner.getSelectedItemPosition());
+        //TODO: implement saving the image here
+        editor.apply();
+
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState){
+        super.onActivityCreated(savedInstanceState);
+        EditText inputnameTV = (EditText) view.findViewById(R.id.EnterProductTitleAdd);
+        EditText inputdescriptionTV = (EditText) view.findViewById(R.id.AddProductDescriptionEdit);
+
+        SharedPreferences settings = getActivity().getBaseContext().getSharedPreferences(PREF_NAME, 0);
+        if( settings.getBoolean("boolProductSaved", false) ){
+            /* A product has been saved (the last time). Reset the boolean and clear all the entry fields (in shared preferences) */
+            SharedPreferences.Editor editor = settings.edit();
+            editor.putBoolean("boolProductSaved", false);
+            editor.putString("inputnameTV", "");
+            editor.putString("inputdescriptionTV", "");
+            editor.putInt("category_spinner", 0);//Not sure if position 0 or 1
+            //TODO: implement saving the (standard) image here
+            // Don't use apply() here since we want to use this setting right after and we want to be sure they are commit
+            editor.commit();
+        }
+        /* Fill the entry fields with our Shared values */
+        inputnameTV.setText(settings.getString("inputnameTV", ""));
+        inputdescriptionTV.setText(settings.getString("inputdescriptionTV", ""));
+        category_spinner.setSelection(settings.getInt("category_spinner", 0));//Not sure if position 0 or 1
+        //TODO: implement setting the image from SharedPreferences here
+
+        /* Finally, request focus just to be sure */
+        inputnameTV.requestFocus();
+        inputnameTV.setSelection(inputnameTV.getText().length());
+
     }
 
 }
