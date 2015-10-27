@@ -41,8 +41,8 @@
         android:indeterminate="false" />
 
     <com.parse.ParseImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
         android:id="@+id/view"
         android:layout_gravity="center_horizontal"
         android:layout_weight="1" />

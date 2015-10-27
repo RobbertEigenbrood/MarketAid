@@ -59,10 +59,12 @@ public class BuyerMainActivity extends AppCompatActivity {
                     }
                 }
         );
-
-        fillList();
+        try{
+            fillList();
+        }catch(Exception e){
+            Toast.makeText(this,getString(R.string.cantretrieveproducts),Toast.LENGTH_SHORT).show();
+        }
         setSearchViewListener();
-
         setSpinnerContent();
     }
 
