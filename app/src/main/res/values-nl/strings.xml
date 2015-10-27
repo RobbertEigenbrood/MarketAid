@@ -130,8 +130,7 @@
     <string name="EnterPassword">Vul hier een wachtwoord in</string>
     <string name="EnterEmail">Vul hier een e-mail in</string>
     <string name="adding_product">Product wordt toegevoegd&#8230;</string>
-    <string name="EnterUserPass">Enter username and password here</string>
-</resources>
+    <string name="EnterUserPass">Voer hier gebruikersnaam en wachtwoord in</string>
 
     <string name="location_enabled">Locatie is ingeschakeld</string>
     <string name="comment_added">Commentaar toegevoegd</string>
