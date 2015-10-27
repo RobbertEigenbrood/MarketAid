@@ -16,6 +16,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -45,6 +46,8 @@ public class MainScreenActivity extends AppCompatActivity {
 
     static boolean first = true;
     static int fragnumber = 0;
+
+    private static final String DEBUG_TAG = "Parse";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -140,7 +143,8 @@ public class MainScreenActivity extends AppCompatActivity {
             public void done(List<Product> productList, ParseException e) {
                 if (e == null) {
                     ParseObject.pinAllInBackground(productList);
-                    Toast.makeText(getApplicationContext(), "Saved successfull", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), "Saved successfull", Toast.LENGTH_SHORT).show();
+                    Log.d(DEBUG_TAG, "Saved successfull");
                 }
             }
         });

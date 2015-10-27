@@ -1,4 +1,5 @@
 <resources>
+    <!-- \u0020 Creates a space at the beginning or end of a string -->
     <!-- Name of the application as shown underneath icon -->
     <string name="app_name">Markt-hulp</string>
 
@@ -75,7 +76,7 @@
     <string name="Password">Wachtwoord</string>
     <string name="BuyerOverview">Producten op de markt</string>
     <string name="SellerOverview">Mijn Producten</string>
-    <string name="BuySelltext1"><b>Ben je hier om te</b></string>
+    <string name="BuySelltext1"><b>Bent u hier om te</b></string>
     <string name="BuySelltext2"><b>of te</b></string>
 
     <string name="ProductDescription">Omschrijving</string>
@@ -94,8 +95,8 @@
     <string name="gotosettings">Naar instellingen</string>
     <string name="locationsettings">Locatie-instellingen</string>
     <string name="commentButton">Commentaar toevoegen</string>
-    <string name="commentName">Naam</string>
-    <string name="commentComment">Commentaar:</string>
+    <string name="commentName">Naam:\u0020</string>
+    <string name="commentComment">Commentaar:\u0020</string>
 
 
     <string name ="queryhintsearchview">Zoek!</string>
@@ -125,4 +126,24 @@
     <string name="obtaining_location">Locatie wordt opgehaald&#8230;</string>
     <string name="saving_location">Locatie wordt opgeslagen&#8230;</string>
     <string name="adding_product">Product wordt toegevoegd&#8230;</string>
+
+    <string name="location_enabled">Locatie is ingeschakeld</string>
+    <string name="comment_added">Commentaar toegevoegd</string>
+    <string name="fill_in_all_fields">Vul alstublieft alle velden in</string>
+    <string name="file_too_large">Bestandformaat is te groot: maximum 10 MB.\nSelecteer een andere afbeelding of verklein de bestandsgroote</string>
+    <string name="could_not_create_account">Account kon niet aangemaakt worden</string>
+    <string name="new_user_created_with_username">Nieuwe gebruiker aangemaakt met gebruikersnaam\u0020</string>
+    <string name="username_exists">Gebruikersnaam bestaat al.\nKies alstublieft een andere gebruikersnaam</string>
+    <string name="email_exists">Dit emailadres is al in gebruik</string>
+    <string name="went_wrong_creating_account">Er is helaas iets misgegaan bij het aanmaken van het account.\nProbeer het later nogmaals</string>
+    <string name="product_edited">Product is aangepast</string>
+    <string name="product_deleted_with_title">Product verwijderd:\u0020</string>
+    <string name="error_deleting_product">Probleem bij verwijderen van product</string>
+    <string name="logged_in">Ingelogd</string>
+    <string name="logged_in_as">U bent ingelogd als:\u0020</string>
+    <string name="set_current_selling_position">Stel uw huidige marktlocatie in:\u0020</string>
+    <string name="no_user_logged_in">Er is geen gebruiker ingelogd</string>
+    <string name="location_of_user_set_part1">Locatie van\u0020</string>
+    <string name="location_of_user_set_part2">\u0020is ingesteld</string>
+
 </resources>

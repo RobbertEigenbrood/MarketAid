@@ -95,7 +95,7 @@ public class SellerLoginFragment extends Fragment implements View.OnClickListene
                     @Override
                     public void done(ParseUser parseUser, ParseException e) {
                         if (parseUser != null) {
-                            Toast.makeText(getActivity().getBaseContext(), "Logged in", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity().getBaseContext(), getString(R.string.logged_in), Toast.LENGTH_SHORT).show();
                             progressBarLoginShow(false);
                             buttonLoginShow(true);
                             PreferenceManager.getDefaultSharedPreferences(getActivity().getBaseContext()).edit().putString("settingsusername", username.getText().toString()).commit();

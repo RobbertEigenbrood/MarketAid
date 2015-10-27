@@ -14,7 +14,7 @@ public class GPSWrapper {
 
     public static final String DEBUG_TAG = "GPSWrapper";
 
-    //TODO: should we change the default value from 0 to "bullshit"?
+    //TODO: should we change the default value from 0 to "bullsh*t"?
     private String currentLatitude = "";
     private double currentLatDouble = 0.0;
     private String currentLongitude = "";

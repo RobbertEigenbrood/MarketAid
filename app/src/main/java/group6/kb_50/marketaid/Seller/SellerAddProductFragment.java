@@ -215,7 +215,7 @@ public class SellerAddProductFragment extends Fragment implements View.OnClickLi
             }
             if(file == null){
                 if( image.length > MAX_IMAGE_SIZE) {
-                    Toast.makeText(getActivity(), "File too large", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), getString(R.string.file_too_large), Toast.LENGTH_SHORT).show();
                 }
                 return;
             }
@@ -272,7 +272,8 @@ public class SellerAddProductFragment extends Fragment implements View.OnClickLi
                     iv.setImageBitmap(imageBitmap);
                     //Toast.makeText(getActivity(), "Image Saved!", Toast.LENGTH_SHORT).show();
 
-                } else if (requestCode == MEDIA_SEARCH_IMAGE_ACTIVITY_REQUEST_CODE) {/* //Working section with standard (documents) method
+                } else if (requestCode == MEDIA_SEARCH_IMAGE_ACTIVITY_REQUEST_CODE) {
+                    /* //Working section with standard (documents) method. Leave for references.
                         Uri imageUri = data.getData();
                         try {
                             imageBitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), imageUri);
@@ -282,15 +283,13 @@ public class SellerAddProductFragment extends Fragment implements View.OnClickLi
                             Log.e("IOexeption", "IOexeption when creating bitmap");
                         }
                         */
-                    // Get the Image from data
 
                     Uri selectedImage = data.getData();
                     String[] filePathColumn = { MediaStore.Images.Media.DATA };
 
-                    // Get the cursor
                     Cursor cursor = getActivity().getContentResolver().query(selectedImage,
                             filePathColumn, null, null, null);
-                    // Move to first row
+
                     cursor.moveToFirst();
 
                     int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
@@ -301,8 +300,9 @@ public class SellerAddProductFragment extends Fragment implements View.OnClickLi
                     imageBitmap = (Bitmap) BitmapFactory
                             .decodeFile(imgDecodableString);
                     iv.setImageBitmap(imageBitmap);
+                    /* We might want to rotate the image */
                     //iv.setRotation(90); //TODO: delete this rotation?
-                    Toast.makeText(getActivity(), "Image Saved!", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getActivity(), "Image Saved!", Toast.LENGTH_SHORT).show();
 
                 }
             } else {

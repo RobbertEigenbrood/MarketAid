@@ -227,7 +227,7 @@ public class BuyerProductActivity extends AppCompatActivity
                             startActivity(myIntent);
                             LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
                             if (lm.isProviderEnabled(LocationManager.GPS_PROVIDER) && lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
-                                Toast.makeText(getBaseContext(), "Location settings where enabled", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getBaseContext(), getString(R.string.location_enabled), Toast.LENGTH_SHORT).show();
                             }
                         }
                     })
@@ -262,7 +262,6 @@ public class BuyerProductActivity extends AppCompatActivity
         }
 
         /* Wait in a Thread until a Location has been found */
-        //TODO: change the following Toast to an AlertDialog or delete it
         Toast.makeText(this, getString(R.string.obtaining_location), Toast.LENGTH_SHORT).show();
         new Thread(new Runnable() {
             public void run() {

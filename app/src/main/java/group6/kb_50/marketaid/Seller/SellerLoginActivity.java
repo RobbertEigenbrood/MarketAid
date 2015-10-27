@@ -58,7 +58,7 @@ public class SellerLoginActivity extends AppCompatActivity {
             @Override
             public void done(ParseUser parseUser, ParseException e) {
                 if (parseUser != null) {
-                    Toast.makeText(getBaseContext(), "Logged in", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(), getString(R.string.logged_in), Toast.LENGTH_SHORT).show();
                     PreferenceManager.getDefaultSharedPreferences(getBaseContext()).edit().putString("settingsusername", username.getText().toString()).commit();
                     PreferenceManager.getDefaultSharedPreferences(getBaseContext()).edit().putString("settingspassword", pass.getText().toString()).commit();
 

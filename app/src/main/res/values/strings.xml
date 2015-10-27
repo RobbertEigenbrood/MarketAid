@@ -1,4 +1,5 @@
 <resources>
+    <!-- \u0020 Creates a space at the beginning or end of a string -->
     <!-- Name of the application as shown underneath icon -->
     <string name="app_name">Market Aid</string>
 
@@ -96,8 +97,8 @@
     <string name="gotosettings">Go to settings</string>
     <string name="locationsettings">Location settings</string>
     <string name="commentButton">Write Comment</string>
-    <string name="commentName">Name</string>
-    <string name="commentComment">Comment:</string>
+    <string name="commentName">Name:\u0020</string>
+    <string name="commentComment">Comment:\u0020</string>
 
     <string name ="queryhintsearchview">Search!</string>
 
@@ -125,5 +126,24 @@
     <string name="obtaining_location">Obtaining location&#8230;</string>
     <string name="saving_location">Saving location&#8230;</string>
     <string name="adding_product">Adding product&#8230;</string>
+
+    <string name="location_enabled">Location settings have been enabled</string>
+    <string name="comment_added">Comment added</string>
+    <string name="fill_in_all_fields">Please fill in all fields</string>
+    <string name="file_too_large">File size too large: maximum 10 MB.\nPlease select another image or reduce file size</string>
+    <string name="could_not_create_account">Could not create account</string>
+    <string name="new_user_created_with_username">New user created with username\u0020</string>
+    <string name="username_exists">Username already exists.\nPlease choose another username</string>
+    <string name="email_exists">This email address is already in use</string>
+    <string name="went_wrong_creating_account">Unfortunately, something went wrong when creating the account.\nPlease try again later</string>
+    <string name="product_edited">Product has been edited</string>
+    <string name="product_deleted_with_title">Product deleted:\u0020</string>
+    <string name="error_deleting_product">Error deleting product</string>
+    <string name="logged_in">Logged in</string>
+    <string name="logged_in_as">Logged in as:\u0020</string>
+    <string name="set_current_selling_position">Set your current selling location:\u0020</string>
+    <string name="no_user_logged_in">No user is logged in</string>
+    <string name="location_of_user_set_part1">Location of\u0020</string>
+    <string name="location_of_user_set_part2">\u0020has been set</string>
 
 </resources>

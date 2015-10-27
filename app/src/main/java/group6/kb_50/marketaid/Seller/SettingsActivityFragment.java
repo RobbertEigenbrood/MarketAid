@@ -50,7 +50,7 @@ public class SettingsActivityFragment extends Fragment {
         final SharedPreferences settings = getActivity().getBaseContext().getSharedPreferences(PREF_NAME, 0);
 
         TextView tv = (TextView) view.findViewById(R.id.textView8);
-        tv.setText("You are logged in as: " + ParseUser.getCurrentUser().getUsername());
+        tv.setText(getString(R.string.logged_in_as) + ParseUser.getCurrentUser().getUsername());
 
         Switch switch1 = (Switch) view.findViewById(R.id.switch1);
         switch1.setChecked(ParseUser.getCurrentUser().getBoolean("Present"));
@@ -69,7 +69,7 @@ public class SettingsActivityFragment extends Fragment {
 
                 if (ParseUser.getCurrentUser() == null) {
                     //No user logged in: better safe than sorry
-                    Toast.makeText(getActivity(), "No user is logged in!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), getString(R.string.no_user_logged_in), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -98,7 +98,7 @@ public class SettingsActivityFragment extends Fragment {
                             getActivity().startActivity(myIntent);
                             LocationManager lm = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
                             if (lm.isProviderEnabled(LocationManager.GPS_PROVIDER) && lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
-                                Toast.makeText(getActivity(), "Location settings where enabled", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), getString(R.string.location_enabled), Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
@@ -173,7 +173,9 @@ public class SettingsActivityFragment extends Fragment {
 
                         ParseUser.getCurrentUser().put("LatLong", geoPoint);
 
-                        Toast.makeText(getActivity(), "Location of " + ParseUser.getCurrentUser().getUsername() + " has been set", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(),
+                                getString(R.string.location_of_user_set_part1) + ParseUser.getCurrentUser().getUsername() + getString(R.string.location_of_user_set_part2),
+                                Toast.LENGTH_SHORT).show();
                         //TODO: check for internet connection here and inform user if not
                         ParseUser.getCurrentUser().saveInBackground();
                         /* Dismiss the GPSWrapper object (which also clears the Location icon in Taskbar) */

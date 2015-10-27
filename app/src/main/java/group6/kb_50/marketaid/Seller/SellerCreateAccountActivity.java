@@ -1,7 +1,10 @@
 package group6.kb_50.marketaid.Seller;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,6 +22,9 @@ import com.parse.SignUpCallback;
 import group6.kb_50.marketaid.R;
 
 public class SellerCreateAccountActivity extends AppCompatActivity {
+
+    private static int USERNAME_EXISTS  = 202;
+    private static int EMAIL_EXISTS     = 203;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,28 +81,45 @@ public class SellerCreateAccountActivity extends AppCompatActivity {
 
         parseUser.signUpInBackground(new SignUpCallback() {
             public void done(ParseException e) {
+                /* Make an AlertDialog in case something went wrong */
+                AlertDialog.Builder builder = new AlertDialog.Builder(getBaseContext());
+                builder.setTitle(R.string.could_not_create_account)
+                       .setNeutralButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
+                           public void onClick(DialogInterface dialog, int id) {
+                           }
+                       });
+
                 if (e == null) {
-                    Toast.makeText(getBaseContext(), "New User Created", Toast.LENGTH_SHORT).show();
                     logInNewUser(user.getText().toString(), password.getText().toString());
+                    Toast.makeText(getBaseContext(), getString(R.string.new_user_created_with_username) + user.getText().toString(), Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(getBaseContext(), SellerMainActivity.class);
                     startActivity(i);
                     finish();
                 } else {
-                    if(e.getCode() == 202) {
-                        Toast.makeText(getBaseContext(), "Username already exists.", Toast.LENGTH_SHORT).show();
+                    if(e.getCode() == USERNAME_EXISTS) {
+                        //Toast.makeText(getBaseContext(), getString(R.id.username_exists, Toast.LENGTH_SHORT).show();
+                         /* "Username already exists. Please choose another username" */
+                                builder.setMessage(getString(R.string.username_exists))
+                                .create()
+                                .show();
                     }
-                    else if(e.getCode() == 203) {
-                        Toast.makeText(getBaseContext(), "Email already exists.", Toast.LENGTH_SHORT).show();
+                    else if(e.getCode() == EMAIL_EXISTS) {
+                        //Toast.makeText(getBaseContext(), getString(R.id.email_exists), Toast.LENGTH_SHORT).show();
+                         /* "Email address already exists. Please choose another username" */
+                        builder.setMessage(getString(R.string.email_exists))
+                                .create()
+                                .show();
                     }
                     else{
-                        Toast.makeText(getBaseContext(), "Something went wrong when creating the account.", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getBaseContext(), getString(R.id.went_wrong_creating_account, Toast.LENGTH_SHORT).show();
+                         /* "Something went wrong when creating account" */
+                        builder.setMessage(getString(R.string.went_wrong_creating_account))
+                                .create()
+                                .show();
                     }
                 }
             }
         });
-
-
-
 
     }
 

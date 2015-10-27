@@ -67,7 +67,7 @@ public class SellerEditProductActivity extends AppCompatActivity {
                 imageBitmap = (Bitmap) extras.get("data");
                 ParseImageView iv = (ParseImageView)findViewById(R.id.view2);
                 iv.setImageBitmap(imageBitmap);
-                Toast.makeText(this,"Image Saved!",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this,"Image Saved!",Toast.LENGTH_SHORT).show();
 
             }
         }
@@ -127,7 +127,7 @@ public class SellerEditProductActivity extends AppCompatActivity {
                         p.setImage(file);
                     }
                     p.saveInBackground();
-                    Toast.makeText(getBaseContext(), "Product Edited!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(), getString(R.string.product_edited), Toast.LENGTH_SHORT).show();
                     finish();
                 }
             }
@@ -141,11 +141,11 @@ public class SellerEditProductActivity extends AppCompatActivity {
             public void done(Product p, ParseException e) {
                 if (e == null) {
                     p.deleteInBackground();
-                    Toast.makeText(getBaseContext(),"Product deleted with title:" +  p.getName() + "!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(),getString(R.string.product_deleted_with_title) +  p.getName() + "!", Toast.LENGTH_SHORT).show();
                     finish();
                 }
                 else {
-                    Toast.makeText(getBaseContext(),"Error deleting the product!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(), getString(R.string.error_deleting_product), Toast.LENGTH_SHORT).show();
                 }
             }
         });

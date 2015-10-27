@@ -4,13 +4,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 import com.parse.GetCallback;
+import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
+
 import group6.kb_50.marketaid.Comment;
 import group6.kb_50.marketaid.R;
 
@@ -23,13 +27,17 @@ public class CommentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.comment_activity);
 
+        EditText editCommentName = (EditText) findViewById(R.id.editCommentName);
+        EditText editCommentText = (EditText) findViewById(R.id.editCommentText);
+        try {
+            editCommentName.setText(ParseUser.getCurrentUser().getUsername());
+            editCommentText.requestFocus();
+        }catch (Exception e){
+            Log.e("Parse", "Error when writing current user to EditText (no user logged in?)");
+        }
+
         Intent intent = getIntent();
         ID = intent.getStringExtra("Product");
-
-
-
-
-
     }
 
     public void onClickPost(View v) {
@@ -49,11 +57,11 @@ public class CommentActivity extends AppCompatActivity {
                             comment.setComment(commentEditText.getText().toString());
                             comment.setSeller(p);
                             comment.saveInBackground();
-                            Toast.makeText(getApplicationContext(), "Comment added!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), getString(R.string.comment_added), Toast.LENGTH_SHORT).show();
                             finish();
                         }
                     else{
-                        Toast.makeText(getApplicationContext(),"Please fill in all fields",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), getString(R.string.fill_in_all_fields), Toast.LENGTH_SHORT).show();
                     }
                 }
             }

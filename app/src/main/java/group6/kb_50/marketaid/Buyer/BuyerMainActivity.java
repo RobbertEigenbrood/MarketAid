@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -36,6 +37,8 @@ public class BuyerMainActivity extends AppCompatActivity {
     private Spinner category_spinner;
 
     public int position;
+
+    private static final String DEBUG_TAG = "Parse";
 
     SwipeRefreshLayout swipeRefreshLayout;
 
@@ -177,7 +180,8 @@ public class BuyerMainActivity extends AppCompatActivity {
             public void done(List<Product> productList, ParseException e) {
                 if (e == null) {
                     ParseObject.pinAllInBackground(productList);
-                    Toast.makeText(getApplicationContext(), "Refreshed", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), "Refreshed", Toast.LENGTH_SHORT).show();
+                    Log.d(DEBUG_TAG, "Refreshed");
                 } else {
 
                 }
