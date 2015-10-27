@@ -116,6 +116,7 @@
     </string-array>
 
     <!-- Notifications and warnings -->
+    <string name="first_time">Find tabs by swiping the left of the screen</string>
     <string name="noConnectionText">You have no internet connection.\nClick Settings to open the settings menu\nClick Cancel to use the local database</string>
     <string name="noConnectionMapsText">No internet connection found. Maps might not be able to load properly. \nWould you like to go to settings?</string>
     <string name="locationtext">Location could not be found. Do you want to go to location settings?</string>
@@ -153,5 +154,6 @@
     <string name="no_user_logged_in">No user is logged in</string>
     <string name="location_of_user_set_part1">Location of\u0020</string>
     <string name="location_of_user_set_part2">\u0020has been set</string>
+
 
 </resources>

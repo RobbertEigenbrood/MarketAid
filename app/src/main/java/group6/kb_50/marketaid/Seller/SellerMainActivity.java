@@ -51,6 +51,7 @@ public class SellerMainActivity extends AppCompatActivity
             mSellerNavigationFragment.setUp(
                     R.id.navigation_drawer1,
                     (DrawerLayout) findViewById(R.id.drawer_layout1));
+
         }
 
         prefs = getSharedPreferences("group6.kb_50.marketaid", MODE_PRIVATE);
@@ -62,6 +63,11 @@ public class SellerMainActivity extends AppCompatActivity
 
         if(prefs.getBoolean("firstrun", true)) {
             FragmentManager fragmentManager = getSupportFragmentManager();
+            /* Load the Main Fragment first... */
+            fragmentManager.beginTransaction()
+                    .replace(R.id.container, new SellerMainFragment())
+                    .commit();
+            /* ...then load the FirstRunFragment  */
             fragmentManager.beginTransaction()
                     .replace(R.id.container, new SellerFirstRunFragment())
                     .commit();

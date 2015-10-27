@@ -115,6 +115,7 @@
     </string-array>
 
     <!-- Notifications and warnings -->
+    <string name="first_time">Vind de tabs door de linkerkant van het scherm te swipen</string>
     <string name="noConnectionText">U heeft geen internetverbinding.\nKlik op Instellingen om het instellingen-menu te openen.\nDruk op Annuleren om gebruik te maken van de locale opslag</string>
     <string name="noConnectionMapsText">Geen internetverbinding gevonden. Maps wordt wellicht niet goed weergeven. \nWilt u naar instellingen?</string>
     <string name="locationtext">Locatie kan niet gevonden worden. Wilt u naar locatie-instellingen?</string>

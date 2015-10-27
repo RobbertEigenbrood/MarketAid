@@ -64,11 +64,11 @@ public class BuyerMainActivity extends AppCompatActivity {
         }catch(Exception e){
             Toast.makeText(this,getString(R.string.cantretrieveproducts),Toast.LENGTH_SHORT).show();
         }
+
+        //TODO: GridView dissapears when loading the first time
         setSearchViewListener();
         setSpinnerContent();
     }
-
-
 
     public void setSpinnerContent(){
         category_spinner = (Spinner) findViewById(R.id.category_spinner);
@@ -76,7 +76,6 @@ public class BuyerMainActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         category_spinner.setAdapter(adapter);
         category_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
 
             @Override
             public void onItemSelected(AdapterView<?> parent, View view,
@@ -156,8 +155,6 @@ public class BuyerMainActivity extends AppCompatActivity {
 
             }
         });
-
-
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
