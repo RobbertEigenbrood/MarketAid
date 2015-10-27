@@ -53,7 +53,7 @@ public class SellerCreateAccountActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void onClickCreate(View v)
+    public void onClickCreatee(View v)
     {
         final EditText user = (EditText)findViewById(R.id.editTextusername);
         String userstring = user.getText().toString();

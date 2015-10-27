@@ -1,11 +1,17 @@
 package group6.kb_50.marketaid.Seller;
 
+
+
+import android.animation.TimeInterpolator;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -103,7 +109,7 @@ public class SellerLoginFragment extends Fragment implements View.OnClickListene
 
                             Intent i = new Intent(getActivity().getBaseContext(), SellerMainActivity.class);
                             startActivity(i);
-                            getActivity().getFragmentManager().popBackStack();
+                            getFragmentManager().popBackStack();
                         } else {
                             Toast.makeText(getActivity().getBaseContext(), getString(R.string.wrongLogin), Toast.LENGTH_SHORT).show();
                             getActivity().getWindow().setSoftInputMode(
@@ -117,8 +123,13 @@ public class SellerLoginFragment extends Fragment implements View.OnClickListene
                 });
                 break;
             case R.id.buttonRegister:
-                startActivity(new Intent(getActivity(), SellerCreateAccountActivity.class));
-                //TODO: change the above Activity to a Fragment
+                FragmentManager manager = getFragmentManager();
+                FragmentTransaction ft = manager.beginTransaction();
+                Fragment fragment = new SellerRegisterFragment();
+                ft.setCustomAnimations(R.anim.slide_in_right,0);
+                ft.replace(R.id.framelayout, fragment);
+                ft.addToBackStack(null);
+                ft.commit();
                 break;
             default:
                 break;

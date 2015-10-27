@@ -2,7 +2,6 @@ package group6.kb_50.marketaid;
 
 import android.app.ActionBar;
 import android.app.Dialog;
-import android.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -10,6 +9,7 @@ import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.preference.PreferenceManager;
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.support.v4.app.DialogFragment;
@@ -33,6 +33,7 @@ import com.parse.ParseInstallation;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.parse.SignUpCallback;
 
 import java.util.List;
 
@@ -41,6 +42,7 @@ import group6.kb_50.marketaid.Seller.SellerCreateAccountActivity;
 import group6.kb_50.marketaid.Seller.SellerLoginActivity;
 import group6.kb_50.marketaid.Seller.SellerLoginFragment;
 import group6.kb_50.marketaid.Seller.SellerMainActivity;
+import group6.kb_50.marketaid.Seller.SellerRegisterFragment;
 
 public class MainScreenActivity extends AppCompatActivity {
 
@@ -99,30 +101,41 @@ public class MainScreenActivity extends AppCompatActivity {
         Fragment fragment = null;
         switch (fragnumber){
             case 0: fragment = new MainScreenFragment();
-                ft.setCustomAnimations(R.anim.fadein, R.anim.slide_out_right,R.anim.slide_in_right, R.anim.slide_out_right);
+                ft.setCustomAnimations(R.anim.fadein, R.anim.slide_out_left);
                 fragnumber = 1;
                 break;
             case 1: fragment = new MainScreenFragment();
                 break;
             case 2: fragment = new SellerLoginFragment();
-                ft.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_right,R.anim.slide_in_right, R.anim.slide_out_right);
+                ft.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
                 fragnumber = 3;
                 ft.addToBackStack(null);
                 break;
             case 3: fragment = new SellerLoginFragment();
                 manager.popBackStack();
-                ft.setCustomAnimations(0, 0,R.anim.slide_in_right, R.anim.slide_out_right);
                 ft.addToBackStack(null);
                 break;
+            /*case 4: fragment = new SellerRegisterFragment();
+                ft.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_right, R.anim.slide_in_right, R.anim.slide_out_right);
+                fragnumber = 5;
+                ft.addToBackStack(null);
+                break;
+            case 5: fragment = new SellerRegisterFragment();
+                manager.popBackStack();
+                ft.setCustomAnimations(0, 0,R.anim.slide_in_right, R.anim.slide_out_right);
+                ft.addToBackStack(null);
+                break;*/
         }
         ft.replace(R.id.framelayout, fragment);
         ft.commit();
     }
 
+
     public void ToBuyerMain(View view) {
         startActivity(new Intent(this, BuyerMainActivity.class));
     }
 
+    @Override
     public void onBackPressed() {
         if (getFragmentManager().getBackStackEntryCount() == 0) {
             this.finish();
@@ -131,6 +144,9 @@ public class MainScreenActivity extends AppCompatActivity {
                 case 3:
                     fragnumber = 1;
                     break;
+                /*case 5:
+                    fragnumber = 3;
+                    break;*/
             }
             getFragmentManager().popBackStack();
         }

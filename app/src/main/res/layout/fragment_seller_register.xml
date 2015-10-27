@@ -1,0 +1,82 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="group6.kb_50.marketaid.Seller.SellerLoginFragment"
+    android:gravity="center"
+    android:background="@drawable/backgroundshape">
+
+    <EditText
+        android:layout_margin="5dp"
+        android:textSize="20sp"
+        android:typeface="serif"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/RegisterUserEdit"
+        android:hint="@string/EnterUsername"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/CreateAcountText" />
+
+    <EditText
+        android:textSize="20sp"
+        android:typeface="serif"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/RegisterPasswordEdit"
+        android:hint="@string/EnterPassword"
+        android:layout_alignEnd="@id/RegisterUserEdit"
+        android:layout_alignStart="@id/RegisterUserEdit"
+        android:layout_alignLeft="@+id/RegisterUserEdit"
+        android:layout_alignRight="@+id/RegisterUserEdit"
+        android:layout_below="@+id/RegisterUserEdit"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp" />
+
+    <EditText
+        android:textSize="20sp"
+        android:typeface="serif"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/RegisterEmailEdit"
+        android:hint="@string/EnterEmail"
+        android:inputType="textEmailAddress"
+        android:layout_alignEnd="@id/RegisterUserEdit"
+        android:layout_alignStart="@id/RegisterUserEdit"
+        android:layout_alignLeft="@+id/RegisterUserEdit"
+        android:layout_alignRight="@+id/RegisterUserEdit"
+        android:layout_below="@+id/RegisterPasswordEdit"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp" />
+
+    <Button
+        android:layout_margin="5dp"
+        android:text="@string/createButton"
+        android:id="@+id/RegisterCreateButton"
+        android:layout_below="@+id/RegisterEmailEdit"
+        android:layout_centerHorizontal="true"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/buttonshape"
+        android:shadowColor="#A8A8A8"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
+        android:typeface="serif"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create an account here"
+        android:id="@+id/CreateAcountText"
+        android:layout_alignLeft="@+id/RegisterUserEdit"
+        android:layout_alignStart="@+id/RegisterUserEdit"
+        android:typeface="serif"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_marginBottom="20dp"
+        android:textColor="#000000" />
+</RelativeLayout>

@@ -90,7 +90,7 @@
     <string name="EditProduct">Edit Product</string>
     <string name="Description">Description</string>
     <string name="createAccountText">No account yet? Click on the button "Register" to create one!</string>
-    <string name="emailText">Email</string>
+    <string name="emailText">E-mail</string>
     <string name="addToYourProductsPart1">Do you want to add \"</string>
     <string name="addToYourProductsPart2">\" to your products?</string>
 
@@ -126,7 +126,14 @@
     <!-- Instead of "..." we use "&#8230;" -->
     <string name="obtaining_location">Obtaining location&#8230;</string>
     <string name="saving_location">Saving location&#8230;</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="EnterUsername">Enter username here</string>
+    <string name="EnterPassword">Enter password here</string>
+    <string name="EnterEmail">Enter e-mail here</string>
     <string name="adding_product">Adding product&#8230;</string>
+    <string name="EnterUserPass">Enter username and password here</string>
 
     <string name="location_enabled">Location settings have been enabled</string>
     <string name="comment_added">Comment added</string>
