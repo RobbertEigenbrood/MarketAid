@@ -24,7 +24,6 @@ import group6.kb_50.marketaid.R;
 public class SellerRegisterFragment extends Fragment implements View.OnClickListener{
 
     View view;
-    static Context con;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,7 +35,6 @@ public class SellerRegisterFragment extends Fragment implements View.OnClickList
         createButton.setOnClickListener(this);
         // Inflate the layout for this fragment
 
-        con = getActivity().getBaseContext();
         return view;
     }
 

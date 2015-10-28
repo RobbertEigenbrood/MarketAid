@@ -87,7 +87,6 @@ public class MainScreenActivity extends AppCompatActivity {
     }
 
     public void ChooseFragment(){
-
         FragmentManager manager = getFragmentManager();
         FragmentTransaction ft = manager.beginTransaction();
         Fragment fragment = null;
@@ -105,16 +104,6 @@ public class MainScreenActivity extends AppCompatActivity {
                 break;
             case 3: fragment = new SellerLoginFragment();
                 manager.popBackStack();
-                ft.addToBackStack(null);
-                break;
-            case 4: fragment = new SellerRegisterFragment();
-                ft.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_right, R.anim.slide_in_right, R.anim.slide_out_right);
-                fragnumber = 5;
-                ft.addToBackStack(null);
-                break;
-            case 5: fragment = new SellerRegisterFragment();
-                manager.popBackStack();
-                ft.setCustomAnimations(0, 0,R.anim.slide_in_right, R.anim.slide_out_right);
                 ft.addToBackStack(null);
                 break;
         }
@@ -135,9 +124,6 @@ public class MainScreenActivity extends AppCompatActivity {
             switch (fragnumber){
                 case 3:
                     fragnumber = 1;
-                    break;
-                case 5:
-                    fragnumber = 3;
                     break;
             }
             getFragmentManager().popBackStack();

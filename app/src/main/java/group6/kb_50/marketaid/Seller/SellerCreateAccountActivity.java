@@ -2,14 +2,11 @@ package group6.kb_50.marketaid.Seller;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -32,30 +29,9 @@ public class SellerCreateAccountActivity extends AppCompatActivity {
         setContentView(R.layout.seller_activity_create_account);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_create_seller, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-/*        if (id == R.id.action_settings) {
-            return true;
-        }*/
-        return super.onOptionsItemSelected(item);
-    }
-
-    public void onClickCreatee(View v)
+    public void onClickCreate(View v)
     {
-        final EditText user = (EditText)findViewById(R.id.editTextusername);
+        final EditText user = (EditText)findViewById(R.id.RegisterUserEdit);
         String userstring = user.getText().toString();
         /* Check if last character is a space due to auto-fill functionality */
         if( userstring.length() > 0 ) {
@@ -65,8 +41,8 @@ public class SellerCreateAccountActivity extends AppCompatActivity {
                 userstring = userstring.substring(0, userstring.length() - 1);
             }
         }
-        final EditText password = (EditText)findViewById(R.id.editTextpassword);
-        final EditText email = (EditText)findViewById(R.id.editTextemail);
+        final EditText password = (EditText)findViewById(R.id.RegisterPasswordEdit);
+        final EditText email = (EditText)findViewById(R.id.RegisterEmailEdit);
         ParseUser parseUser = new ParseUser();
         try{
             parseUser.setUsername(userstring);
@@ -82,7 +58,7 @@ public class SellerCreateAccountActivity extends AppCompatActivity {
         parseUser.signUpInBackground(new SignUpCallback() {
             public void done(ParseException e) {
                 /* Make an AlertDialog in case something went wrong */
-                AlertDialog.Builder builder = new AlertDialog.Builder(getBaseContext());
+                AlertDialog.Builder builder = new AlertDialog.Builder(SellerCreateAccountActivity.this);
                 builder.setTitle(R.string.could_not_create_account)
                        .setNeutralButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
                            public void onClick(DialogInterface dialog, int id) {
@@ -112,7 +88,7 @@ public class SellerCreateAccountActivity extends AppCompatActivity {
                     }
                     else{
                         //Toast.makeText(getBaseContext(), getString(R.id.went_wrong_creating_account, Toast.LENGTH_SHORT).show();
-                         /* "Something went wrong when creating account" */
+                        //"Something went wrong when creating account"
                         builder.setMessage(getString(R.string.went_wrong_creating_account))
                                 .create()
                                 .show();
@@ -140,8 +116,4 @@ public class SellerCreateAccountActivity extends AppCompatActivity {
                 }
             });
         }
-    public void onClickBack(View v)
-    {
-        finish();
-    }
 }

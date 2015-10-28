@@ -120,13 +120,8 @@ public class SellerLoginFragment extends Fragment implements View.OnClickListene
                 });
                 break;
             case R.id.buttonRegister:
-                FragmentManager manager = getFragmentManager();
-                FragmentTransaction ft = manager.beginTransaction();
-                Fragment fragment = new SellerRegisterFragment();
-                ft.setCustomAnimations(R.anim.slide_in_right, 0);
-                ft.replace(R.id.framelayout, fragment);
-                ft.addToBackStack(null);
-                ft.commit();
+                Intent i = new Intent(getActivity().getBaseContext(), SellerCreateAccountActivity.class);
+                startActivity(i);
                 break;
             default:
                 break;
