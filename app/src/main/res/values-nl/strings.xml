@@ -131,6 +131,8 @@
     <string name="EnterEmail">Vul hier een e-mail in</string>
     <string name="adding_product">Product wordt toegevoegd&#8230;</string>
     <string name="EnterUserPass">Voer hier gebruikersnaam en wachtwoord in</string>
+    <string name="deleteproduct">Product verwijderen</string>
+    <string name="suretodeleteproduct">Weet u zeker dat u dit product wilt verwijderen?</string>
 
     <string name="location_enabled">Locatie is ingeschakeld</string>
     <string name="comment_added">Commentaar toegevoegd</string>

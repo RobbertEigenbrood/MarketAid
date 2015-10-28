@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -36,6 +37,7 @@ import com.parse.ParseFile;
 import com.parse.ParseImageView;
 import com.parse.ParseUser;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -128,7 +130,6 @@ public class SellerAddProductFragment extends Fragment implements View.OnClickLi
         setSpinnerContent(view);
         return view;
     }
-
 
     public void setSpinnerContent(View v){
         category_spinner = (Spinner) v.findViewById(R.id.category_spinner);
@@ -315,23 +316,19 @@ public class SellerAddProductFragment extends Fragment implements View.OnClickLi
 
     @Override
     public void onSaveInstanceState(Bundle outState){
-        /* Save everything the user entered with saveInstanceState. Use Preferences as the
-           activity is actually "shut down twice"
-         */
+        /* Save everything the user entered in outState. Mind that we do not need this dat when we use an @id source */
         EditText inputnameTV = (EditText) view.findViewById(R.id.EnterProductTitleAdd);
         EditText inputdescriptionTV = (EditText) view.findViewById(R.id.AddProductDescriptionEdit);
+        outState.putString("inputnameTV", inputnameTV.getText().toString());
+        outState.putString("inputdescriptionTV", inputdescriptionTV.getText().toString());
 
-        SharedPreferences settings = getActivity().getBaseContext().getSharedPreferences(PREF_NAME, 0);
-        SharedPreferences.Editor editor = settings.edit();
-        if(inputnameTV.getText().toString() != "") {
-            editor.putString("inputnameTV", inputnameTV.getText().toString());
-        }
-        if(inputdescriptionTV.getText().toString() != "") {
-            editor.putString("inputdescriptionTV", inputdescriptionTV.getText().toString());
-        }
-        editor.putInt("category_spinner", category_spinner.getSelectedItemPosition());
-        //TODO: implement saving the image here
-        editor.apply();
+        /* Save the image to outState */
+        ImageView iv = (ImageView) view.findViewById(R.id.SampleImageAddView);
+        Bitmap bitmap = ((BitmapDrawable)iv.getDrawable()).getBitmap();
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        byte[] imageInByte=stream.toByteArray();
+        outState.putByteArray("imageInByte", imageInByte);
 
         super.onSaveInstanceState(outState);
     }
@@ -339,30 +336,24 @@ public class SellerAddProductFragment extends Fragment implements View.OnClickLi
     @Override
     public void onActivityCreated(Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
+        if(savedInstanceState == null)
+            return;
         EditText inputnameTV = (EditText) view.findViewById(R.id.EnterProductTitleAdd);
         EditText inputdescriptionTV = (EditText) view.findViewById(R.id.AddProductDescriptionEdit);
 
-        SharedPreferences settings = getActivity().getBaseContext().getSharedPreferences(PREF_NAME, 0);
-        if( settings.getBoolean("boolProductSaved", false) ){
-            /* A product has been saved (the last time). Reset the boolean and clear all the entry fields (in shared preferences) */
-            SharedPreferences.Editor editor = settings.edit();
-            editor.putBoolean("boolProductSaved", false);
-            editor.putString("inputnameTV", "");
-            editor.putString("inputdescriptionTV", "");
-            editor.putInt("category_spinner", 0);//Not sure if position 0 or 1
-            //TODO: implement saving the (standard) image here
-            // Don't use apply() here since we want to use this setting right after and we want to be sure they are commit
-            editor.commit();
+        /* Retrieve data from bundle */
+        byte[] imageInByte = savedInstanceState.getByteArray("imageInByte");
+        if( imageInByte != null) {
+            ByteArrayInputStream is = new ByteArrayInputStream(imageInByte);
+            Drawable drw = Drawable.createFromStream(is, "srcName");
+            ImageView iv = (ImageView) view.findViewById(R.id.SampleImageAddView);
+            iv.setImageDrawable(drw);
+        }else{
+            Log.e("ImageInByte", "Error converting Image to Byte[]");
         }
-        /* Fill the entry fields with our Shared values */
-        inputnameTV.setText(settings.getString("inputnameTV", ""));
-        inputdescriptionTV.setText(settings.getString("inputdescriptionTV", ""));
-        category_spinner.setSelection(settings.getInt("category_spinner", 0));//Not sure if position 0 or 1
-        //TODO: implement setting the image from SharedPreferences here
 
-        /* Finally, request focus just to be sure */
-        inputnameTV.requestFocus();
-        inputnameTV.setSelection(inputnameTV.getText().length());
+        //inputnameTV.setText(savedInstanceState.getString("inputnameTV"));
+        //inputdescriptionTV.setText(savedInstanceState.getString("inputdescriptionTV"));
 
     }
 

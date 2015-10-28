@@ -1,8 +1,10 @@
 package group6.kb_50.marketaid.Seller;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.provider.MediaStore;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -136,19 +138,36 @@ public class SellerEditProductActivity extends AppCompatActivity {
     }
 
     public void onClickRemoveProduct(View v){
-        ParseQuery<Product> query = ParseQuery.getQuery("Products");
-        query.getInBackground(ID, new GetCallback<Product>() {
-            public void done(Product p, ParseException e) {
-                if (e == null) {
-                    p.deleteInBackground();
-                    Toast.makeText(getBaseContext(),getString(R.string.product_deleted_with_title) +  p.getName() + "!", Toast.LENGTH_SHORT).show();
-                    finish();
-                }
-                else {
-                    Toast.makeText(getBaseContext(), getString(R.string.error_deleting_product), Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+        /* Are you sure you want to delete this product? */
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(getString(R.string.deleteproduct))
+                .setMessage( getString(R.string.suretodeleteproduct) )
+                .setPositiveButton(getString(R.string.deleteproduct), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        ParseQuery<Product> query = ParseQuery.getQuery("Products");
+                        query.getInBackground(ID, new GetCallback<Product>() {
+                            public void done(Product p, ParseException e) {
+                                if (e == null) {
+                                    p.deleteInBackground();
+                                    Toast.makeText(getBaseContext(), getString(R.string.product_deleted_with_title) + p.getName() + "!", Toast.LENGTH_SHORT).show();
+                                    finish();
+                                } else {
+                                    Toast.makeText(getBaseContext(), getString(R.string.error_deleting_product), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+                    }
+                })
+                .setNegativeButton(getString(R.string.Cancel), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // User cancelled the dialog
+                    }
+                })
+                .create()
+                .show();
+
     }
 
     @Override

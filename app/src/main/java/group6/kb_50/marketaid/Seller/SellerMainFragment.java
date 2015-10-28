@@ -42,6 +42,12 @@ public class SellerMainFragment extends Fragment {
 
     }
 
+    @Override
+    public void onResume(){
+        super.onResume();
+        fillList();
+    }
+
     private void fillList() {
         mainAdapter = new ParseQueryAdapter<ParseObject>(getActivity(),Product.class);
         mainAdapter.setTextKey("Name");

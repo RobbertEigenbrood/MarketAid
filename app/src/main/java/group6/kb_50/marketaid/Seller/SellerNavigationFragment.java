@@ -78,7 +78,7 @@ public class SellerNavigationFragment extends Fragment {
         }
 
         // Select either the default item (0) or the last selected item.
-        selectItem(mCurrentSelectedPosition);
+        selectItem( mCurrentSelectedPosition, (savedInstanceState!=null) );
     }
 
     @Override
@@ -90,13 +90,13 @@ public class SellerNavigationFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+                             final Bundle savedInstanceState) {
         mDrawerListView = (ListView) inflater.inflate(
                 R.layout.seller_fragment_navigation_drawer, container, false);
         mDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                selectItem(position);
+                selectItem(position, (savedInstanceState!=null));
             }
         });
         mDrawerListView.setAdapter(new ArrayAdapter<String>(
@@ -191,7 +191,7 @@ public class SellerNavigationFragment extends Fragment {
         mDrawerLayout.setDrawerListener(mDrawerToggle);
     }
 
-    private void selectItem(int position) {
+    private void selectItem(int position, boolean fromSavedInstanceState) {
         mCurrentSelectedPosition = position;
         if (mDrawerListView != null) {
             mDrawerListView.setItemChecked(position, true);
@@ -200,7 +200,7 @@ public class SellerNavigationFragment extends Fragment {
             mDrawerLayout.closeDrawer(mFragmentContainerView);
         }
         if (mCallbacks != null) {
-            mCallbacks.onNavigationDrawerItemSelected(position);
+            mCallbacks.onNavigationDrawerItemSelected(position, fromSavedInstanceState);
         }
     }
 
@@ -275,7 +275,7 @@ public class SellerNavigationFragment extends Fragment {
         /**
          * Called when an item in the navigation drawer is selected.
          */
-        void onNavigationDrawerItemSelected(int position);
+        void onNavigationDrawerItemSelected(int position, boolean fromSavedInstanceState);
     }
 }
 
