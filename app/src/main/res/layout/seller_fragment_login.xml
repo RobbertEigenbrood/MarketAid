@@ -4,7 +4,8 @@
     android:layout_height="match_parent"
     tools:context="group6.kb_50.marketaid.Seller.SellerLoginFragment"
     android:gravity="center"
-    android:background="@drawable/backgroundshape">
+    android:background="@drawable/backgroundshape"
+    android:padding="20dp">
 
     <EditText
         android:layout_width="match_parent"
@@ -23,14 +24,12 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPassword"
         android:id="@+id/editTextpassword"
         android:hint="Enter password here"
         android:layout_below="@+id/editTextusername"
         android:textSize="20sp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:typeface="serif" />
+        android:typeface="serif"
+        android:inputType="textPassword" />
 
     <Button
         android:text="Login"
@@ -49,7 +48,8 @@
         android:layout_below="@+id/textViewcreate"
         android:layout_marginRight="10dp"
         android:layout_alignStart="@id/editTextpassword"
-        android:layout_alignLeft="@+id/editTextpassword"/>
+        android:layout_alignLeft="@+id/editTextpassword"
+        android:onClick="onClickLogin" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -80,7 +80,8 @@
         android:layout_marginLeft="10dp"
         android:layout_alignRight="@+id/editTextpassword"
         android:layout_alignEnd="@id/editTextpassword"
-        android:typeface="serif" />
+        android:typeface="serif"
+        android:onClick="ToRegisterOnClick" />
 
     <ProgressBar
         style="?android:attr/progressBarStyleSmall"

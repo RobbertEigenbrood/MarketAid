@@ -5,7 +5,8 @@
     android:layout_centerVertical="true"
     android:layout_centerHorizontal="true"
     android:gravity="center"
-    android:background="@drawable/backgroundshape">
+    android:background="@drawable/backgroundshape"
+    android:padding="20dp">
 
     <TextView
         android:layout_width="wrap_content"
@@ -33,9 +34,7 @@
         android:id="@+id/SellerButton"
         android:typeface="serif"
         android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp" />
+        android:layout_marginBottom="5dp" />
 
     <TextView
         android:layout_width="wrap_content"

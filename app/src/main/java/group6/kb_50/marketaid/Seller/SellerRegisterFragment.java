@@ -43,7 +43,6 @@ public class SellerRegisterFragment extends Fragment implements View.OnClickList
     public void onClick(View v)
     {
         if (v.getId() == R.id.RegisterCreateButton ) {
-            getFragmentManager().popBackStack();
             final EditText user = (EditText) view.findViewById(R.id.RegisterUserEdit);
             String userstring = user.getText().toString();
             //Check if last character is a space due to auto-fill functionality
@@ -74,6 +73,7 @@ public class SellerRegisterFragment extends Fragment implements View.OnClickList
                         logInNewUser(user.getText().toString(), password.getText().toString());
                         Intent i = new Intent(getActivity().getBaseContext(), SellerMainActivity.class);
                         startActivity(i);
+                        getFragmentManager().popBackStack();
                     } else {
                         if (e.getCode() == 202) {
                             Toast.makeText(getActivity().getBaseContext(), "Username already exists.", Toast.LENGTH_SHORT).show();

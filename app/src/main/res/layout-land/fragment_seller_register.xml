@@ -4,7 +4,8 @@
     android:layout_height="match_parent"
     tools:context="group6.kb_50.marketaid.Seller.SellerLoginFragment"
     android:gravity="center"
-    android:background="@drawable/backgroundshape">
+    android:background="@drawable/backgroundshape"
+    android:padding="20dp">
 
     <EditText
         android:layout_margin="5dp"

@@ -2,15 +2,12 @@ package group6.kb_50.marketaid.Seller;
 
 
 
-import android.animation.TimeInterpolator;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.preference.PreferenceManager;
-import android.provider.MediaStore;
-import android.app.Fragment;
 import android.app.FragmentManager;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -126,7 +123,7 @@ public class SellerLoginFragment extends Fragment implements View.OnClickListene
                 FragmentManager manager = getFragmentManager();
                 FragmentTransaction ft = manager.beginTransaction();
                 Fragment fragment = new SellerRegisterFragment();
-                ft.setCustomAnimations(R.anim.slide_in_right,0);
+                ft.setCustomAnimations(R.anim.slide_in_right, 0);
                 ft.replace(R.id.framelayout, fragment);
                 ft.addToBackStack(null);
                 ft.commit();
@@ -164,7 +161,4 @@ public class SellerLoginFragment extends Fragment implements View.OnClickListene
             bu.setVisibility(View.INVISIBLE);//gone?
     }
 
-    public void onClickCreateUser(View v) {
-        startActivity(new Intent(getActivity().getBaseContext(), SellerCreateAccountActivity.class));
-    }
 }

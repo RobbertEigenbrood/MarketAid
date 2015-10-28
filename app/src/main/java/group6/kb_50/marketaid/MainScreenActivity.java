@@ -83,14 +83,6 @@ public class MainScreenActivity extends AppCompatActivity {
         else{
             fragnumber = 2;
             ChooseFragment();
-//            startActivity(new Intent(this, SellerLoginActivity.class));
-            /*Fragment fragment = new SellerLoginFragment();
-            FragmentManager fm = getFragmentManager();
-            FragmentTransaction transaction = fm.beginTransaction();
-            transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_right);
-            transaction.replace(R.id.framelayout, fragment);
-            transaction.addToBackStack(null);
-            transaction.commit();*/
         }
     }
 
@@ -115,7 +107,7 @@ public class MainScreenActivity extends AppCompatActivity {
                 manager.popBackStack();
                 ft.addToBackStack(null);
                 break;
-            /*case 4: fragment = new SellerRegisterFragment();
+            case 4: fragment = new SellerRegisterFragment();
                 ft.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_right, R.anim.slide_in_right, R.anim.slide_out_right);
                 fragnumber = 5;
                 ft.addToBackStack(null);
@@ -124,7 +116,7 @@ public class MainScreenActivity extends AppCompatActivity {
                 manager.popBackStack();
                 ft.setCustomAnimations(0, 0,R.anim.slide_in_right, R.anim.slide_out_right);
                 ft.addToBackStack(null);
-                break;*/
+                break;
         }
         ft.replace(R.id.framelayout, fragment);
         ft.commit();
@@ -144,9 +136,9 @@ public class MainScreenActivity extends AppCompatActivity {
                 case 3:
                     fragnumber = 1;
                     break;
-                /*case 5:
+                case 5:
                     fragnumber = 3;
-                    break;*/
+                    break;
             }
             getFragmentManager().popBackStack();
         }
@@ -177,6 +169,7 @@ public class MainScreenActivity extends AppCompatActivity {
             dialog.show(getSupportFragmentManager(),"No Connection");
         }
     }
+
 
     public static class NoConnectionDialogFragment extends DialogFragment {
         @Override
