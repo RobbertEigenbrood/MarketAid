@@ -3,15 +3,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="group6.kb_50.marketaid.Seller.SellerCreateAccountActivity"
-    android:gravity="center"
-    android:background="@drawable/backgroundshape"
-    android:padding="20dp">
+    android:background="@drawable/mark_background">
+
+    <RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:context="group6.kb_50.marketaid.Seller.SellerCreateAccountActivity"
+        android:background="@drawable/backgroundshape"
+    android:padding="20dp"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:layout_margin="5dp">
 
     <EditText
         android:layout_margin="5dp"
         android:textSize="20sp"
         android:typeface="serif"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/RegisterUserEdit"
         android:hint="@string/EnterUsername"
@@ -21,7 +29,7 @@
     <EditText
         android:textSize="20sp"
         android:typeface="serif"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/RegisterPasswordEdit"
         android:hint="@string/EnterPassword"
@@ -50,7 +58,6 @@
         android:layout_marginBottom="5dp" />
 
     <Button
-        android:layout_margin="5dp"
         android:text="@string/createButton"
         android:id="@+id/RegisterCreateButton"
         android:layout_below="@+id/RegisterEmailEdit"
@@ -67,7 +74,8 @@
         android:typeface="serif"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:onClick="onClickCreate" />
+        android:onClick="onClickCreate"
+        android:layout_margin="5dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -79,6 +87,6 @@
         android:typeface="serif"
         android:textStyle="bold"
         android:textSize="20sp"
-        android:layout_marginBottom="20dp"
         android:textColor="#000000" />
+    </RelativeLayout>
 </RelativeLayout>
