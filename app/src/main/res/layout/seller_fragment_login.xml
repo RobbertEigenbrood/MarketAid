@@ -19,7 +19,8 @@
         android:layout_alignEnd="@id/editTextpassword"
         android:layout_alignRight="@+id/editTextpassword"
         android:typeface="serif"
-        android:layout_below="@+id/LoginEnterText" />
+        android:layout_below="@+id/LoginEnterText"
+        android:focusable="true" />
 
     <EditText
         android:layout_width="match_parent"
@@ -29,7 +30,8 @@
         android:layout_below="@+id/editTextusername"
         android:textSize="20sp"
         android:typeface="serif"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:focusable="true" />
 
     <Button
         android:text="Login"

@@ -7,6 +7,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -27,6 +28,40 @@ public class SellerCreateAccountActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.seller_activity_create_account);
+
+        final EditText user = (EditText) findViewById(R.id.RegisterUserEdit);
+        user.requestFocus();
+        final EditText password = (EditText) findViewById(R.id.RegisterPasswordEdit);
+        final EditText email = (EditText) findViewById(R.id.RegisterEmailEdit);
+        /* If the user pressed "Enter" or "Gereed", Go to password field */
+        user.setOnKeyListener(new View.OnKeyListener() {
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if ((event.getAction() == KeyEvent.ACTION_UP) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    password.requestFocus();
+                    return true;
+                }
+                return false;
+            }
+        });
+        password.setOnKeyListener(new View.OnKeyListener() {
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if ((event.getAction() == KeyEvent.ACTION_UP) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    email.requestFocus();
+                    return true;
+                }
+                return false;
+            }
+        });
+        email.setOnKeyListener(new View.OnKeyListener() {
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if ((event.getAction() == KeyEvent.ACTION_UP) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    onClickCreate(findViewById(R.id.RegisterCreateButton));
+                    return true;
+                }
+                return false;
+            }
+        });
+
     }
 
     public void onClickCreate(View v)
@@ -60,10 +95,10 @@ public class SellerCreateAccountActivity extends AppCompatActivity {
                 /* Make an AlertDialog in case something went wrong */
                 AlertDialog.Builder builder = new AlertDialog.Builder(SellerCreateAccountActivity.this);
                 builder.setTitle(R.string.could_not_create_account)
-                       .setNeutralButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
-                           public void onClick(DialogInterface dialog, int id) {
-                           }
-                       });
+                        .setNeutralButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                            }
+                        });
 
                 if (e == null) {
                     logInNewUser(user.getText().toString(), password.getText().toString());
@@ -72,21 +107,19 @@ public class SellerCreateAccountActivity extends AppCompatActivity {
                     startActivity(i);
                     finish();
                 } else {
-                    if(e.getCode() == USERNAME_EXISTS) {
+                    if (e.getCode() == USERNAME_EXISTS) {
                         //Toast.makeText(getBaseContext(), getString(R.id.username_exists, Toast.LENGTH_SHORT).show();
                          /* "Username already exists. Please choose another username" */
-                                builder.setMessage(getString(R.string.username_exists))
+                        builder.setMessage(getString(R.string.username_exists))
                                 .create()
                                 .show();
-                    }
-                    else if(e.getCode() == EMAIL_EXISTS) {
+                    } else if (e.getCode() == EMAIL_EXISTS) {
                         //Toast.makeText(getBaseContext(), getString(R.id.email_exists), Toast.LENGTH_SHORT).show();
                          /* "Email address already exists. Please choose another username" */
                         builder.setMessage(getString(R.string.email_exists))
                                 .create()
                                 .show();
-                    }
-                    else{
+                    } else {
                         //Toast.makeText(getBaseContext(), getString(R.id.went_wrong_creating_account, Toast.LENGTH_SHORT).show();
                         //"Something went wrong when creating account"
                         builder.setMessage(getString(R.string.went_wrong_creating_account))

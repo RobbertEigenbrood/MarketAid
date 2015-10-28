@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.app.Fragment;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +35,38 @@ public class SellerRegisterFragment extends Fragment implements View.OnClickList
         final Button createButton = (Button)view.findViewById(R.id.RegisterCreateButton);
         createButton.setOnClickListener(this);
         // Inflate the layout for this fragment
+        
+        final EditText user = (EditText) view.findViewById(R.id.RegisterUserEdit);
+        final EditText password = (EditText) view.findViewById(R.id.RegisterPasswordEdit);
+        final EditText email = (EditText) view.findViewById(R.id.RegisterEmailEdit);
+        /* If the user pressed "Enter" or "Gereed", Go to password field */
+        user.setOnKeyListener(new View.OnKeyListener() {
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if ((event.getAction() == KeyEvent.ACTION_UP) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    password.requestFocus();
+                    return true;
+                }
+                return false;
+            }
+        });
+        password.setOnKeyListener(new View.OnKeyListener() {
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if ((event.getAction() == KeyEvent.ACTION_UP) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    email.requestFocus();
+                    return true;
+                }
+                return false;
+            }
+        });
+        email.setOnKeyListener(new View.OnKeyListener() {
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if ((event.getAction() == KeyEvent.ACTION_UP) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    onClick(view.findViewById(R.id.RegisterCreateButton));
+                    return true;
+                }
+                return false;
+            }
+        });
 
         return view;
     }

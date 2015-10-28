@@ -59,13 +59,11 @@ public class BuyerMainActivity extends AppCompatActivity {
                     }
                 }
         );
-        try{
-            fillList();
-        }catch(Exception e){
-            Toast.makeText(this,getString(R.string.cantretrieveproducts),Toast.LENGTH_SHORT).show();
-        }
 
-        //TODO: GridView dissapears when loading the first time
+        fillList();
+
+
+        //TODO: GridView disappears when loading the first time
         setSearchViewListener();
         setSpinnerContent();
     }
