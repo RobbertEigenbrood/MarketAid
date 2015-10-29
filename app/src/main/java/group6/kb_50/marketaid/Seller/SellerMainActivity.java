@@ -167,4 +167,10 @@ public class SellerMainActivity extends AppCompatActivity
             return builder.create();
         }
     }
+    @Override
+    public void finish(){
+        super.finish();
+        overridePendingTransition(R.anim.slide_in_from_left_activity,R.anim.slide_out_to_right_activity);
+    }
 }
+

@@ -12,16 +12,13 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
-import com.parse.ParseQueryAdapter;
 import com.parse.ParseUser;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import group6.kb_50.marketaid.Product;
@@ -111,7 +108,7 @@ public class BuyerMainActivity extends AppCompatActivity {
                 pq.findInBackground(new FindCallback<ParseUser>() {
                     @Override
                     public void done(List<ParseUser> objects, ParseException e) {
-                        customSearchAdapter = new CustomSearchAdapter(getBaseContext(), objects, searchView,category_spinner.getItemAtPosition(position).toString());
+                        customSearchAdapter = new CustomSearchAdapter(getBaseContext(), objects, searchView, category_spinner.getItemAtPosition(position).toString());
                         gridView.setAdapter(customSearchAdapter);
 
                     }
@@ -127,7 +124,7 @@ public class BuyerMainActivity extends AppCompatActivity {
                 pq.findInBackground(new FindCallback<ParseUser>() {
                     @Override
                     public void done(List<ParseUser> objects, ParseException e) {
-                        customSearchAdapter = new CustomSearchAdapter(getBaseContext(), objects, searchView,category_spinner.getItemAtPosition(position).toString());
+                        customSearchAdapter = new CustomSearchAdapter(getBaseContext(), objects, searchView, category_spinner.getItemAtPosition(position).toString());
                         gridView.setAdapter(customSearchAdapter);
 
                     }
@@ -184,5 +181,11 @@ public class BuyerMainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public void finish(){
+        super.finish();
+        overridePendingTransition(R.anim.slide_in_from_left_activity,R.anim.slide_out_to_right_activity);
     }
 }

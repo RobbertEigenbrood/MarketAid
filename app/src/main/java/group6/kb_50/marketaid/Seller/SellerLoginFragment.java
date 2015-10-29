@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.app.Fragment;
 import android.preference.PreferenceManager;
 import android.app.FragmentManager;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -105,7 +106,9 @@ public class SellerLoginFragment extends Fragment implements View.OnClickListene
                             PreferenceManager.getDefaultSharedPreferences(getActivity().getBaseContext()).edit().putString("settingspassword", pass.getText().toString()).commit();
 
                             Intent i = new Intent(getActivity().getBaseContext(), SellerMainActivity.class);
-                            startActivity(i);
+                            Bundle translateBundle = ActivityOptionsCompat.makeCustomAnimation(getActivity(),
+                                    R.anim.slide_in_from_right_activity, R.anim.slide_out_to_left_activity).toBundle();
+                            startActivity(i, translateBundle);
                             getFragmentManager().popBackStack();
                         } else {
                             Toast.makeText(getActivity().getBaseContext(), getString(R.string.wrongLogin), Toast.LENGTH_SHORT).show();
@@ -121,7 +124,9 @@ public class SellerLoginFragment extends Fragment implements View.OnClickListene
                 break;
             case R.id.buttonRegister:
                 Intent i = new Intent(getActivity().getBaseContext(), SellerCreateAccountActivity.class);
-                startActivity(i);
+                Bundle translateBundle = ActivityOptionsCompat.makeCustomAnimation(getActivity(),
+                        R.anim.slide_in_from_right_activity,R.anim.slide_out_to_left_activity).toBundle();
+                startActivity(i, translateBundle);
                 break;
             default:
                 break;

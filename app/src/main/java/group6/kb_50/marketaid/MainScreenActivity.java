@@ -1,48 +1,35 @@
 package group6.kb_50.marketaid;
 
-import android.app.ActionBar;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.preference.PreferenceManager;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
-import android.view.View.OnKeyListener;
-import android.widget.Toast;
 
 import com.parse.FindCallback;
-import com.parse.LogInCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseInstallation;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
-import com.parse.SignUpCallback;
 
 import java.util.List;
 
 import group6.kb_50.marketaid.Buyer.BuyerMainActivity;
-import group6.kb_50.marketaid.Seller.SellerCreateAccountActivity;
-import group6.kb_50.marketaid.Seller.SellerLoginActivity;
 import group6.kb_50.marketaid.Seller.SellerLoginFragment;
 import group6.kb_50.marketaid.Seller.SellerMainActivity;
-import group6.kb_50.marketaid.Seller.SellerRegisterFragment;
 
 public class MainScreenActivity extends AppCompatActivity {
 
@@ -111,9 +98,11 @@ public class MainScreenActivity extends AppCompatActivity {
         ft.commit();
     }
 
-
     public void ToBuyerMain(View view) {
-        startActivity(new Intent(this, BuyerMainActivity.class));
+        Intent i = new Intent(this, BuyerMainActivity.class);
+        Bundle translateBundle = ActivityOptionsCompat.makeCustomAnimation(this,
+                R.anim.slide_in_from_right_activity,R.anim.slide_out_to_left_activity).toBundle();
+        startActivity(i, translateBundle);
     }
 
     @Override
