@@ -156,6 +156,7 @@
     <string name="no_user_logged_in">No user is logged in</string>
     <string name="location_of_user_set_part1">Location of\u0020</string>
     <string name="location_of_user_set_part2">\u0020has been set</string>
+    <string name="ProductSetTitle">You chose...</string>
 
 
 </resources>

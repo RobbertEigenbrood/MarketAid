@@ -1,15 +1,19 @@
 package group6.kb_50.marketaid.Buyer;
 
 import android.content.Intent;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.SearchView;
 import android.widget.Spinner;
 
@@ -43,6 +47,8 @@ public class BuyerMainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.buyer_activity_main);
+        /* Change the title of this screen */
+        this.setTitle(getString(R.string.BuyerOverview));
 
         swipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.swiperefresh);
         swipeRefreshLayout.setOnRefreshListener(
@@ -70,6 +76,18 @@ public class BuyerMainActivity extends AppCompatActivity {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.category_filter_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         category_spinner.setAdapter(adapter);
+        category_spinner.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if(v == category_spinner) {
+                    InputMethodManager imm = (InputMethodManager) getSystemService(
+                            INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+                    findViewById(R.id.container).requestFocus();
+                }
+                return false;
+            }
+        });
         category_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
@@ -160,7 +178,9 @@ public class BuyerMainActivity extends AppCompatActivity {
                 int[] screenLocation = new int[2];
                 imageView.getLocationOnScreen(screenLocation);
                 intent.putExtra("ID", item.getID());
-                startActivity(intent);
+                Bundle scaleBundle = ActivityOptionsCompat.makeScaleUpAnimation(
+                        v, 0, 0, v.getWidth(), v.getHeight()).toBundle();
+                startActivity(intent, scaleBundle);
             }
         });
 

@@ -1,47 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:fitsSystemWindows="true"
-    tools:context="group6.kb_50.marketaid.Buyer.CommentActivity">
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/commentName"
-        android:id="@+id/textView10"
-        android:layout_gravity="center_horizontal" />
-
-    <EditText
+    android:layout_height="match_parent"
+    tools:context="group6.kb_50.marketaid.Buyer.CommentActivity"
+    android:background="@drawable/mark_background"
+    android:gravity="center">
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/editCommentName"
-        android:layout_gravity="center_horizontal"
-        android:focusable="true" />
+        android:background="@drawable/backgroundshape"
+        android:layout_margin="5dp"
+        android:padding="5dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/commentComment"
-        android:id="@+id/textView11"
-        android:layout_gravity="center_horizontal" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/editCommentName"
+            android:layout_gravity="center_horizontal"
+            android:focusable="true"
+            android:layout_margin="5dp"
+            android:gravity="bottom|left"
+            android:hint="Name"
+            android:textSize="20sp"
+            android:typeface="serif"
+            android:textColor="#000000" />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/editCommentText"
-        android:layout_gravity="center_horizontal"
-        android:focusable="true"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editCommentText"
+            android:layout_gravity="center_horizontal"
+            android:focusable="true"
+            android:layout_margin="5dp"
+            android:gravity="bottom|left"
+            android:inputType="textAutoCorrect"
+            android:hint="Comment"
+            android:textSize="20sp"
+            android:typeface="serif"
+            android:textColor="#000000" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/commentPostButton"
-        android:id="@+id/button4"
-        android:onClick="onClickPost"
-        android:layout_gravity="center_horizontal" />
-</LinearLayout>
+        <Button
+            android:textColor="#000000"
+            android:textSize="15sp"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/buttonshape"
+            android:shadowColor="#A8A8A8"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="5"
+            android:typeface="serif"
+            android:text="@string/commentPostButton"
+            android:id="@+id/button4"
+            android:onClick="onClickPost"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="5dp" />
+    </LinearLayout>
+</RelativeLayout>

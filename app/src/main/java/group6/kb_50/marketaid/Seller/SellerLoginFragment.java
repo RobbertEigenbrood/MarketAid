@@ -124,9 +124,9 @@ public class SellerLoginFragment extends Fragment implements View.OnClickListene
                 break;
             case R.id.buttonRegister:
                 Intent i = new Intent(getActivity().getBaseContext(), SellerCreateAccountActivity.class);
-                Bundle translateBundle = ActivityOptionsCompat.makeCustomAnimation(getActivity(),
-                        R.anim.slide_in_from_right_activity,R.anim.slide_out_to_left_activity).toBundle();
-                startActivity(i, translateBundle);
+                Bundle scaleBundle = ActivityOptionsCompat.makeScaleUpAnimation(
+                        v, 0, 0, v.getWidth(), v.getHeight()).toBundle();
+                startActivity(i, scaleBundle);
                 break;
             default:
                 break;

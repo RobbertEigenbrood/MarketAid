@@ -77,12 +77,12 @@
         android:shadowDx="0"
         android:shadowDy="0"
         android:shadowRadius="5"
+        android:typeface="serif"
         android:id="@+id/buttonRegister"
         android:layout_alignTop="@+id/buttonLogin"
         android:layout_marginLeft="10dp"
         android:layout_alignRight="@+id/editTextpassword"
         android:layout_alignEnd="@id/editTextpassword"
-        android:typeface="serif"
         android:onClick="ToRegisterOnClick" />
 
     <ProgressBar

@@ -15,6 +15,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Looper;
 import android.provider.Settings;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 //import android.support.v7.app.AlertDialog;
@@ -40,6 +41,8 @@ import com.parse.ParseQueryAdapter;
 import com.parse.ParseRelation;
 import com.parse.ParseUser;
 
+import org.w3c.dom.Text;
+
 import group6.kb_50.marketaid.GPSWrapper;
 import group6.kb_50.marketaid.MainScreenActivity;
 import group6.kb_50.marketaid.R;
@@ -63,6 +66,7 @@ public class BuyerProductActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.buyer_activity_product);
+        this.setTitle(getString(R.string.ProductSetTitle));
 
         /* Display the ProgressBar */
         final ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBarBuyerProduct);
@@ -92,10 +96,7 @@ public class BuyerProductActivity extends AppCompatActivity
         ft.replace(R.id.commentframelayout, fragment);
         ft.addToBackStack(null);
         ft.commit();
-
-
     }
-
 
     public void handleIntent() {
         Intent i = getIntent();
@@ -321,9 +322,11 @@ public class BuyerProductActivity extends AppCompatActivity
     }
 
     public void onClickCommentButton(View v){
-                Intent i = new Intent(getApplicationContext(), CommentActivity.class);
-                i.putExtra("Product",ID);
-                startActivity(i);
+        Intent i = new Intent(getApplicationContext(), CommentActivity.class);
+        i.putExtra("Product",ID);
+        Bundle translateBundle = ActivityOptionsCompat.makeCustomAnimation(this,
+                R.anim.slide_in_from_right_activity, R.anim.slide_out_to_left_activity).toBundle();
+        startActivity(i, translateBundle);
     }
 
     private boolean checkConnection(){

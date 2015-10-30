@@ -152,5 +152,6 @@
     <string name="no_user_logged_in">Er is geen gebruiker ingelogd</string>
     <string name="location_of_user_set_part1">Locatie van\u0020</string>
     <string name="location_of_user_set_part2">\u0020is ingesteld</string>
+    <string name="ProductSetTitle">You chose...</string>
 
 </resources>

@@ -65,7 +65,10 @@ public class MainScreenActivity extends AppCompatActivity {
     public void ToSellerMain(View view) {
         ParseUser user = ParseUser.getCurrentUser();
         if(user != null) {
-            startActivity(new Intent(this, SellerMainActivity.class));
+            Intent i = new Intent(this, SellerMainActivity.class);
+            Bundle translateBundle = ActivityOptionsCompat.makeCustomAnimation(this,
+                    R.anim.slide_in_from_right_activity,R.anim.slide_out_to_left_activity).toBundle();
+            startActivity(i, translateBundle);
         }
         else{
             fragnumber = 2;
