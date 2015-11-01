@@ -9,6 +9,7 @@ import android.net.NetworkInfo;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.os.Build;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
@@ -68,7 +69,12 @@ public class MainScreenActivity extends AppCompatActivity {
             Intent i = new Intent(this, SellerMainActivity.class);
             Bundle translateBundle = ActivityOptionsCompat.makeCustomAnimation(this,
                     R.anim.slide_in_from_right_activity,R.anim.slide_out_to_left_activity).toBundle();
-            startActivity(i, translateBundle);
+            if(Build.VERSION.SDK_INT >= 16) {
+                startActivity(i, translateBundle);
+            }
+            else {
+                startActivity(i);
+            }
         }
         else{
             fragnumber = 2;
@@ -105,7 +111,12 @@ public class MainScreenActivity extends AppCompatActivity {
         Intent i = new Intent(this, BuyerMainActivity.class);
         Bundle translateBundle = ActivityOptionsCompat.makeCustomAnimation(this,
                 R.anim.slide_in_from_right_activity,R.anim.slide_out_to_left_activity).toBundle();
-        startActivity(i, translateBundle);
+        if(Build.VERSION.SDK_INT >= 16) {
+            startActivity(i, translateBundle);
+        }
+        else {
+            startActivity(i);
+        }
     }
 
     @Override
