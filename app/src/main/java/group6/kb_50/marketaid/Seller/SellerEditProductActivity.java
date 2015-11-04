@@ -38,6 +38,7 @@ public class SellerEditProductActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.seller_activity_edit_product);
+        this.setTitle(getString(R.string.EditProduct));
         EditText textView = (EditText ) findViewById(R.id.EnterProductTitleEdit);
         textView.requestFocus();
 
@@ -183,5 +184,11 @@ public class SellerEditProductActivity extends AppCompatActivity {
         }*/
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void finish(){
+        super.finish();
+        overridePendingTransition(R.anim.slide_in_from_left_activity,R.anim.slide_out_to_right_activity);
     }
 }

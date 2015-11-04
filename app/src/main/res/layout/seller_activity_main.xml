@@ -64,7 +64,7 @@ android:layout_width="match_parent"
         android:horizontalSpacing="5sp"
         android:layout_centerVertical="true"
         android:layout_below="@+id/SellerTextMain"
-        />
+        android:padding="5dp" />
 </RelativeLayout>
 
 

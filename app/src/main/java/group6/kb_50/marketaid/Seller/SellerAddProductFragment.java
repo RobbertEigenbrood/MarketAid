@@ -66,8 +66,8 @@ public class SellerAddProductFragment extends Fragment implements View.OnClickLi
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         view = inflater.inflate(R.layout.seller_activity_add, container, false);
+        getActivity().setTitle(getString(R.string.AddProduct));
 
         final EditText inputnameTV = (EditText) view.findViewById(R.id.EnterProductTitleAdd);
         /* Start focus at first field */

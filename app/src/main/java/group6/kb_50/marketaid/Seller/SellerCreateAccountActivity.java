@@ -3,6 +3,7 @@ package group6.kb_50.marketaid.Seller;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.preference.PreferenceManager;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -104,7 +105,9 @@ public class SellerCreateAccountActivity extends AppCompatActivity {
                     logInNewUser(user.getText().toString(), password.getText().toString());
                     Toast.makeText(getBaseContext(), getString(R.string.new_user_created_with_username) + user.getText().toString(), Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(getBaseContext(), SellerMainActivity.class);
-                    startActivity(i);
+                    Bundle translateBundle = ActivityOptionsCompat.makeCustomAnimation(SellerCreateAccountActivity.this,
+                            R.anim.slide_in_from_right_activity, R.anim.slide_out_to_left_activity).toBundle();
+                    startActivity(i, translateBundle);
                     finish();
                 } else {
                     if (e.getCode() == USERNAME_EXISTS) {

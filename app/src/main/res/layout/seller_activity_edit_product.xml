@@ -1,137 +1,183 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="group6.kb_50.marketaid.Seller.SellerEditProductActivity">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/EditProduct"
-        android:id="@+id/EditProductText"
-        android:layout_centerHorizontal="true"
-        android:textSize="30sp"
-        android:gravity="center"
-        android:layout_alignParentTop="false" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/Title"
-        android:id="@+id/TitleEditText"
-        android:layout_centerHorizontal="true"
-        android:textSize="20sp"
-        android:layout_below="@+id/EditProductText"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:gravity="bottom" />
-
-    <EditText
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/mark_background"
+    tools:context="group6.kb_50.marketaid.Seller.SellerEditProductActivity"
+    android:gravity="center">
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/EnterProductTitleEdit"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/TitleEditText"
-        android:gravity="bottom"
-        android:focusable="true"
-        android:focusableInTouchMode="true" />
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:background="@drawable/backgroundshape"
+        android:padding="5dp">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/EditImage"
-        android:id="@+id/EditImageButton"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:onClick="onClickAddImage"
-        android:gravity="center"
-        android:layout_above="@+id/CategoryEditText" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Title"
+            android:id="@+id/TitleEditText"
+            android:layout_centerHorizontal="true"
+            android:textSize="20sp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:gravity="bottom"
+            android:typeface="serif"
+            android:textColor="#000000"
+            android:textStyle="bold" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/Browse"
-        android:id="@+id/BrowseEditButton"
-        android:layout_alignTop="@+id/EditImageButton"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:gravity="center"
-        android:layout_above="@+id/CategoryEditText" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/EnterProductTitleEdit"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/TitleEditText"
+            android:gravity="bottom"
+            android:focusable="true"
+            android:focusableInTouchMode="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/Category"
-        android:id="@+id/CategoryEditText"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:gravity="bottom"
-        android:textSize="20sp"
-        android:layout_above="@+id/category_spinner" />
+        <Button
+            android:text="@string/EditImage"
+            android:id="@+id/EditImageButton"
+            android:layout_alignParentStart="true"
+            android:onClick="onClickAddImage"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="15sp"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/buttonshape"
+            android:shadowColor="#A8A8A8"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="5"
+            android:typeface="serif"
+            android:layout_margin="5dp"
+            android:padding="2dp"
+            android:layout_above="@+id/CategoryEditText"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/Description"
-        android:id="@+id/DescriptionEditText"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:gravity="bottom"
-        android:textSize="20sp"
-        android:layout_above="@+id/EditProductDescriptionEdit" />
+        <Button
+            android:text="@string/Browse"
+            android:id="@+id/BrowseEditButton"
+            android:layout_alignTop="@+id/EditImageButton"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="15sp"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/buttonshape"
+            android:shadowColor="#A8A8A8"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="5"
+            android:typeface="serif"
+            android:layout_margin="5dp"
+            android:layout_above="@+id/CategoryEditText"
+            android:padding="2dp" />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/EditProductDescriptionEdit"
-        android:layout_alignParentStart="true"
-        android:gravity="bottom"
-        android:lines="2"
-        android:layout_above="@+id/EditButton"
-        android:focusableInTouchMode="true"
-        android:focusable="true"
-        android:layout_alignParentLeft="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Category"
+            android:id="@+id/CategoryEditText"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:gravity="bottom"
+            android:textSize="20sp"
+            android:layout_above="@+id/category_spinner"
+            android:typeface="serif"
+            android:textColor="#000000"
+            android:textStyle="bold" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/EditProduct"
-        android:id="@+id/EditButton"
-        android:onClick="onClickEditProduct"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Description"
+            android:id="@+id/DescriptionEditText"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:gravity="bottom"
+            android:textSize="20sp"
+            android:layout_above="@+id/EditProductDescriptionEdit"
+            android:typeface="serif"
+            android:textColor="#000000"
+            android:textStyle="bold" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/RemoveProduct"
-        android:id="@+id/RemoveEditButton"
-        android:layout_alignTop="@+id/EditButton"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:onClick="onClickRemoveProduct" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/EditProductDescriptionEdit"
+            android:layout_alignParentStart="true"
+            android:gravity="bottom"
+            android:lines="2"
+            android:layout_above="@+id/EditButton"
+            android:focusableInTouchMode="true"
+            android:focusable="true"
+            android:layout_alignParentLeft="true" />
 
-    <com.parse.ParseImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/view2"
-        android:layout_centerHorizontal="true"
-        android:layout_above="@+id/EditImageButton"
-        android:layout_below="@+id/EnterProductTitleEdit"
-        android:layout_toRightOf="@+id/EditImageButton"
-        android:layout_toLeftOf="@+id/BrowseEditButton" />
+        <Button
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="15sp"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/buttonshape"
+            android:shadowColor="#A8A8A8"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="5"
+            android:typeface="serif"
+            android:layout_margin="5dp"
+            android:padding="2dp"
+            android:text="@string/EditProduct"
+            android:id="@+id/EditButton"
+            android:onClick="onClickEditProduct"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true" />
 
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:id="@+id/category_spinner"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_above="@+id/DescriptionEditText" />
+        <Button
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="15sp"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/buttonshape"
+            android:shadowColor="#A8A8A8"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="5"
+            android:typeface="serif"
+            android:layout_margin="5dp"
+            android:padding="2dp"
+            android:text="@string/RemoveProduct"
+            android:id="@+id/RemoveEditButton"
+            android:layout_alignTop="@+id/EditButton"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:onClick="onClickRemoveProduct" />
 
+        <com.parse.ParseImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/view2"
+            android:layout_centerHorizontal="true"
+            android:layout_above="@+id/EditImageButton"
+            android:layout_below="@+id/EnterProductTitleEdit"
+            android:layout_toRightOf="@+id/EditImageButton"
+            android:layout_toLeftOf="@+id/BrowseEditButton" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:id="@+id/category_spinner"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_above="@+id/DescriptionEditText" />
+    </RelativeLayout>
 </RelativeLayout>

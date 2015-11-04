@@ -2,6 +2,7 @@ package group6.kb_50.marketaid.Seller;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -76,7 +77,9 @@ public class SellerMainFragment extends Fragment {
                 //Pass the image title and url to DetailsActivity
                 intent.putExtra("ID", item.getID());
                 //Start details activity
-                startActivity(intent);
+                Bundle scaleBundle = ActivityOptionsCompat.makeScaleUpAnimation(
+                        v, 0, 0, v.getWidth(), v.getHeight()).toBundle();
+                getActivity().startActivity(intent,scaleBundle);
             }
         });
 

@@ -1,10 +1,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="group6.kb_50.marketaid.Seller.SettingsActivityFragment">
+    android:layout_height="match_parent"
+    tools:context="group6.kb_50.marketaid.Seller.SettingsActivityFragment"
+    android:background="@drawable/backgroundshape"
+    android:padding="10dp">
 
 
     <Switch
@@ -13,16 +12,34 @@
         android:text="@string/Present"
         android:id="@+id/switch1"
         android:layout_alignParentStart="true"
-        android:checked="false" />
+        android:checked="false"
+        android:typeface="serif"
+        android:textSize="20sp"
+        android:layout_alignParentEnd="false"
+        android:layout_below="@+id/buttonGPS"
+        android:layout_marginTop="30dp"
+        android:layout_alignLeft="@+id/buttonGPS" />
 
     <Button
+        android:gravity="center"
+        android:textColor="#000000"
+        android:textSize="15sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/buttonshape"
+        android:shadowColor="#A8A8A8"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
+        android:typeface="serif"
+        android:padding="2dp"
         android:text="@string/buttonSetGPS"
         android:id="@+id/buttonGPS"
-        android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView9"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -30,9 +47,12 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/logged_in_as"
         android:id="@+id/textView8"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:typeface="serif"
+        android:textSize="20sp"
+        android:textColor="#000000"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -40,9 +60,13 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/set_current_selling_position"
         android:id="@+id/textView9"
-        android:layout_above="@+id/buttonGPS"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textSize="20sp"
+        android:typeface="serif"
+        android:textColor="#000000"
+        android:layout_marginBottom="5dp"
+        android:layout_centerVertical="true" />
 
 
 </RelativeLayout>
