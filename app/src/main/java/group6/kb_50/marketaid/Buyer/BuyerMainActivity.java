@@ -1,6 +1,7 @@
 package group6.kb_50.marketaid.Buyer;
 
 import android.content.Intent;
+import android.os.Build;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -180,7 +181,13 @@ public class BuyerMainActivity extends AppCompatActivity {
                 intent.putExtra("ID", item.getID());
                 Bundle scaleBundle = ActivityOptionsCompat.makeScaleUpAnimation(
                         v, 0, 0, v.getWidth(), v.getHeight()).toBundle();
-                startActivity(intent, scaleBundle);
+
+                if(Build.VERSION.SDK_INT >= 16) {
+                    startActivity(intent, scaleBundle);
+                }
+                else {
+                    startActivity(intent);
+                }
             }
         });
 

@@ -105,10 +105,27 @@ public class BuyerProductActivity extends AppCompatActivity
         final TextView nametv = (TextView) findViewById(R.id.TitleProductText);
         final TextView descriptiontv = (TextView) findViewById(R.id.DescriptionProductText);
         final ParseImageView imageview = (ParseImageView) findViewById(R.id.view);
+        final TextView sellertv = (TextView) findViewById(R.id.textView4);
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Products");
-        query.fromLocalDatastore();
         query.getInBackground(ID, new GetCallback<ParseObject>() {
+            public void done(ParseObject p, ParseException e) {
+                if (e == null) {
+
+                    p.getParseUser("Seller").fetchIfNeededInBackground(new GetCallback<ParseUser>() {
+                        @Override
+                        public void done(ParseUser seller, ParseException e) {
+                         String sellerString = seller.getUsername();
+                            sellertv.setText(getString(R.string.ProductSeller) + " " + sellerString);
+                        }
+                    });
+                }
+            }
+        });
+
+        ParseQuery<ParseObject> query2 = ParseQuery.getQuery("Products");
+        query2.fromLocalDatastore();
+        query2.getInBackground(ID, new GetCallback<ParseObject>() {
             public void done(ParseObject object, ParseException e) {
                 String name = object.get("Name").toString();
                 String description = object.get("Description").toString();
@@ -118,6 +135,8 @@ public class BuyerProductActivity extends AppCompatActivity
                 descriptiontv.setText(description);
                 imageview.setParseFile(file);
                 imageview.loadInBackground();
+
+
             }
         });
     }
@@ -323,10 +342,15 @@ public class BuyerProductActivity extends AppCompatActivity
 
     public void onClickCommentButton(View v){
         Intent i = new Intent(getApplicationContext(), CommentActivity.class);
-        i.putExtra("Product",ID);
+        i.putExtra("Product", ID);
         Bundle translateBundle = ActivityOptionsCompat.makeCustomAnimation(this,
                 R.anim.slide_in_from_right_activity, R.anim.slide_out_to_left_activity).toBundle();
-        startActivity(i, translateBundle);
+        if(Build.VERSION.SDK_INT >= 16) {
+            startActivity(i, translateBundle);
+        }
+        else {
+            startActivity(i);
+        }
     }
 
     private boolean checkConnection(){

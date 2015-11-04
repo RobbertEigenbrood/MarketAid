@@ -59,6 +59,18 @@
             android:typeface="serif"
             android:layout_weight="1" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ProductSeller"
+            android:id="@+id/textView4"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:layout_margin="5dp"
+            android:textColor="#000000"
+            android:typeface="serif"
+            android:layout_weight="0.5" />
+
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -117,7 +129,7 @@
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="150dp"
             android:layout_gravity="center_horizontal"
             android:id="@+id/commentframelayout"
             android:layout_weight="1"></FrameLayout>
