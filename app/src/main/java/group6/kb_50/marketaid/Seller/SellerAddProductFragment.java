@@ -202,9 +202,12 @@ public class SellerAddProductFragment extends Fragment implements View.OnClickLi
         p.setCategory(inputcategory);
         p.setDescription(inputdescription);
         p.setSeller(ParseUser.getCurrentUser());
+        ImageView iv = (ImageView) view.findViewById(R.id.SampleImageAddView);
+        imageBitmap = ((BitmapDrawable)iv.getDrawable()).getBitmap();
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
         /* Check for a nullpointer. The app shuts down if the user hasn't added an image */
         if( imageBitmap != null){
-            ByteArrayOutputStream stream = new ByteArrayOutputStream();
             imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
             byte[] image = stream.toByteArray();
             ParseFile file = null;
@@ -348,6 +351,7 @@ public class SellerAddProductFragment extends Fragment implements View.OnClickLi
             Drawable drw = Drawable.createFromStream(is, "srcName");
             ImageView iv = (ImageView) view.findViewById(R.id.SampleImageAddView);
             iv.setImageDrawable(drw);
+            imageBitmap = BitmapFactory.decodeStream(is);
         }else{
             Log.e("ImageInByte", "Error converting Image to Byte[]");
         }
